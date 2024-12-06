@@ -4,7 +4,7 @@
 
 <article>
 	{#each copy.sections as { title, slides }}
-		<h2>{title}</h2>
+		<h2>{@html title}</h2>
 
 		{#each slides as { text, visual }}
 			<p>{@html text}</p>
