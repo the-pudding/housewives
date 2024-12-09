@@ -27,75 +27,78 @@ Usage:
 	import { setContext, onMount } from "svelte";
 	import { writable } from "svelte/store";
 
-	export let direction = "horizontal";
-	export let duration = "500ms";
-	export let timing = "ease";
-
-	export let count = 0;
-	export let current = 0;
+	let {
+		direction = "horizontal",
+		duration = "500ms",
+		timing = "ease",
+		count = 0,
+		current, // NEW
+		slides // NEW
+	} = $props();
 
 	export const next = () => move(1);
 	export const prev = () => move(-1);
 	export const jump = (val) => move(val, true);
 
+	let width = $state();
+	let height = $state();
+	let index = $state(0);
 	let children = 0;
-	let index = 0;
-	let width;
-	let height;
 	let isInView = false;
 	let sliderEl;
 	let translateEl;
-	let root;
 	let observer;
 
-	let _direction = writable();
-	let _width = writable();
-	let _height = writable();
-	let _current = writable();
-	let _count = writable();
-
 	const move = (val, jump) => {
-		if (!isInView) return false;
 		const target = jump ? val : index + val;
 		index = Math.max(0, Math.min(children - 1, target));
 		current = index;
 	};
 
+	$inspect({ index, current });
+
 	const onIntersect = (e) => {
 		isInView = e[0].isIntersecting;
 	};
 
-	$: w = direction === "horizontal" ? `${children * width}px` : "100%";
-	$: h = direction === "vertical" ? `${children * height}px` : "100%";
+	let w = $derived(
+		direction === "horizontal" ? `${children * width}px` : "100%"
+	);
+	let h = $derived(
+		direction === "vertical" ? `${children * height}px` : "100%"
+	);
+	let x = $derived(direction === "horizontal" ? `${index * width * -1}px` : 0);
+	let y = $derived(direction === "vertical" ? `${index * height * -1}px` : 0);
+	let sW = $derived(`width: ${w};`);
+	let sH = $derived(`height: ${h};`);
+	let sT = $derived(`transform: translate3d(${x}, ${y}, 0);`);
+	let sTD = $derived(`transition-duration: ${duration};`);
+	let sTTF = $derived(`transition-timing-function: ${timing};`);
+	let customStyle = $derived(`${sW} ${sH} ${sT} ${sTD} ${sTTF}`);
 
-	$: x = direction === "horizontal" ? `${index * width * -1}px` : 0;
-	$: y = direction === "vertical" ? `${index * height * -1}px` : 0;
-
-	$: sW = `width: ${w};`;
-	$: sH = `height: ${h};`;
-	$: sT = `transform: translate3d(${x}, ${y}, 0);`;
-	$: sTD = `transition-duration: ${duration};`;
-	$: sTTF = `transition-timing-function: ${timing};`;
-	$: customStyle = `${sW} ${sH} ${sT} ${sTD} ${sTTF}`;
-
-	// context
-	$: _direction.set(direction);
-	$: _width.set(width);
-	$: _height.set(height);
-	$: _current.set(current);
-	$: context = {
-		dir: _direction,
-		cur: _current,
-		w: _width,
-		h: _height,
-		count: _count
+	const context = {
+		get direction() {
+			return direction;
+		},
+		get width() {
+			return width;
+		},
+		get height() {
+			return height;
+		},
+		get count() {
+			return count;
+		},
+		get current() {
+			return current;
+		}
 	};
-	$: setContext("Slider", context);
+
+	setContext("Slider", context);
 
 	onMount(() => {
 		children = translateEl.children.length;
 		count = children;
-		_count.set(count);
 		observer = new IntersectionObserver(onIntersect, {
 			root: null,
 			rootMargin: "-1px"
@@ -112,9 +115,10 @@ Usage:
 	bind:this={sliderEl}
 	bind:clientWidth={width}
 	bind:clientHeight={height}
+	style={`height: ${!height ? "calc(100vh - 5rem)" : null}`}
 >
 	<div class="slides" bind:this={translateEl} style={customStyle}>
-		<slot />
+		{@render slides()}
 	</div>
 </section>
 

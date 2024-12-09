@@ -1,48 +1,52 @@
 <script>
-	import ChevronLeft from "lucide-svelte/icons/chevron-left";
-	import ChevronRight from "lucide-svelte/icons/chevron-right";
-	import { createEventDispatcher } from "svelte";
+	// import ChevronLeft from "lucide-svelte/icons/chevron-left";
+	// import ChevronRight from "lucide-svelte/icons/chevron-right";
 
-	export let debug = false;
-	export let enableKeyboard = false;
-	export let full = false;
-	export let showArrows = false; // boolean or array of directions
-	export let disable = [];
-	export let directions = ["left", "right"];
-	export let size = "64px";
-	export let arrowSize = "48px";
-	export let arrowStroke = "#000";
-	export let arrowStrokeWidth = "2";
-	export let arrowPosition = "center"; // start, center, end
+	let {
+		debug = false,
+		enableKeyboard = false,
+		full = false,
+		showArrows = false,
+		disable = [],
+		directions = ["left", "right"],
+		size = "64px",
+		arrowSize = "48px",
+		arrowStroke = "#000",
+		arrowStrokeWidth = "2",
+		arrowPosition = "center",
+		onTap
+	} = $props();
 
-	const dispatch = createEventDispatcher();
-	let innerHeight;
+	let innerHeight = $state();
 
-	$: getW = (dir) =>
-		Array.isArray(size) ? size[directions.indexOf(dir)] : full ? "100%" : size;
-	$: getH = (dir) =>
-		["up", "down"].includes(dir) ? size : full ? "100%" : size;
+	let getW = $derived((dir) =>
+		Array.isArray(size) ? size[directions.indexOf(dir)] : full ? "100%" : size
+	);
+	let getH = $derived((dir) =>
+		["up", "down"].includes(dir) ? size : full ? "100%" : size
+	);
+	let visibleArrows = $derived(
+		directions.filter((d) =>
+			typeof showArrows === "boolean" ? showArrows : showArrows.includes(d)
+		)
+	);
 
-	$: onKeyDown = (e) => {
+	const onKeyDown = (e) => {
 		const dir = e.key.replace("Arrow", "").toLowerCase();
 		const hasDir = directions.includes(dir);
 		if (enableKeyboard && hasDir) {
 			e.preventDefault();
-			dispatch("tap", dir);
+			onTap(dir);
 		}
 	};
-
-	$: visibleArrows = directions.filter((d) =>
-		typeof showArrows === "boolean" ? showArrows : showArrows.includes(d)
-	);
 </script>
 
-<svelte:window on:keydown={onKeyDown} bind:innerHeight />
+<svelte:window onkeydown={onKeyDown} bind:innerHeight />
 
 <section class:debug style="height: {innerHeight}px;">
 	{#each directions as dir}
 		<button
-			on:click={dispatch("tap", dir)}
+			onclick={onTap(dir)}
 			style="width: {getW(dir)}; height: {getH(dir)};"
 			aria-label={dir}
 			class="{dir} {arrowPosition}"
@@ -52,9 +56,19 @@
 			{#if visibleArrows.includes(dir)}
 				<span style="font-size: {arrowSize};">
 					{#if dir === "left"}
-						<ChevronLeft aria-hidden="true" color={arrowStroke} strokeWidth={arrowStrokeWidth} />
+						<!-- <ChevronLeft
+							aria-hidden="true"
+							color={arrowStroke}
+							strokeWidth={arrowStrokeWidth}
+						/> -->
+						left arrow
 					{:else if dir === "right"}
-						<ChevronRight aria-hidden="true" color={arrowStroke} strokeWidth={arrowStrokeWidth} />
+						<!-- <ChevronRight
+							aria-hidden="true"
+							color={arrowStroke}
+							strokeWidth={arrowStrokeWidth}
+						/> -->
+						right arrow
 					{/if}
 				</span>
 			{/if}
@@ -190,7 +204,7 @@
 	}
 
 	.debug .right {
-		background: red;
+		background: green;
 		opacity: 0.5;
 	}
 

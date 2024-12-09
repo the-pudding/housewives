@@ -1,28 +1,37 @@
 <script>
 	import { getContext } from "svelte";
 	import canTab from "$actions/canTab.js";
-	const { dir, cur, w, h, count } = getContext("Slider");
 
-	export let index;
+	let { index, contents, text, visual } = $props();
 
-	$: width = $dir === "horizontal" ? `${$w}px` : "100%";
-	$: height = $dir === "vertical" ? `${$h}px` : "100%";
-	$: visible = index === $cur;
-	$: disable = !visible;
+	const context = getContext("Slider");
+
+	let width = $derived(
+		context.direction === "horizontal"
+			? `${context.count * context.width}px`
+			: "100%"
+	);
+	let height = $derived(
+		context.direction === "vertical"
+			? `${context.count * context.height}px`
+			: "100%"
+	);
+	let visible = $derived(index === context.current.activeSlide);
+	let disable = $derived(!visible);
 </script>
 
 <div
-	id="slide-{index}"
+	id={`slide-${index}`}
 	class="slide"
 	class:visible
 	style:width
 	style:height
 	role="group"
-	aria-label="slide {index + 1} of {$count}"
+	aria-label="slide {index + 1} of {context.count}"
 	aria-current={visible}
 	use:canTab={{ disable }}
 >
-	<slot />
+	{@render contents(text, visual)}
 </div>
 
 <style>
