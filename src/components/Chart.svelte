@@ -30,11 +30,6 @@
 			.range([0, width])
 	);
 
-	$inspect(
-		data.filter((d) => d.solid_apology === "TRUE").length,
-		data.filter((d) => d.solid_apology === "FALSE").length,
-		data.length
-	);
 </script>
 
 <figure id={`slide-${slideI}-chart`} bind:clientWidth={width}>

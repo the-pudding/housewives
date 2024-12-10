@@ -2,38 +2,72 @@
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
 	import Chart from "$components/Chart.svelte";
-	import { slide } from "$runes/misc.svelte.js";
+	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
+	import _ from "lodash";
 
 	let w = $state();
 
-	const totalSlides = copy.sections.reduce(
-		(acc, { slides }) => acc + slides.length,
-		0
-	);
-
 	const advance = (i) => {
-		if (slide.value + i >= 0 && slide.value + i < totalSlides) {
-			slide.value += i;
+		const allSlides = copy.sections.reduce(
+			(acc, section) => acc.concat(section.slides),
+			[]
+		);
+		let newSlideIndex = current.slide + i;
+		newSlideIndex = Math.max(0, Math.min(newSlideIndex, allSlides.length - 1));
+		current.slide = newSlideIndex;
+
+		let accumulatedSlides = 0;
+		for (
+			let sectionIndex = 0;
+			sectionIndex < copy.sections.length;
+			sectionIndex++
+		) {
+			const section = copy.sections[sectionIndex];
+			const slidesInSection = section.slides.length;
+
+			if (newSlideIndex < accumulatedSlides + slidesInSection) {
+				current.section = sectionIndex;
+				current.slideInSection = newSlideIndex - accumulatedSlides;
+				break;
+			}
+
+			accumulatedSlides += slidesInSection;
 		}
 	};
 
+	$inspect(current);
+
 	const onKeyDown = (e) => {
-		if (e.keyCode === 39) {
-			if (slide.value < 42 - 1) slide.value += 1;
-		} else if (e.keyCode === 37) {
-			if (slide.value > 0) slide.value -= 1;
-		}
+		if (e.keyCode === 39) advance(1);
+		else if (e.keyCode === 37) advance(-1);
 	};
 </script>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <article bind:clientWidth={w}>
+	<div class="chapters">
+		{#each copy.sections as { title, slides }, sectionI}
+			<div class="section" class:active={current.section === sectionI}>
+				<div class="title">{sectionI + 1} — {@html title}</div>
+				<div class="bars">
+					{#each _.range(slides.length) as barI}
+						<div
+							class="bar"
+							class:active={current.section === sectionI &&
+								current.slideInSection === barI}
+						/>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+
 	<div class="slider">
 		<div
 			class="slides"
-			style:transform={`translate(${slide.value * w * -1}px, 0)`}
+			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
 			{#each copy.sections as { title, slides }, sectionI}
 				{#each slides as { text, clip, clips, chart, visual }, slideI}
@@ -74,12 +108,54 @@
 <style>
 	article {
 		position: absolute;
-		top: 7rem;
+		top: 8rem;
 		left: 50%;
 		transform: translate(-50%, 0);
 		width: 100%;
 		max-width: 45rem;
 		z-index: 2;
+	}
+
+	.chapters {
+		display: flex;
+		gap: 4px;
+	}
+
+	.section {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.section.active {
+		flex: 5;
+	}
+
+	.title {
+		position: absolute;
+		top: 0;
+		transform: translate(0, -110%);
+		font-size: var(--14px);
+		visibility: hidden;
+	}
+
+	.section.active .title {
+		visibility: visible;
+	}
+
+	.bars {
+		display: flex;
+		gap: 1px;
+	}
+
+	.bar {
+		flex: 1;
+		height: 2px;
+		background: var(--color-gray-300);
+	}
+
+	.bar.active {
+		background: var(--color-gray-800);
 	}
 
 	.slider {

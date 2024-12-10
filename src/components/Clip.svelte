@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
-	import { slide } from "$runes/misc.svelte.js";
+	import { current } from "$runes/misc.svelte.js";
+	import { slide } from "svelte/transition";
 
 	const { id, slideI } = $props();
 
@@ -31,14 +32,14 @@
 	};
 
 	const slideChange = () => {
-		if (slideI !== slide.value && !paused) {
+		if (slideI !== current.slide && !paused) {
 			paused = true;
 			currentTime = 0;
 			videoEl.pause();
 		}
 	};
 
-	$effect(() => slideChange(slide.value));
+	$effect(() => slideChange(current.slide));
 
 	onMount(() => {
 		const src = `assets/video/${id}.mp4`;
@@ -77,9 +78,9 @@
 			bind:duration
 			src={`assets/video/${id}.mp4`}
 		/>
-		<figcaption>season {season} episode {episode}</figcaption>
 
 		<div class="progress" style:width={`${percentComplete}%`} />
+		<!-- <figcaption>S{season} Ep{episode}</figcaption> -->
 	</div>
 </figure>
 
@@ -95,6 +96,8 @@
 
 	figcaption {
 		margin-top: 0.5rem;
+		font-size: var(--12px);
+		font-family: var(--mono);
 	}
 
 	button {

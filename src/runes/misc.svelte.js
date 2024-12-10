@@ -1,1 +1,1 @@
-export const slide = $state({ value: 0 });
+export const current = $state({ slide: 0, section: 0, slideInSection: 0 });
