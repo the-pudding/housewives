@@ -4,16 +4,16 @@
 </script>
 
 <header>
-	<!-- <div class="wordmark">
+	<div class="wordmark">
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
 			>{@html wordmark}</a
 		>
-	</div> -->
+	</div>
 </header>
 
 <style>
 	.wordmark {
-		max-width: 14em;
+		max-width: 10em;
 		margin: 0 auto;
 		padding: 32px 0;
 		transform: rotate(-4deg);
