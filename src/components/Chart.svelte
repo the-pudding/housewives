@@ -1,14 +1,15 @@
 <script>
 	import data from "$data/data.csv";
 	import _ from "lodash";
-	import { scaleLinear, scaleTime } from "d3-scale";
+	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
 
-	const { id } = $props();
+	const { slideI, view } = $props();
 
-	const parseDuration = timeParse("%H:%M:%S");
+	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 	let width = $state(0);
+	let showApologies = $derived(view !== "blank");
 
 	const standardize = (timestamp) => {
 		const parsedTime = parseDuration(timestamp);
@@ -22,44 +23,119 @@
 		return standardizedTime;
 	};
 
+	// TODO: each episode has a different duration
 	const xScale = $derived(
 		scaleTime()
-			.domain([standardize("00:00:00"), standardize("01:00:00:00")])
+			.domain([standardize("00:00:00"), standardize("59:59:59")])
 			.range([0, width])
+	);
+
+	$inspect(
+		data.filter((d) => d.solid_apology === "TRUE").length,
+		data.filter((d) => d.solid_apology === "FALSE").length,
+		data.length
 	);
 </script>
 
-<div {id} class="chart" bind:clientWidth={width}>
-	{#each _.range(totalEpisodes) as i}
-		{@const apologiesInEpisode = data.filter((d) => +d.totalEpisode === i + 1)}
-		<div class="episode">
-			{#each apologiesInEpisode as { timestamp }}
-				{@const parsedTime = standardize(timestamp)}
-				{@const left = `${xScale(parsedTime)}px`}
-				<div class="apology" style:left></div>
-			{/each}
+<figure id={`slide-${slideI}-chart`} bind:clientWidth={width}>
+	<div class="episodes">
+		<div class="x-labels">
+			<div>0 minutes</div>
+			<div>60 m</div>
 		</div>
-	{/each}
-</div>
+		{#each _.range(totalEpisodes) as i}
+			{@const apologiesInEpisode = data.filter(
+				(d) => +d.totalEpisode === i + 1
+			)}
+			<div class="episode">
+				{#if i === 0 || i === totalEpisodes - 1}
+					<div class="y-label">ep #{i + 1}</div>
+				{/if}
+
+				<div
+					class="full"
+					class:highlighted={view === "all" && apologiesInEpisode.length > 0}
+				>
+					{#each apologiesInEpisode as { timestamp, solid_apology }}
+						{@const parsedTime = standardize(timestamp)}
+						{@const left = `${xScale(parsedTime)}px`}
+						<div
+							class="apology"
+							class:visible={showApologies}
+							style:left
+							style:background={view === "color-coded"
+								? `var(--color-${solid_apology === "TRUE" ? "green" : "red"})`
+								: `var(--color-gray-800)`}
+						></div>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+
+	<figcaption></figcaption>
+</figure>
 
 <style>
-	.chart {
+	figure {
+		display: flex;
+		position: relative;
+		gap: 0.5rem;
+		padding-bottom: 1rem;
+		pointer-events: none;
+	}
+
+	.episodes {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
 	}
 
 	.episode {
+		display: flex;
+		align-items: center;
+	}
+
+	.full {
 		position: relative;
-		height: 8px;
+		height: 5px;
 		width: 100%;
 		background: var(--color-gray-300);
 	}
 
+	.full.highlighted {
+		background: var(--color-yellow);
+	}
+
 	.apology {
 		position: absolute;
-		background: var(--color-green);
-		height: 8px;
+		height: 100%;
 		width: 20px;
+		opacity: 0;
+	}
+
+	.apology.visible {
+		opacity: 1;
+	}
+
+	.x-labels {
+		font-size: var(--12px);
+		font-family: var(--mono);
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.y-label {
+		font-size: var(--12px);
+		font-family: var(--mono);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		white-space: nowrap;
+		position: absolute;
+		left: 0;
+		transform: translate(-110%, 0);
 	}
 </style>

@@ -1,5 +1,6 @@
 <script>
 	import Clip from "$components/Clip.svelte";
+	import Clips from "$components/Clips.svelte";
 	import Chart from "$components/Chart.svelte";
 	import { slide } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
@@ -35,7 +36,7 @@
 			style:transform={`translate(${slide.value * w * -1}px, 0)`}
 		>
 			{#each copy.sections as { title, slides }, sectionI}
-				{#each slides as { text, clip, chart, visual }, slideI}
+				{#each slides as { text, clip, clips, chart, visual }, slideI}
 					{@const index =
 						slideI +
 						copy.sections
@@ -44,12 +45,14 @@
 
 					<div class="slide" id={`slide-${index}`}>
 						<div class="content">
-							<p>{text}</p>
+							<p>{@html text}</p>
 
 							{#if clip}
 								<Clip id={clip} slideI={index} />
+							{:else if clips}
+								<Clips {clips} slideI={index} />
 							{:else if chart}
-								<Chart id={chart} />
+								<Chart slideI={index} view={chart} />
 							{/if}
 
 							{#if visual}
@@ -126,5 +129,15 @@
 		height: 100%;
 		width: 50%;
 		opacity: 0.2;
+	}
+
+	:global(span.good) {
+		background: var(--color-green);
+		padding: 0 4px;
+	}
+
+	:global(span.bad) {
+		background: var(--color-red);
+		padding: 0 4px;
 	}
 </style>

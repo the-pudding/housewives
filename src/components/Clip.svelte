@@ -96,4 +96,8 @@
 	figcaption {
 		margin-top: 0.5rem;
 	}
+
+	button {
+		font-size: var(--12px);
+	}
 </style>
