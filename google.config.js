@@ -6,6 +6,11 @@ export default [
 	{
 		id: "1mLzX4nLQRP0T3SPrzMTblXaqW9mMs3IOTEI8-TlxxO8",
 		gid: "235392367",
-		filepath: "src/data/data.csv"
+		filepath: "src/data/apologies.csv"
+	},
+	{
+		id: "1mLzX4nLQRP0T3SPrzMTblXaqW9mMs3IOTEI8-TlxxO8",
+		gid: "905930860",
+		filepath: "src/data/people.csv"
 	}
 ];

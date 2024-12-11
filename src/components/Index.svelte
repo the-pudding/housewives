@@ -1,7 +1,8 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
-	import Chart from "$components/Chart.svelte";
+	import EpisodeChart from "$components/EpisodeChart.svelte";
+	import BarChart from "$components/BarChart.svelte";
 	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
@@ -36,8 +37,6 @@
 		}
 	};
 
-	$inspect(current);
-
 	const onKeyDown = (e) => {
 		if (e.keyCode === 39) advance(1);
 		else if (e.keyCode === 37) advance(-1);
@@ -70,7 +69,7 @@
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
 			{#each copy.sections as { title, slides }, sectionI}
-				{#each slides as { text, clip, clips, chart, visual }, slideI}
+				{#each slides as { text, clip, clips, chart, view, keys, highlight, visual }, slideI}
 					{@const index =
 						slideI +
 						copy.sections
@@ -85,8 +84,12 @@
 								<Clip id={clip} slideI={index} />
 							{:else if clips}
 								<Clips {clips} slideI={index} />
-							{:else if chart}
-								<Chart slideI={index} view={chart} />
+							{/if}
+
+							{#if chart === "episodes"}
+								<EpisodeChart slideI={index} {view} />
+							{:else if chart === "bar"}
+								<BarChart slideI={index} {keys} {highlight} />
 							{/if}
 
 							{#if visual}
