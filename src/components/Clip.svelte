@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from "svelte";
 	import { current } from "$runes/misc.svelte.js";
-	import { slide } from "svelte/transition";
 
 	const { id, slideI } = $props();
 
@@ -31,8 +30,13 @@
 		}
 	};
 
+	const onEnd = () => {
+		currentTime = 0;
+		paused = true;
+	};
+
 	const slideChange = () => {
-		if (slideI !== current.slide && !paused) {
+		if (slideI !== current.slide) {
 			paused = true;
 			currentTime = 0;
 			videoEl.pause();
@@ -68,14 +72,17 @@
 
 <figure>
 	<div class="wrapper">
-		<button onclick={pausePlay}>{paused ? "play" : "pause"}</button>
-		<button onclick={restart}>restart</button>
+		<div class="overlay">
+			<button onclick={pausePlay}>{paused ? "play" : "pause"}</button>
+			<!-- <button onclick={restart}>restart</button> -->
+		</div>
 
 		<video
 			playsinline
 			bind:this={videoEl}
 			bind:currentTime
 			bind:duration
+			onended={onEnd}
 			src={`assets/video/${id}.mp4`}
 		/>
 
@@ -87,11 +94,27 @@
 <style>
 	.progress {
 		height: 1rem;
-		background: var(--color-green);
+		background: var(--color-gray-500);
+	}
+
+	figure {
+		height: 100%;
+	}
+
+	.wrapper {
+		position: relative;
+		height: 100%;
+	}
+
+	.overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 10;
 	}
 
 	video {
-		margin-top: 0.5rem;
+		height: 100%;
 	}
 
 	figcaption {

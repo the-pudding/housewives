@@ -20,12 +20,11 @@
 		keys.length > 1 ? keys[1] : keys[0],
 		"desc"
 	);
-	const title =
-		keys === "num_sorrys"
-			? "Total 'sorry's by character"
-			: ["num_good_apologies", "num_bad_apologies"]
-				? "Good vs. bad apologies by character"
-				: null;
+	const title = keys.includes("num_sorrys")
+		? "Total 'sorry's by character"
+		: keys.includes("num_good_apologies")
+			? "Good vs. bad apologies by character"
+			: null;
 
 	const xScale = $derived(
 		scaleLinear()
@@ -45,7 +44,7 @@
 </script>
 
 <div id={`slide-${slideI}-chart`} class="bar-chart" bind:clientWidth={width}>
-	{#if title}<h2>{title}</h2>{/if}
+	{#if title}<h3>{title}</h3>{/if}
 
 	{#each data as d}
 		<div
@@ -77,7 +76,7 @@
 		gap: 4px;
 	}
 
-	h2 {
+	h3 {
 		margin: 0;
 		margin-bottom: 0.5rem;
 		font-size: var(--20px);

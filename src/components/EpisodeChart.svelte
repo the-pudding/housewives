@@ -1,4 +1,5 @@
 <script>
+	import Clip from "$components/Clip.svelte";
 	import data from "$data/apologies.csv";
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
@@ -50,17 +51,25 @@
 					class="full"
 					class:highlighted={view === "all" && apologiesInEpisode.length > 0}
 				>
-					{#each apologiesInEpisode as { timestamp, solid_apology }}
+					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
+						{@const highlight =
+							view === "color-coded" && chart_highlight === "TRUE"}
 						<div
 							class="apology"
 							class:visible={showApologies}
+							class:highlight
 							style:left
 							style:background={view === "color-coded"
 								? `var(--color-${solid_apology === "TRUE" ? "green" : "red"})`
 								: `var(--color-gray-800)`}
 						></div>
+						{#if highlight}
+							<div class="example" style:left>
+								<Clip {slideI} id={`s${season}_e${episode}_example`} />
+							</div>
+						{/if}
 					{/each}
 				</div>
 			</div>
@@ -76,7 +85,6 @@
 		position: relative;
 		gap: 0.5rem;
 		padding-bottom: 1rem;
-		pointer-events: none;
 	}
 
 	.episodes {
@@ -113,6 +121,12 @@
 		opacity: 1;
 	}
 
+	.apology.highlight {
+		outline: 3px solid black;
+		transform: scale(1.5);
+		z-index: 11;
+	}
+
 	.x-labels {
 		font-size: var(--12px);
 		font-family: var(--mono);
@@ -131,5 +145,19 @@
 		position: absolute;
 		left: 0;
 		transform: translate(-110%, 0);
+	}
+
+	.example {
+		position: absolute;
+		top: 0;
+		height: 80px;
+		transform: translate(-50%, 0);
+		z-index: 10;
+	}
+
+	.example:hover {
+		z-index: 12;
+		transform: translate(-50%, 0) scale(2);
+		cursor: pointer;
 	}
 </style>

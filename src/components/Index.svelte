@@ -1,6 +1,7 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
+	import Images from "$components/Images.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import { current } from "$runes/misc.svelte.js";
@@ -69,7 +70,7 @@
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
 			{#each copy.sections as { title, slides }, sectionI}
-				{#each slides as { text, clip, clips, chart, view, keys, highlight, visual }, slideI}
+				{#each slides as { text, big, clip, clips, chart, view, keys, highlight, image, images, visual }, slideI}
 					{@const index =
 						slideI +
 						copy.sections
@@ -78,7 +79,11 @@
 
 					<div class="slide" id={`slide-${index}`}>
 						<div class="content">
-							<p>{@html text}</p>
+							{#if big}
+								<h2>{@html text}</h2>
+							{:else}
+								<p>{@html text}</p>
+							{/if}
 
 							{#if clip}
 								<Clip id={clip} slideI={index} />
@@ -92,8 +97,14 @@
 								<BarChart slideI={index} {keys} {highlight} />
 							{/if}
 
+							{#if images}
+								<Images {images} />
+							{:else if image}
+								<img src={`assets/img/${image}`} alt="" />
+							{/if}
+
 							{#if visual}
-								<small>{visual}</small>
+								<small>{@html visual}</small>
 							{/if}
 						</div>
 					</div>
@@ -111,7 +122,7 @@
 <style>
 	article {
 		position: absolute;
-		top: 8rem;
+		top: 7rem;
 		left: 50%;
 		transform: translate(-50%, 0);
 		width: 100%;
@@ -122,6 +133,7 @@
 	.chapters {
 		display: flex;
 		gap: 4px;
+		margin-bottom: 1rem;
 	}
 
 	.section {
