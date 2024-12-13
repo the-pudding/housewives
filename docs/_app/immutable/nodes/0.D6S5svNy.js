@@ -1,32 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-		<link href="../../_app/immutable/assets/0.BVt0Fg1f.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.DyKfXyaY.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/entry.DePeGGzl.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/runtime.CdkABrmf.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.BDLkaLSo.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.D2v6SsSw.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/store.B-PEKdT_.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/template.BBpsDjSZ.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/disclose-version.Bg9kRutz.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/this.OJkwgqzg.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/props.Br77aY1H.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/index-client.CI8ttNrZ.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.D6S5svNy.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/snippet.C1fk70pL.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/html.CFz0HCgP.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/6.RBcn971s.js">
-</head>
-
-<body>
-	<a href="#content" class="skip-to-main">Skip to main content</a>
-	<div><!--[--><!--[--><!----><header><div class="wordmark svelte-klqyyp"><a href="https://pudding.cool" aria-label="The Pudding" target="_self" class="svelte-klqyyp"><!----><svg width="440" height="154" viewBox="0 0 440 154" fill="none" xmlns="http://www.w3.org/2000/svg">
+import"../chunks/disclose-version.Bg9kRutz.js";import{o as l,r,an as s,p as n,m as p,ar as h,n as u}from"../chunks/runtime.CdkABrmf.js";import{b as o,t as d}from"../chunks/template.BBpsDjSZ.js";import{s as c}from"../chunks/snippet.C1fk70pL.js";import{h as M}from"../chunks/html.CFz0HCgP.js";const _=!0,m="always",b=Object.freeze(Object.defineProperty({__proto__:null,prerender:_,trailingSlash:m},Symbol.toStringTag,{value:"Module"})),Z=`<svg width="440" height="154" viewBox="0 0 440 154" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_dddd_2683_3457)">
 <path d="M419.179 89.0732C418.309 77.0032 421.719 64.3932 416.939 52.6432C412.389 41.9632 399.909 28.5632 387.839 28.1532C378.829 27.7132 370.779 33.2332 361.559 33.4432C357.139 33.6532 352.779 32.8232 348.399 32.3832C344.679 31.9832 340.849 32.2432 337.209 31.3232C331.729 30.0832 327.949 25.7432 322.859 23.0932C315.649 19.2732 307.089 19.7632 299.189 20.5432C293.389 21.0932 287.859 21.4032 282.359 23.3732C277.759 25.0132 272.959 25.8132 268.199 24.2632C259.289 20.7232 248.499 20.5132 240.439 26.0232C237.709 27.8032 235.119 29.9832 232.109 31.2132C227.209 33.3532 221.799 32.3032 216.459 32.2332C210.839 32.0232 205.109 32.3832 199.569 31.2532C193.299 30.0132 187.709 26.5632 181.289 24.9932C169.189 21.9032 155.349 22.3932 144.789 29.4432C139.769 32.3932 134.009 32.0032 128.409 31.8632C123.249 31.8332 118.039 33.5332 113.049 33.4932C106.969 33.6832 102.089 29.6032 97.2191 26.4732C86.0291 18.5732 72.0991 22.2832 59.4291 22.9732C41.8091 23.0932 24.5191 22.7332 20.4491 44.2332C19.3591 50.8132 20.2891 57.8632 22.8491 64.0232C24.3491 67.6432 26.2091 71.1232 26.9191 75.0032C28.0491 81.1832 27.0891 87.7732 29.1791 93.8332C31.6491 101.553 36.8191 107.893 42.9991 112.833C49.0291 117.583 56.3591 119.563 63.7791 119.473C78.0891 118.903 92.4891 119.863 106.709 119.573C111.869 119.413 116.989 118.473 122.149 118.413C127.749 118.273 133.279 119.563 138.859 119.753C145.269 120.003 151.679 118.383 158.059 118.593C164.949 118.803 171.959 120.153 178.789 118.553C184.579 117.243 188.909 114.113 194.469 115.383C198.809 116.353 203.729 119.103 208.589 119.393C214.759 120.033 221.149 119.333 227.449 119.303C234.359 119.143 241.309 119.433 247.819 119.423C275.509 119.173 303.199 119.443 330.779 119.633C337.989 119.943 345.659 118.653 352.509 121.313C356.169 122.743 359.139 125.583 362.979 127.913C382.949 140.433 414.489 131.633 419.329 106.933C420.619 101.123 419.699 95.1232 419.199 89.2832V89.0932L419.179 89.0732Z" fill="url(#paint0_radial_2683_3457)"/>
 </g>
@@ -79,32 +51,4 @@
 </radialGradient>
 </defs>
 </svg>
-<!----></a></div></header><!----> <main id="content"><!----><!----><!----></main><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
-			<script>
-				{
-					__sveltekit_1k7e3kn = {
-						base: new URL("../..", location).pathname.slice(0, -1)
-					};
-
-					const element = document.currentScript.parentElement;
-
-					const data = [null,null];
-
-					Promise.all([
-						import("../../_app/immutable/entry/start.DyKfXyaY.js"),
-						import("../../_app/immutable/entry/app.D2v6SsSw.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 6],
-							data,
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-</body>
-
-</html>
+`;var v=d('<header><div class="wordmark svelte-klqyyp"><a href="https://pudding.cool" aria-label="The Pudding" target="_self" class="svelte-klqyyp"><!></a></div></header>');function w(i){var C=v(),e=l(C),a=l(e),t=l(a);M(t,()=>Z),r(a),r(e),r(C),o(i,C)}var V=d('<!> <main id="content"><!></main>',1);function k(i,C){p(C,!0);var e=V(),a=s(e);w(a);var t=h(a,2),f=l(t);c(f,()=>C.children??u),r(t),o(i,e),n()}export{k as component,b as universal};
