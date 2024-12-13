@@ -63,7 +63,7 @@
 							style:left
 							style:background={view === "color-coded"
 								? `var(--color-${solid_apology === "TRUE" ? "green" : "red"})`
-								: `var(--color-gray-800)`}
+								: `var(--color-purple)`}
 						></div>
 						{#if highlight}
 							<div class="example" style:left>
@@ -103,11 +103,11 @@
 		position: relative;
 		height: 5px;
 		width: 100%;
-		background: var(--color-gray-300);
+		background: var(--color-gray-500);
 	}
 
 	.full.highlighted {
-		background: var(--color-yellow);
+		background: var(--color-gray-400);
 	}
 
 	.apology {

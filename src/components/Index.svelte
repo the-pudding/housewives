@@ -1,12 +1,14 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
-	import Images from "$components/Images.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
+	import CMS from "$components/helpers/CMS.svelte";
 	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
+
+	const components = { Clip, Clips, EpisodeChart, BarChart };
 
 	let w = $state();
 
@@ -48,9 +50,9 @@
 
 <article bind:clientWidth={w}>
 	<div class="chapters">
-		{#each copy.sections as { title, slides }, sectionI}
+		{#each copy.sections as { section, slides }, sectionI}
 			<div class="section" class:active={current.section === sectionI}>
-				<div class="title">{sectionI + 1} — {@html title}</div>
+				<div class="title">{sectionI + 1} — {@html section}</div>
 				<div class="bars">
 					{#each _.range(slides.length) as barI}
 						<div
@@ -69,43 +71,21 @@
 			class="slides"
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
-			{#each copy.sections as { title, slides }, sectionI}
-				{#each slides as { text, big, clip, clips, chart, view, keys, highlight, image, images, visual }, slideI}
+			{#each copy.sections as { slides }, sectionI}
+				{#each slides as { content }, slideI}
 					{@const index =
 						slideI +
 						copy.sections
 							.slice(0, sectionI)
 							.reduce((acc, { slides }) => acc + slides.length, 0)}
-
+					{@const neededComponents = Object.fromEntries(
+						Object.entries(components).filter(([key]) =>
+							content.some((item) => item.type === key)
+						)
+					)}
 					<div class="slide" id={`slide-${index}`}>
 						<div class="content">
-							{#if big}
-								<h2>{@html text}</h2>
-							{:else}
-								<p>{@html text}</p>
-							{/if}
-
-							{#if clip}
-								<Clip id={clip} slideI={index} />
-							{:else if clips}
-								<Clips {clips} slideI={index} />
-							{/if}
-
-							{#if chart === "episodes"}
-								<EpisodeChart slideI={index} {view} />
-							{:else if chart === "bar"}
-								<BarChart slideI={index} {keys} {highlight} />
-							{/if}
-
-							{#if images}
-								<Images {images} />
-							{:else if image}
-								<img src={`assets/img/${image}`} alt="" />
-							{/if}
-
-							{#if visual}
-								<small>{@html visual}</small>
-							{/if}
+							<CMS components={neededComponents} {content} />
 						</div>
 					</div>
 				{/each}
@@ -140,10 +120,12 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
+		opacity: 0.3;
 	}
 
 	.section.active {
 		flex: 5;
+		opacity: 1;
 	}
 
 	.title {
@@ -166,11 +148,11 @@
 	.bar {
 		flex: 1;
 		height: 2px;
-		background: var(--color-gray-300);
+		background: var(--color-gray-500);
 	}
 
 	.bar.active {
-		background: var(--color-gray-800);
+		background: var(--color-fg);
 	}
 
 	.slider {

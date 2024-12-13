@@ -1,11 +1,11 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 
-	let { clips, slideI } = $props();
+	let { ids, slideI } = $props();
 </script>
 
 <div class="grid">
-	{#each clips as id}
+	{#each ids as id}
 		<Clip {id} {slideI} />
 	{/each}
 </div>
