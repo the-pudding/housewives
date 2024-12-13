@@ -1,12 +1,14 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 
-	let { ids, slideI } = $props();
+	let { clips, slideI } = $props();
+
+	$inspect({ clips });
 </script>
 
 <div class="grid">
-	{#each ids as id}
-		<Clip {id} {slideI} />
+	{#each clips as { id, caption }}
+		<Clip {id} {caption} {slideI} />
 	{/each}
 </div>
 

@@ -1,6 +1,7 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
+	import Checklist from "$components/Checklist.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
@@ -8,7 +9,7 @@
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
-	const components = { Clip, Clips, EpisodeChart, BarChart };
+	const components = { Clip, Clips, Checklist, EpisodeChart, BarChart };
 
 	let w = $state();
 
@@ -52,7 +53,7 @@
 	<div class="chapters">
 		{#each copy.sections as { section, slides }, sectionI}
 			<div class="section" class:active={current.section === sectionI}>
-				<div class="title">{sectionI + 1} — {@html section}</div>
+				<div class="title">{@html section}</div>
 				<div class="bars">
 					{#each _.range(slides.length) as barI}
 						<div
@@ -201,7 +202,7 @@
 	.tap button {
 		height: 100%;
 		width: 50%;
-		opacity: 0.2;
+		opacity: 0;
 	}
 
 	:global(span.good) {

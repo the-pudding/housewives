@@ -21,10 +21,10 @@
 	--border-radius: 2px;
 	--font-body: var(--serif);
 	--font-form: var(--sans);
-	--color-bg: #222;
+	--color-bg: var(--color-gray-800);
 	--color-fg: var(--color-white);
 	--color-primary: var(--color-black);
-	--color-link: var(--color-black);
+	--color-link: var(--color-fg);
 	--color-link-hover: var(--color-black);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
@@ -60,6 +60,7 @@ h1 {
 
 h2 {
 	font-size: var(--36px, 36px);
+	line-height: 1.2;
 }
 
 h3 {
@@ -82,4 +83,8 @@ svg {
 	display: block;
 	width: 100%;
 	height: auto;
+}
+
+img {
+	margin: 0 auto;
 }

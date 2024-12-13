@@ -20,7 +20,7 @@
 		keys.length > 1 ? keys[1] : keys[0],
 		"desc"
 	);
-	const title = keys.includes("num_sorrys")
+	const title = keys.includes("num_real_sorrys")
 		? "Total 'sorry's by character"
 		: keys.includes("num_good_apologies")
 			? "Good vs. bad apologies by character"
@@ -37,9 +37,9 @@
 	const colors = {
 		num_good_apologies: "var(--color-green)",
 		num_bad_apologies: "var(--color-red)",
-		num_apologies: "var(--color-blue)",
-		num_sorrys: "var(--color-blue)",
-		num_real_sorrys: "var(--color-blue)"
+		num_apologies: "lightblue",
+		num_sorrys: "lightblue",
+		num_real_sorrys: "lightblue"
 	};
 </script>
 
@@ -80,6 +80,7 @@
 		margin: 0;
 		margin-bottom: 0.5rem;
 		font-size: var(--20px);
+		font-family: var(--sans);
 	}
 
 	.row {
@@ -97,7 +98,7 @@
 		position: absolute;
 		left: 0;
 		transform: translate(-110%, 0);
-		font-family: var(--mono);
+		font-family: var(--sans);
 		font-size: var(--14px);
 	}
 
@@ -110,6 +111,5 @@
 		margin-left: 4px;
 		font-family: var(--mono);
 		font-size: var(--12px);
-		color: var(--color-gray-700);
 	}
 </style>

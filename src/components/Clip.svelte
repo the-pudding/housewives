@@ -1,8 +1,10 @@
 <script>
 	import { onMount } from "svelte";
 	import { current } from "$runes/misc.svelte.js";
+	import playSvg from "$svg/play.svg";
+	import pauseSvg from "$svg/pause.svg";
 
-	const { id, slideI } = $props();
+	const { id, caption, slideI } = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
@@ -73,8 +75,9 @@
 <figure>
 	<div class="wrapper">
 		<div class="overlay">
-			<button onclick={pausePlay}>{paused ? "play" : "pause"}</button>
-			<!-- <button onclick={restart}>restart</button> -->
+			<button onclick={pausePlay} class="playpause"
+				>{@html paused ? playSvg : pauseSvg}</button
+			>
 		</div>
 
 		<video
@@ -85,16 +88,22 @@
 			onended={onEnd}
 			src={`assets/video/${id}.mp4`}
 		/>
-
-		<div class="progress" style:width={`${percentComplete}%`} />
-		<!-- <figcaption>S{season} Ep{episode}</figcaption> -->
 	</div>
+
+	<div class="progress" style:width={`${percentComplete}%`} />
+
+	{#if caption}
+		<figcaption>
+			<span>S{season}E{episode}</span>
+			{@html caption}
+		</figcaption>
+	{/if}
 </figure>
 
 <style>
 	.progress {
 		height: 1rem;
-		background: var(--color-gray-500);
+		background: lightblue;
 	}
 
 	figure {
@@ -103,18 +112,6 @@
 
 	.wrapper {
 		position: relative;
-		height: 100%;
-	}
-
-	.overlay {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		z-index: 10;
-	}
-
-	video {
-		height: 100%;
 	}
 
 	figcaption {
@@ -123,7 +120,32 @@
 		font-family: var(--mono);
 	}
 
-	button {
-		font-size: var(--12px);
+	figcaption span {
+		background: var(--color-fg);
+		color: var(--color-bg);
+		padding: 2px 4px;
+	}
+
+	.overlay {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 10;
+	}
+
+	.playpause {
+		background: none;
+		color: var(--color-fg);
+		height: 3rem;
+		width: 3rem;
+		padding: 0;
+		display: flex;
+		opacity: 0.4;
+	}
+
+	.playpause:hover {
+		color: var(--color-green);
+		opacity: 1;
 	}
 </style>
