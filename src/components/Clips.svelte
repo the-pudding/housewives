@@ -2,8 +2,6 @@
 	import Clip from "$components/Clip.svelte";
 
 	let { clips, slideI } = $props();
-
-	$inspect({ clips });
 </script>
 
 <div class="grid">

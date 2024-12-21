@@ -4,7 +4,7 @@
 	import dataRaw from "$data/people.csv";
 	import _ from "lodash";
 
-	const { slideI, keys, highlight } = $props();
+	const { slideI, keys, highlight, showNumbers, percent } = $props();
 
 	let width = $state(0);
 
@@ -54,15 +54,21 @@
 			<div class="label">{d.apologizer}</div>
 
 			{#each keys as key}
+				{@const total = _.sum(keys.map((k) => +d[k]))}
 				<div
 					class="bar"
+					class:split={keys.length > 1}
 					style:width={`${xScale(d[key])}px`}
 					style:background={colors[key]}
-				></div>
-
-				{#if keys.length === 1}
-					<div class="number">{d[key]}</div>
-				{/if}
+				>
+					{#if showNumbers === "true" && d[key] !== 0}
+						<div class="number">
+							{percent === "true"
+								? `${((+d[key] / total) * 100).toFixed(0)}%`
+								: d[key]}
+						</div>
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/each}
@@ -103,13 +109,28 @@
 	}
 
 	.bar {
+		position: relative;
 		height: 100%;
 		background: lightgrey;
+		display: flex;
+		justify-content: end;
+		align-items: center;
+	}
+
+	.bar.split {
+		justify-content: center;
 	}
 
 	.number {
+		z-index: 10;
 		margin-left: 4px;
 		font-family: var(--mono);
 		font-size: var(--12px);
+		transform: translate(calc(100% + 6px), 0);
+	}
+
+	.split .number {
+		margin: 0;
+		transform: translate(0, 0);
 	}
 </style>

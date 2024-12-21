@@ -3,13 +3,23 @@
 	import { current } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
+	import Clip from "$components/Clip.svelte";
 
-	const { id, caption, slideI } = $props();
+	const {
+		id,
+		caption,
+		apologyText,
+		forcePause,
+		overlayId,
+		enablePause = true,
+		slideI
+	} = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let paused = $state(true);
+	let showOverlayVideo = $state(false);
 	let loaded = false;
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0].replace("s", "");
@@ -46,6 +56,12 @@
 	};
 
 	$effect(() => slideChange(current.slide));
+	$effect(() => {
+		if (forcePause && currentTime > forcePause && !paused) {
+			pausePlay();
+			showOverlayVideo = true;
+		}
+	});
 
 	onMount(() => {
 		const src = `assets/video/${id}.mp4`;
@@ -74,11 +90,20 @@
 
 <figure>
 	<div class="wrapper">
-		<div class="overlay">
-			<button onclick={pausePlay} class="playpause"
-				>{@html paused ? playSvg : pauseSvg}</button
-			>
-		</div>
+		{#if enablePause}
+			<div class="overlay">
+				<button onclick={pausePlay} class="playpause"
+					>{@html paused ? playSvg : pauseSvg}</button
+				>
+			</div>
+		{/if}
+
+		{#if caption}
+			<figcaption>
+				<span>S{season}E{episode}</span>
+				{@html caption}
+			</figcaption>
+		{/if}
 
 		<video
 			playsinline
@@ -88,16 +113,19 @@
 			onended={onEnd}
 			src={`assets/video/${id}.mp4`}
 		/>
+
+		{#if forcePause && overlayId}
+			<div class="lazarus" class:visible={showOverlayVideo}>
+				<Clip id={overlayId} enablePause={false} />
+			</div>
+		{/if}
+
+		{#if apologyText}
+			<div class="apology">"{@html apologyText}"</div>
+		{/if}
 	</div>
 
 	<div class="progress" style:width={`${percentComplete}%`} />
-
-	{#if caption}
-		<figcaption>
-			<span>S{season}E{episode}</span>
-			{@html caption}
-		</figcaption>
-	{/if}
 </figure>
 
 <style>
@@ -112,10 +140,11 @@
 
 	.wrapper {
 		position: relative;
+		height: 100%;
 	}
 
 	figcaption {
-		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
 		font-size: var(--12px);
 		font-family: var(--mono);
 	}
@@ -124,6 +153,18 @@
 		background: var(--color-fg);
 		color: var(--color-bg);
 		padding: 2px 4px;
+	}
+
+	video {
+		height: 100%;
+	}
+
+	.lazarus {
+		display: none;
+	}
+
+	.lazarus.visible {
+		display: flex;
 	}
 
 	.overlay {
@@ -147,5 +188,16 @@
 	.playpause:hover {
 		color: var(--color-green);
 		opacity: 1;
+	}
+
+	.apology {
+		font-size: var(--36px);
+		margin-top: 1rem;
+		width: 100%;
+		text-align: center;
+	}
+
+	:global(.apology strong) {
+		color: var(--color-green);
 	}
 </style>

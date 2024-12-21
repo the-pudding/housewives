@@ -13,32 +13,47 @@
 
 	let w = $state();
 
+	const allSlides = copy.sections
+		.reduce((acc, current, i) => {
+			let slides = current.slides;
+			const section = i;
+
+			slides = slides.map((slide, slideInSection) => ({
+				section,
+				slideInSection: slideInSection,
+				content: slide.content
+			}));
+
+			return acc.concat(slides);
+		}, [])
+		.map((d, i) => ({ slide: i, ...d }));
+
 	const advance = (i) => {
-		const allSlides = copy.sections.reduce(
-			(acc, section) => acc.concat(section.slides),
-			[]
+		const currentSlideIndex = allSlides.findIndex(
+			(d) =>
+				d.section === current.section &&
+				d.slideInSection === current.slideInSection &&
+				d.slide === current.slide
 		);
-		let newSlideIndex = current.slide + i;
-		newSlideIndex = Math.max(0, Math.min(newSlideIndex, allSlides.length - 1));
-		current.slide = newSlideIndex;
 
-		let accumulatedSlides = 0;
-		for (
-			let sectionIndex = 0;
-			sectionIndex < copy.sections.length;
-			sectionIndex++
+		if (
+			currentSlideIndex + i >= 0 &&
+			currentSlideIndex + i < allSlides.length
 		) {
-			const section = copy.sections[sectionIndex];
-			const slidesInSection = section.slides.length;
-
-			if (newSlideIndex < accumulatedSlides + slidesInSection) {
-				current.section = sectionIndex;
-				current.slideInSection = newSlideIndex - accumulatedSlides;
-				break;
-			}
-
-			accumulatedSlides += slidesInSection;
+			const next = allSlides[currentSlideIndex + i];
+			current.section = next.section;
+			current.slideInSection = next.slideInSection;
+			current.slide = next.slide;
 		}
+	};
+
+	const goTo = (section, slideInSection) => {
+		const slide = allSlides.find(
+			(d) => d.section === section && d.slideInSection === slideInSection
+		);
+		current.section = slide.section;
+		current.slideInSection = slide.slideInSection;
+		current.slide = slide.slide;
 	};
 
 	const onKeyDown = (e) => {
@@ -50,20 +65,24 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <article bind:clientWidth={w}>
-	<div class="chapters">
+	<div class="chapters" class:visible={current.section > 0}>
 		{#each copy.sections as { section, slides }, sectionI}
-			<div class="section" class:active={current.section === sectionI}>
-				<div class="title">{@html section}</div>
-				<div class="bars">
-					{#each _.range(slides.length) as barI}
-						<div
-							class="bar"
-							class:active={current.section === sectionI &&
-								current.slideInSection === barI}
-						/>
-					{/each}
+			{#if sectionI > 0}
+				<div class="section" class:active={current.section === sectionI}>
+					<div class="title">{@html section}</div>
+					<div class="bars">
+						{#each _.range(slides.length) as barI}
+							<div class="bar-wrapper" onclick={() => goTo(sectionI, barI)}>
+								<div
+									class="bar"
+									class:active={current.section === sectionI &&
+										current.slideInSection === barI}
+								/>
+							</div>
+						{/each}
+					</div>
 				</div>
-			</div>
+			{/if}
 		{/each}
 	</div>
 
@@ -86,7 +105,7 @@
 					)}
 					<div class="slide" id={`slide-${index}`}>
 						<div class="content">
-							<CMS components={neededComponents} {content} />
+							<CMS components={neededComponents} {content} slideI={index} />
 						</div>
 					</div>
 				{/each}
@@ -103,7 +122,7 @@
 <style>
 	article {
 		position: absolute;
-		top: 7rem;
+		top: 3rem;
 		left: 50%;
 		transform: translate(-50%, 0);
 		width: 100%;
@@ -114,7 +133,12 @@
 	.chapters {
 		display: flex;
 		gap: 4px;
-		margin-bottom: 1rem;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.chapters.visible {
+		opacity: 1;
 	}
 
 	.section {
@@ -146,8 +170,20 @@
 		gap: 1px;
 	}
 
-	.bar {
+	.bar-wrapper {
 		flex: 1;
+		height: 20px;
+	}
+
+	.bar-wrapper:hover {
+		cursor: pointer;
+	}
+
+	.bar-wrapper:hover .bar {
+		background: var(--color-fg);
+	}
+
+	.bar {
 		height: 2px;
 		background: var(--color-gray-500);
 	}

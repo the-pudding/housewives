@@ -4,8 +4,21 @@
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
+	import copy from "$data/copy.json";
+	import { onMount } from "svelte";
 
 	const { slideI, view } = $props();
+
+	const allSlides = copy.sections
+		.reduce((acc, section) => acc.concat(section.slides), [])
+		.map((d, i) => ({
+			...d,
+			i
+		}));
+	const allCharts = allSlides.filter((d) =>
+		d.content.some((dd) => dd.type === "EpisodeChart")
+	);
+	const n = allCharts.findIndex((d) => d.i === slideI);
 
 	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
@@ -30,9 +43,20 @@
 			.domain([standardize("00:00:00"), standardize("59:59:59")])
 			.range([0, width])
 	);
+
+	onMount(() => {
+		const ps = allCharts.map((d) =>
+			document.querySelector(`#slide-${d.i} .content p`)
+		);
+		const pHeights = ps.map((d) => d.offsetHeight);
+		const max = _.max(pHeights);
+		ps.forEach((p) => {
+			// TODO: set the height to max
+		});
+	});
 </script>
 
-<figure id={`slide-${slideI}-chart`} bind:clientWidth={width}>
+<figure id={`episode-chart-${n}`} bind:clientWidth={width}>
 	<div class="episodes">
 		<div class="x-labels">
 			<div>0 minutes</div>
@@ -56,6 +80,7 @@
 						{@const left = `${xScale(parsedTime)}px`}
 						{@const highlight =
 							view === "color-coded" && chart_highlight === "TRUE"}
+
 						<div
 							class="apology"
 							class:visible={showApologies}
@@ -107,7 +132,7 @@
 	}
 
 	.full.highlighted {
-		background: var(--color-gray-400);
+		background: var(--color-gray-200);
 	}
 
 	.apology {
@@ -125,6 +150,12 @@
 		outline: 3px solid black;
 		transform: scale(1.5);
 		z-index: 11;
+		transition: transform 0.3s;
+	}
+
+	.apology.highlight:hover {
+		cursor: pointer;
+		transform: scale(3);
 	}
 
 	.x-labels {
@@ -150,14 +181,12 @@
 	.example {
 		position: absolute;
 		top: 0;
-		height: 80px;
+		height: 100px;
 		transform: translate(-50%, 0);
 		z-index: 10;
 	}
 
 	.example:hover {
-		z-index: 12;
-		transform: translate(-50%, 0) scale(2);
 		cursor: pointer;
 	}
 </style>

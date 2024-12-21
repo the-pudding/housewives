@@ -1,14 +1,14 @@
 <script>
 	// components: an object of components that map to section names (e.g., { "Hero": Hero }) where Hero is a Svelte component
 	// body: an array of objects that contain a {section, content} obj
-	let { components = {}, content = [] } = $props();
+	let { components = {}, content = [], slideI } = $props();
 </script>
 
 {#each content as { type, value }}
 	{@const C = components[type]}
 	{@const isString = typeof value === "string"}
 	{#if C}
-		<C {...value} />
+		<C {...value} {slideI} />
 	{:else if type === "text"}
 		<p>{@html value}</p>
 	{:else if isString}
