@@ -131,7 +131,7 @@
 <style>
 	.progress {
 		height: 1rem;
-		background: lightblue;
+		background: var(--color-purple);
 	}
 
 	figure {
@@ -150,7 +150,7 @@
 	}
 
 	figcaption span {
-		background: var(--color-fg);
+		background: var(--color-dark-purple);
 		color: var(--color-bg);
 		padding: 2px 4px;
 	}
@@ -186,7 +186,7 @@
 	}
 
 	.playpause:hover {
-		color: var(--color-green);
+		color: var(--color-purple);
 		opacity: 1;
 	}
 
@@ -198,6 +198,6 @@
 	}
 
 	:global(.apology strong) {
-		color: var(--color-green);
+		color: var(--color-purple);
 	}
 </style>

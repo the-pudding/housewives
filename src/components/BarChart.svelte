@@ -35,7 +35,7 @@
 			.range([0, width])
 	);
 	const colors = {
-		num_good_apologies: "var(--color-green)",
+		num_good_apologies: "var(--color-blue)",
 		num_bad_apologies: "var(--color-red)",
 		num_apologies: "lightblue",
 		num_sorrys: "lightblue",

@@ -1,4 +1,5 @@
 <script>
+	import Title from "$components/Title.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
 	import Checklist from "$components/Checklist.svelte";
@@ -9,7 +10,7 @@
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
-	const components = { Clip, Clips, Checklist, EpisodeChart, BarChart };
+	const components = { Title, Clip, Clips, Checklist, EpisodeChart, BarChart };
 
 	let w = $state();
 

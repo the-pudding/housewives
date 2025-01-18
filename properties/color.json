@@ -40,19 +40,16 @@
 			"value": "rgb(25, 25, 25)"
 		},
 		"purple": {
-			"value": "#a239ca"
+			"value": "#F2C3FF"
+		},
+		"dark-purple": {
+			"value": "#BF6CD6"
 		},
 		"blue": {
-			"value": "#4717f6"
-		},
-		"green": {
-			"value": "#34a29e"
+			"value": "#49bde2"
 		},
 		"red": {
-			"value": "#ff533d"
-		},
-		"yellow": {
-			"value": "#e5e338"
+			"value": "#ea4d4d"
 		}
 	}
 }

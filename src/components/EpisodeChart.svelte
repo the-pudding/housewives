@@ -9,17 +9,6 @@
 
 	const { slideI, view } = $props();
 
-	const allSlides = copy.sections
-		.reduce((acc, section) => acc.concat(section.slides), [])
-		.map((d, i) => ({
-			...d,
-			i
-		}));
-	const allCharts = allSlides.filter((d) =>
-		d.content.some((dd) => dd.type === "EpisodeChart")
-	);
-	const n = allCharts.findIndex((d) => d.i === slideI);
-
 	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 	let width = $state(0);
@@ -43,20 +32,9 @@
 			.domain([standardize("00:00:00"), standardize("59:59:59")])
 			.range([0, width])
 	);
-
-	onMount(() => {
-		const ps = allCharts.map((d) =>
-			document.querySelector(`#slide-${d.i} .content p`)
-		);
-		const pHeights = ps.map((d) => d.offsetHeight);
-		const max = _.max(pHeights);
-		ps.forEach((p) => {
-			// TODO: set the height to max
-		});
-	});
 </script>
 
-<figure id={`episode-chart-${n}`} bind:clientWidth={width}>
+<figure bind:clientWidth={width}>
 	<div class="episodes">
 		<div class="x-labels">
 			<div>0 minutes</div>
@@ -71,10 +49,7 @@
 					<div class="y-label">ep #{i + 1}</div>
 				{/if}
 
-				<div
-					class="full"
-					class:highlighted={view === "all" && apologiesInEpisode.length > 0}
-				>
+				<div class="full">
 					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
@@ -87,8 +62,10 @@
 							class:highlight
 							style:left
 							style:background={view === "color-coded"
-								? `var(--color-${solid_apology === "TRUE" ? "green" : "red"})`
-								: `var(--color-purple)`}
+								? solid_apology === "TRUE"
+									? "teal"
+									: `gray`
+								: `var(--color-dark-purple)`}
 						></div>
 						{#if highlight}
 							<div class="example" style:left>
@@ -128,11 +105,7 @@
 		position: relative;
 		height: 5px;
 		width: 100%;
-		background: var(--color-gray-500);
-	}
-
-	.full.highlighted {
-		background: var(--color-gray-200);
+		background: var(--color-gray-100);
 	}
 
 	.apology {

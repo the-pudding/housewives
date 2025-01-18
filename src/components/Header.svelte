@@ -1,16 +1,16 @@
 <script>
 	// shadow, plain, line, bubble
 	import wordmark from "$svg/wordmark-sticker.svg";
-	import logo from "$svg/logo-white.svg";
+	import logo from "$svg/logo-purple.svg";
 	import { current } from "$runes/misc.svelte.js";
 </script>
 
 <header class:small={current.slide > 0}>
-	<div class="wordmark" class:visible={current.slide === 0}>
+	<!-- <div class="wordmark" class:visible={current.slide === 0}>
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
 			>{@html wordmark}</a
 		>
-	</div>
+	</div> -->
 
 	<div class="wordmark" class:visible={current.slide > 0}>
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"

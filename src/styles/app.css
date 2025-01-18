@@ -19,12 +19,12 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
-	--font-body: var(--serif);
+	--font-body: var(--sans);
 	--font-form: var(--sans);
-	--color-bg: var(--color-gray-800);
-	--color-fg: var(--color-white);
+	--color-bg: var(--color-white);
+	--color-fg: var(--color-black);
 	--color-primary: var(--color-black);
-	--color-link: var(--color-fg);
+	--color-link: var(--color-dark-purple);
 	--color-link-hover: var(--color-black);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
