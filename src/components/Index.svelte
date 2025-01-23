@@ -242,13 +242,13 @@
 		opacity: 0;
 	}
 
-	:global(span.good) {
-		background: var(--color-green);
+	:global(span.bad) {
+		background: var(--color-red);
 		padding: 0 4px;
 	}
 
-	:global(span.bad) {
-		background: var(--color-red);
+	:global(span.good) {
+		background: green;
 		padding: 0 4px;
 	}
 </style>

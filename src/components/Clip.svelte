@@ -22,8 +22,8 @@
 	let showOverlayVideo = $state(false);
 	let loaded = false;
 	let percentComplete = $derived((currentTime / duration) * 100);
-	const season = +id.split("_")[0].replace("s", "");
-	const episode = +id.split("_")[1].replace("e", "");
+	const season = +id.split("_")[0]?.replace("s", "");
+	const episode = +id.split("_")[1]?.replace("e", "");
 
 	const pausePlay = () => {
 		if (paused) {
