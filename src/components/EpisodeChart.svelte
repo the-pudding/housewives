@@ -64,7 +64,7 @@
 							style:background={view === "color-coded"
 								? solid_apology === "TRUE"
 									? "teal"
-									: `gray`
+									: "gray"
 								: `var(--color-dark-purple)`}
 						></div>
 						{#if highlight}
@@ -120,15 +120,10 @@
 	}
 
 	.apology.highlight {
-		outline: 3px solid black;
+		outline: 3px solid var(--color-gray-900);
 		transform: scale(1.5);
 		z-index: 11;
 		transition: transform 0.3s;
-	}
-
-	.apology.highlight:hover {
-		cursor: pointer;
-		transform: scale(3);
 	}
 
 	.x-labels {

@@ -35,8 +35,8 @@
 			.range([0, width])
 	);
 	const colors = {
-		num_good_apologies: "var(--color-blue)",
-		num_bad_apologies: "var(--color-red)",
+		num_good_apologies: "teal",
+		num_bad_apologies: "gray",
 		num_apologies: "lightblue",
 		num_sorrys: "lightblue",
 		num_real_sorrys: "lightblue"
@@ -125,6 +125,7 @@
 		z-index: 10;
 		margin-left: 4px;
 		font-family: var(--mono);
+		color: white;
 		font-size: var(--12px);
 		transform: translate(calc(100% + 6px), 0);
 	}

@@ -20,7 +20,6 @@
 </script>
 
 {@html titleSvg}
-
 <CMS {content} />
 
 <div class="faces">

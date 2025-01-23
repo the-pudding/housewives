@@ -24,32 +24,18 @@
 		!!slideContent.find((d) => lockedContent.includes(d.type));
 
 	onMount(() => {
-		let upper;
-		let lower;
-		let maxPHeight;
 		if (hasLocked(content)) {
-			let i = slideI;
-			while (!upper) {
-				i++;
-				if (!hasLocked(allSlides[i].content)) upper = allSlides[i - 1];
-			}
-			i = slideI;
-			while (!lower) {
-				i--;
-				if (!hasLocked(allSlides[i].content)) lower = allSlides[i + 1];
-			}
+			const slides = allSlides.filter((d) => hasLocked(d.content));
 
-			if (lower !== upper) {
-				const adjacent = _.range(lower.slide, upper.slide + 1); // [10, 11]
-				const ps = adjacent.map((d) =>
-					document.querySelectorAll(`#slide-${d} .content p`)
-				);
-				const h = ps.map((paragraphs) =>
-					_.sumBy(paragraphs, (p) => p.offsetHeight)
-				);
-				const maxH = _.max(h);
-				console.log({ maxH });
-			}
+			const figures = slides.map((d) =>
+				document.querySelector(`#slide-${d.slide} figure`)
+			);
+			const offsetTops = figures.map((d) => d.offsetTop);
+			const maxOffsetTop = Math.max(...offsetTops);
+			const toAdjust = figures.filter((d) => d.offsetTop < maxOffsetTop);
+			toAdjust.forEach((figure) => {
+				figure.style.transform = `translate(0, ${maxOffsetTop - figure.offsetTop}px)`;
+			});
 		}
 	});
 </script>

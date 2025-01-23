@@ -9,7 +9,6 @@
 		id,
 		caption,
 		apologyText,
-		forcePause,
 		overlayId,
 		enablePause = true,
 		slideI
@@ -45,23 +44,22 @@
 	const onEnd = () => {
 		currentTime = 0;
 		paused = true;
+
+		if (overlayId) {
+			showOverlayVideo = true;
+		}
 	};
 
 	const slideChange = () => {
 		if (slideI !== current.slide) {
 			paused = true;
+			showOverlayVideo = false;
 			currentTime = 0;
 			videoEl.pause();
 		}
 	};
 
 	$effect(() => slideChange(current.slide));
-	$effect(() => {
-		if (forcePause && currentTime > forcePause && !paused) {
-			pausePlay();
-			showOverlayVideo = true;
-		}
-	});
 
 	onMount(() => {
 		const src = `assets/video/${id}.mp4`;
@@ -114,19 +112,19 @@
 			src={`assets/video/${id}.mp4`}
 		/>
 
-		{#if forcePause && overlayId}
+		{#if overlayId}
 			<div class="lazarus" class:visible={showOverlayVideo}>
 				<Clip id={overlayId} enablePause={false} />
 			</div>
-		{/if}
-
-		{#if apologyText}
-			<div class="apology">"{@html apologyText}"</div>
 		{/if}
 	</div>
 
 	<div class="progress" style:width={`${percentComplete}%`} />
 </figure>
+
+{#if apologyText}
+	<div class="apology">"{@html apologyText}"</div>
+{/if}
 
 <style>
 	.progress {
@@ -170,7 +168,7 @@
 	.overlay {
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: calc(50% + 1rem);
 		transform: translate(-50%, -50%);
 		z-index: 10;
 	}
@@ -191,13 +189,14 @@
 	}
 
 	.apology {
-		font-size: var(--36px);
+		font-family: var(--mono);
+		font-size: var(--32px);
 		margin-top: 1rem;
 		width: 100%;
 		text-align: center;
 	}
 
 	:global(.apology strong) {
-		color: var(--color-purple);
+		color: var(--color-dark-purple);
 	}
 </style>
