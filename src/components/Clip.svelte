@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from "svelte";
 	import { current } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
@@ -19,7 +18,7 @@
 	let duration = $state(0);
 	let paused = $state(true);
 	let showOverlayVideo = $state(false);
-	let loaded = false;
+	let loaded = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
@@ -33,14 +32,6 @@
 		paused = !paused;
 	};
 
-	const restart = () => {
-		currentTime = 0;
-		if (paused) {
-			paused = false;
-			videoEl.play();
-		}
-	};
-
 	const onEnd = () => {
 		currentTime = 0;
 		paused = true;
@@ -51,42 +42,32 @@
 	};
 
 	const slideChange = () => {
-		if (slideI !== current.slide) {
+		const comingUp = Math.abs(slideI - current.slide) <= 2;
+		if (!loaded && comingUp) {
+			videoEl.src = `assets/video/${id}.mp4`;
+			videoEl.load();
+			loaded = true;
+		}
+
+		if (slideI !== current.slide && !paused) {
 			paused = true;
-			showOverlayVideo = false;
 			currentTime = 0;
 			videoEl.pause();
+			showOverlayVideo = false;
 		}
 	};
 
 	$effect(() => slideChange(current.slide));
-
-	onMount(() => {
-		const src = `assets/video/${id}.mp4`;
-		const request = new XMLHttpRequest();
-		request.open("GET", src, true);
-
-		request.responseType = "blob";
-		request.onload = function () {
-			if (this.status === 200) {
-				const videoBlob = this.response;
-				const videoUrl = URL.createObjectURL(videoBlob);
-				videoEl.src = videoUrl;
-
-				// if (hasCC) {
-				// 	videoEl.addEventListener("canplay", () => {
-				// 		turnCCOn();
-				// 	});
-				// 	videoEl.textTracks[0].mode = "showing";
-				// }
-				loaded = true;
-			}
-		};
-		request.send();
-	});
 </script>
 
 <figure>
+	{#if caption}
+		<figcaption>
+			<span>S{season}E{episode}</span>
+			{@html caption}
+		</figcaption>
+	{/if}
+
 	<div class="wrapper">
 		{#if enablePause}
 			<div class="overlay">
@@ -96,20 +77,12 @@
 			</div>
 		{/if}
 
-		{#if caption}
-			<figcaption>
-				<span>S{season}E{episode}</span>
-				{@html caption}
-			</figcaption>
-		{/if}
-
 		<video
 			playsinline
 			bind:this={videoEl}
 			bind:currentTime
 			bind:duration
 			onended={onEnd}
-			src={`assets/video/${id}.mp4`}
 		/>
 
 		{#if overlayId}
@@ -119,7 +92,7 @@
 		{/if}
 	</div>
 
-	<div class="progress" style:width={`${percentComplete}%`} />
+	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
 
 {#if apologyText}
@@ -168,7 +141,7 @@
 	.overlay {
 		position: absolute;
 		left: 50%;
-		top: calc(50% + 1rem);
+		top: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 10;
 	}

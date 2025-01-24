@@ -19,6 +19,32 @@
 	];
 </script>
 
+<svelte:head>
+	<!-- <style>
+		body {
+			position: relative;
+			margin: 0;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		body::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: url("assets/img/clouds.jpg");
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			opacity: 0.4;
+			z-index: -1;
+		}
+	</style> -->
+</svelte:head>
+
 {@html titleSvg}
 <CMS {content} />
 
