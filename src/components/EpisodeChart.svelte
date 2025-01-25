@@ -4,8 +4,6 @@
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
-	import copy from "$data/copy.json";
-	import { onMount } from "svelte";
 
 	const { slideI, view } = $props();
 

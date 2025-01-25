@@ -1,32 +1,54 @@
 <script>
 	import _ from "lodash";
 
-	let { name, phrases, playing = $bindable() } = $props();
+	let { name, phrases, svg, playing = $bindable() } = $props();
 
 	let audioEls = [];
 
 	const onClick = () => {
+		const wrapper = document.getElementById(`${name}-face`);
+		const outline = wrapper.querySelector("svg path");
+		outline.style.fill = "var(--color-blue)";
+
 		const allAudioEls = document.querySelectorAll("audio");
 		allAudioEls.forEach((el) => {
 			el.pause();
 			el.currentTime = 0;
 		});
-		const choice = _.sample(audioEls);
 
+		const choice = _.sample(audioEls);
 		choice.play();
 		playing = name;
-
 		choice.onended = () => {
 			playing = undefined;
+			const wrapper = document.getElementById(`${name}-face`);
+			const outline = wrapper.querySelector("svg path");
+			outline.style.fill = "var(--color-dark-purple)";
 		};
 	};
+
+	$effect(() => {
+		if (playing !== name) {
+			audioEls.forEach((el) => {
+				el.pause();
+				el.currentTime = 0;
+			});
+			const wrapper = document.getElementById(`${name}-face`);
+			const outline = wrapper.querySelector("svg path");
+			outline.style.fill = "var(--color-dark-purple)";
+		}
+	});
 </script>
 
-<img
+<span
+	id={`${name}-face`}
+	class="face"
 	class:playing={playing === name}
-	src={`assets/img/faces/${name}.png`}
 	on:click={onClick}
-/>
+>
+	{@html svg}
+</span>
+
 {#each _.range(phrases) as i}
 	<audio
 		bind:this={audioEls[i]}
@@ -35,17 +57,17 @@
 {/each}
 
 <style>
-	img {
+	.face {
 		width: 100px;
 		transition: transform 0.2s ease-out;
 	}
 
-	img:hover {
+	.face:hover {
 		cursor: pointer;
 		transform: rotate(1deg) scale(1.1);
 	}
 
-	img.playing {
-		transform: rotate(1deg) scale(1.5);
+	.face.playing {
+		transform: rotate(5deg) scale(1.5);
 	}
 </style>

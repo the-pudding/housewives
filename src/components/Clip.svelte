@@ -2,7 +2,6 @@
 	import { current } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
-	import Clip from "$components/Clip.svelte";
 
 	const {
 		id,
@@ -19,6 +18,7 @@
 	let paused = $state(true);
 	let showOverlayVideo = $state(false);
 	let loaded = $state(false);
+	let showCC = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
@@ -41,10 +41,24 @@
 		}
 	};
 
+	const toggleCC = () => {
+		const tracks = videoEl.textTracks;
+		if (tracks && tracks.length > 0) {
+			const captionsTrack = tracks[0];
+			if (captionsTrack.mode === "showing") {
+				captionsTrack.mode = "hidden";
+				showCC = false;
+			} else {
+				captionsTrack.mode = "showing";
+				showCC = true;
+			}
+		}
+	};
+
 	const slideChange = () => {
 		const comingUp = Math.abs(slideI - current.slide) <= 2;
 		if (!loaded && comingUp) {
-			videoEl.src = `assets/video/${id}.mp4`;
+			videoEl.src = `assets/video/${id}/${id}.mp4`;
 			videoEl.load();
 			loaded = true;
 		}
@@ -76,6 +90,7 @@
 				>
 			</div>
 		{/if}
+		<button class="cc" onclick={toggleCC}>CC</button>
 
 		<video
 			playsinline
@@ -83,13 +98,13 @@
 			bind:currentTime
 			bind:duration
 			onended={onEnd}
-		/>
-
-		{#if overlayId}
-			<div class="lazarus" class:visible={showOverlayVideo}>
-				<Clip id={overlayId} enablePause={false} />
-			</div>
-		{/if}
+		>
+			<track
+				kind="captions"
+				src={`assets/video/${id}/${id}.vtt`}
+				srclang="en"
+			/>
+		</video>
 	</div>
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
@@ -159,6 +174,13 @@
 	.playpause:hover {
 		color: var(--color-purple);
 		opacity: 1;
+	}
+
+	.cc {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		z-index: 10;
 	}
 
 	.apology {

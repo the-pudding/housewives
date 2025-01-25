@@ -2,21 +2,38 @@
 	import CMS from "$components/helpers/CMS.svelte";
 	import Face from "$components/Title.Face.svelte";
 	import titleSvg from "$svg/title.svg";
+	import { current } from "$runes/misc.svelte.js";
+	import angieSvg from "$svg/faces/angie.svg";
+	import bronwynSvg from "$svg/faces/bronwyn.svg";
+	import heatherSvg from "$svg/faces/heather.svg";
+	import jenSvg from "$svg/faces/jen.svg";
+	import lisaSvg from "$svg/faces/lisa.svg";
+	import marySvg from "$svg/faces/mary.svg";
+	import meredithSvg from "$svg/faces/meredith.svg";
+	import whitneySvg from "$svg/faces/whitney.svg";
 
 	const { content } = $props();
 
 	let playing = $state(undefined);
 
 	const faces = [
-		{ name: "meredith", phrases: 2 },
-		{ name: "jen", phrases: 2 },
-		{ name: "heather", phrases: 2 },
-		{ name: "angie", phrases: 1 },
-		{ name: "lisa", phrases: 2 },
-		{ name: "mary", phrases: 2 },
-		{ name: "bronwyn", phrases: 1 },
-		{ name: "whitney", phrases: 2 }
+		{ name: "meredith", phrases: 2, svg: meredithSvg },
+		{ name: "jen", phrases: 2, svg: jenSvg },
+		{ name: "heather", phrases: 2, svg: heatherSvg },
+		{ name: "angie", phrases: 1, svg: angieSvg },
+		{ name: "lisa", phrases: 2, svg: lisaSvg },
+		{ name: "mary", phrases: 2, svg: marySvg },
+		{ name: "bronwyn", phrases: 1, svg: bronwynSvg },
+		{ name: "whitney", phrases: 2, svg: whitneySvg }
 	];
+
+	const slideChange = () => {
+		if (current.slide !== 0 && playing) {
+			playing = undefined;
+		}
+	};
+
+	$effect(() => slideChange(current.slide));
 </script>
 
 <svelte:head>
@@ -49,8 +66,8 @@
 <CMS {content} />
 
 <div class="faces">
-	{#each faces as { name, phrases }}
-		<Face {name} {phrases} bind:playing />
+	{#each faces as { name, phrases, svg }}
+		<Face {name} {phrases} {svg} bind:playing />
 	{/each}
 </div>
 
