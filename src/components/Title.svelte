@@ -15,6 +15,7 @@
 	const { content } = $props();
 
 	let playing = $state(undefined);
+	let showingTitle = $state(true);
 
 	const faces = [
 		{ name: "meredith", phrases: 2, svg: meredithSvg },
@@ -28,6 +29,15 @@
 	];
 
 	const slideChange = () => {
+		if (current.slide === 0) {
+			showingTitle = true;
+			document.body.style.background = "rgb(216 227 231)";
+			document.body.style.transition = "background 1s";
+		} else if (showingTitle) {
+			showingTitle = false;
+			document.body.style.background = "white";
+		}
+
 		if (current.slide !== 0 && playing) {
 			playing = undefined;
 		}
@@ -35,32 +45,6 @@
 
 	$effect(() => slideChange(current.slide));
 </script>
-
-<svelte:head>
-	<!-- <style>
-		body {
-			position: relative;
-			margin: 0;
-			height: 100vh;
-			overflow: hidden;
-		}
-
-		body::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-image: url("assets/img/clouds.jpg");
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
-			opacity: 0.4;
-			z-index: -1;
-		}
-	</style> -->
-</svelte:head>
 
 {@html titleSvg}
 <CMS {content} />
@@ -70,6 +54,10 @@
 		<Face {name} {phrases} {svg} bind:playing />
 	{/each}
 </div>
+<small>Click a face. [replace this with transcript when playing]</small>
+
+<!-- <img src="assets/img/cloud.png" /> -->
+<!-- <img src="assets/img/cloud2.png" /> -->
 
 <style>
 	.faces {
@@ -79,5 +67,11 @@
 		gap: 1rem;
 		margin-top: 3rem;
 		padding: 20px 0;
+	}
+
+	img {
+		position: absolute;
+		top: 0;
+		z-index: -1;
 	}
 </style>

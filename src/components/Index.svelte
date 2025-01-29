@@ -98,14 +98,14 @@
 									)
 								)}
 								content={content[current.subslide].content}
-								slideI={index}
+								{slideI}
 							/>
 						</div>
 					</div>
 				{:else}
 					<div class="slide" id={`slide-${slideI}`}>
 						<div class="content">
-							<CMS components={neededComponents} {content} slideI={index} />
+							<CMS components={neededComponents} {content} {slideI} />
 						</div>
 					</div>
 				{/if}

@@ -72,7 +72,6 @@
 	on:mouseenter={onMouseEnter}
 	on:mouseleave={onMouseLeave}
 	bind:this={wrapperEl}
-	tabindex="0"
 >
 	{@html svg}
 </span>

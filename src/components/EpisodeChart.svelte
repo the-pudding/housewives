@@ -4,13 +4,16 @@
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
+	import { current } from "$runes/misc.svelte.js";
 
 	const { slideI, view } = $props(); // TODO: instead of slideI, probably use current within Clip to detect changes
 
-	const parseDuration = timeParse("%M:%S:%L");
-	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
+	let showing = $state(undefined);
 	let width = $state(0);
 	let showApologies = $derived(view !== "blank");
+
+	const parseDuration = timeParse("%M:%S:%L");
+	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 
 	const standardize = (timestamp) => {
 		const parsedTime = parseDuration(timestamp);
@@ -30,6 +33,17 @@
 			.domain([standardize("00:00:00"), standardize("59:59:59")])
 			.range([0, width])
 	);
+
+	const onClick = (id) => {
+		showing = id;
+	};
+
+	const slideChange = () => {
+		if (current.slide !== slideI) return;
+		showing = undefined;
+	};
+
+	$effect(() => slideChange(current.slide, current.subslide));
 </script>
 
 <figure bind:clientWidth={width}>
@@ -49,6 +63,10 @@
 
 				<div class="full">
 					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
+						{@const id =
+							season === "1" && episode === "1"
+								? `s1_e1_slam`
+								: `s${season}_e${episode}_example`}
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
 						{@const highlight =
@@ -58,31 +76,37 @@
 							(chart_highlight === "TRUE" &&
 								view === "bad" &&
 								solid_apology === "FALSE")}
-
-						<div
-							class="apology"
-							class:visible={showApologies}
-							class:highlight
-							style:left
-							style:background={view === "all"
+						{@const background =
+							view === "all"
 								? "var(--color-dark-purple)"
 								: solid_apology === "TRUE"
 									? "var(--color-good)"
 									: "var(--color-bad)"}
-							style:opacity={view === "all" ||
+						{@const opacity =
+							view === "all" ||
 							(solid_apology === "TRUE" && view === "good") ||
 							(solid_apology === "FALSE" && view === "bad")
 								? 1
 								: 0.3}
+						<div
+							class="apology"
+							class:visible={showApologies}
+							class:highlight
+							class:showing={highlight && showing === id}
+							style:left={highlight && showing && showing === id ? 0 : left}
+							style:background
+							style:opacity
+							on:click={() => onClick(id)}
 						></div>
+
 						{#if highlight}
 							<div class="example" style:left>
-								<Clip
+								<!-- <Clip
 									{slideI}
 									id={season === "1" && episode === "1"
 										? `s1_e1_slam`
 										: `s${season}_e${episode}_example`}
-								/>
+								/> -->
 							</div>
 						{/if}
 					{/each}
@@ -91,7 +115,12 @@
 		{/each}
 	</div>
 
-	<figcaption></figcaption>
+	<figcaption class="sr-only">
+		A chart showing 91 episodes of The Real Housewives of Salt Lake City with
+		markings where the apology moments occur.{view !== "all"
+			? ` Currently highlighting the ${view} apologies.`
+			: ""}
+	</figcaption>
 </figure>
 
 <style>
@@ -128,7 +157,10 @@
 		height: 100%;
 		width: 20px;
 		opacity: 0;
-		transition: transform 0.3s;
+		transition:
+			transform calc(var(--1s) * 0.5),
+			width calc(var(--1s) * 0.5),
+			opacity calc(var(--1s) * 0.5);
 	}
 
 	.apology.visible {
@@ -136,9 +168,22 @@
 	}
 
 	.apology.highlight {
-		outline: 3px solid var(--color-gray-900);
+		height: 11px;
+		width: 26px;
+		border: 3px solid var(--color-gray-900);
 		transform: scale(1.5);
 		z-index: 11;
+	}
+
+	.apology.highlight:not(.apology.showing):hover {
+		cursor: pointer;
+		transform: scale(1.75);
+	}
+
+	.apology.showing {
+		transform: none;
+		width: 100%;
+		border: none;
 	}
 
 	.x-labels {
