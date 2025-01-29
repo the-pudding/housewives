@@ -5,7 +5,7 @@
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
 
-	const { slideI, view } = $props();
+	const { slideI, view } = $props(); // TODO: instead of slideI, probably use current within Clip to detect changes
 
 	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
@@ -96,8 +96,10 @@
 
 <style>
 	figure {
+		position: absolute;
+		top: 6rem;
+		width: 100%;
 		display: flex;
-		position: relative;
 		gap: 0.5rem;
 		padding-bottom: 1rem;
 	}

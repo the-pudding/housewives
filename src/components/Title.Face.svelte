@@ -44,8 +44,6 @@
 
 	const onMouseEnter = () => {
 		if (playing === name) return;
-		const outline = wrapperEl.querySelector("svg path");
-		outline.style.fill = "var(--color-purple)";
 		wrapperEl.style.transform = `rotate(${Math.random() * 3}deg) scale(1.1)`;
 	};
 

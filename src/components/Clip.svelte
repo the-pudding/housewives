@@ -104,6 +104,7 @@
 
 	figure {
 		height: 100%;
+		margin-top: 2rem;
 	}
 
 	.wrapper {

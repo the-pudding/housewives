@@ -1,4 +1,5 @@
 <script>
+	import Chapters from "$components/Chapters.svelte";
 	import Title from "$components/Title.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
@@ -22,7 +23,8 @@
 			slides = slides.map((slide, slideInSection) => ({
 				section,
 				slideInSection: slideInSection,
-				content: slide.content
+				content: slide.content,
+				multi: slide.multi === "true"
 			}));
 
 			return acc.concat(slides);
@@ -36,8 +38,17 @@
 				d.slideInSection === current.slideInSection &&
 				d.slide === current.slide
 		);
-
+		const isMulti = allSlides[currentSlideIndex].multi;
+		const numSubslides = isMulti
+			? allSlides[currentSlideIndex].content.length
+			: 1;
 		if (
+			isMulti &&
+			current.subslide + i < numSubslides &&
+			current.subslide + i >= 0
+		) {
+			current.subslide += i;
+		} else if (
 			currentSlideIndex + i >= 0 &&
 			currentSlideIndex + i < allSlides.length
 		) {
@@ -46,15 +57,6 @@
 			current.slideInSection = next.slideInSection;
 			current.slide = next.slide;
 		}
-	};
-
-	const goTo = (section, slideInSection) => {
-		const slide = allSlides.find(
-			(d) => d.section === section && d.slideInSection === slideInSection
-		);
-		current.section = slide.section;
-		current.slideInSection = slide.slideInSection;
-		current.slide = slide.slide;
 	};
 
 	const onKeyDown = (e) => {
@@ -66,50 +68,47 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <article bind:clientWidth={w}>
-	<div class="chapters" class:visible={current.section > 0}>
-		{#each copy.sections as { section, slides }, sectionI}
-			{#if sectionI > 0}
-				<div class="section" class:active={current.section === sectionI}>
-					<div class="title">{@html section}</div>
-					<div class="bars">
-						{#each _.range(slides.length) as barI}
-							<div class="bar-wrapper" onclick={() => goTo(sectionI, barI)}>
-								<div
-									class="bar"
-									class:active={current.section === sectionI &&
-										current.slideInSection === barI}
-								/>
-							</div>
-						{/each}
-					</div>
-				</div>
-			{/if}
-		{/each}
-	</div>
+	<Chapters {allSlides} />
 
 	<div class="slider">
 		<div
 			class="slides"
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
-			{#each copy.sections as { slides }, sectionI}
-				{#each slides as { content }, slideI}
-					{@const index =
-						slideI +
-						copy.sections
-							.slice(0, sectionI)
-							.reduce((acc, { slides }) => acc + slides.length, 0)}
-					{@const neededComponents = Object.fromEntries(
-						Object.entries(components).filter(([key]) =>
-							content.some((item) => item.type === key)
-						)
-					)}
-					<div class="slide" id={`slide-${index}`}>
+			{#each allSlides as { content, section: sectionI, multi }, slideI}
+				{@const index =
+					slideI +
+					copy.sections
+						.slice(0, sectionI)
+						.reduce((acc, { slides }) => acc + slides.length, 0)}
+				{@const neededComponents = Object.fromEntries(
+					Object.entries(components).filter(([key]) =>
+						content.some((item) => item.type === key)
+					)
+				)}
+				{#if multi}
+					<div class="slide" id={`slide-${slideI}`}>
+						<div class="content">
+							<CMS
+								components={Object.fromEntries(
+									Object.entries(components).filter(([key]) =>
+										content[current.subslide].content.some(
+											(item) => item.type === key
+										)
+									)
+								)}
+								content={content[current.subslide].content}
+								slideI={index}
+							/>
+						</div>
+					</div>
+				{:else}
+					<div class="slide" id={`slide-${slideI}`}>
 						<div class="content">
 							<CMS components={neededComponents} {content} slideI={index} />
 						</div>
 					</div>
-				{/each}
+				{/if}
 			{/each}
 		</div>
 	</div>
@@ -129,68 +128,6 @@
 		width: 100%;
 		max-width: 45rem;
 		z-index: 2;
-	}
-
-	.chapters {
-		display: flex;
-		gap: 4px;
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
-
-	.chapters.visible {
-		opacity: 1;
-	}
-
-	.section {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		opacity: 0.3;
-	}
-
-	.section.active {
-		flex: 5;
-		opacity: 1;
-	}
-
-	.title {
-		position: absolute;
-		top: 0;
-		transform: translate(0, -110%);
-		font-size: var(--14px);
-		visibility: hidden;
-	}
-
-	.section.active .title {
-		visibility: visible;
-	}
-
-	.bars {
-		display: flex;
-		gap: 1px;
-	}
-
-	.bar-wrapper {
-		flex: 1;
-		height: 20px;
-	}
-
-	.bar-wrapper:hover {
-		cursor: pointer;
-	}
-
-	.bar-wrapper:hover .bar {
-		background: var(--color-fg);
-	}
-
-	.bar {
-		height: 2px;
-		background: var(--color-gray-500);
-	}
-
-	.bar.active {
-		background: var(--color-fg);
 	}
 
 	.slider {
@@ -219,6 +156,7 @@
 	}
 
 	.content {
+		position: relative;
 		max-width: 600px;
 		margin: 0 auto;
 	}
