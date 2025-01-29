@@ -69,6 +69,11 @@
 								: solid_apology === "TRUE"
 									? "var(--color-good)"
 									: "var(--color-bad)"}
+							style:opacity={view === "all" ||
+							(solid_apology === "TRUE" && view === "good") ||
+							(solid_apology === "FALSE" && view === "bad")
+								? 1
+								: 0.3}
 						></div>
 						{#if highlight}
 							<div class="example" style:left>
@@ -121,6 +126,7 @@
 		height: 100%;
 		width: 20px;
 		opacity: 0;
+		transition: transform 0.3s;
 	}
 
 	.apology.visible {
@@ -131,7 +137,6 @@
 		outline: 3px solid var(--color-gray-900);
 		transform: scale(1.5);
 		z-index: 11;
-		transition: transform 0.3s;
 	}
 
 	.x-labels {

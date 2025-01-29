@@ -5,6 +5,7 @@
 
 	let wrapperEl;
 	let audioEls = [];
+	let paused = true;
 
 	const onClick = () => {
 		if (playing === name) {
@@ -25,9 +26,11 @@
 
 		const choice = _.sample(audioEls);
 		choice.play();
+		paused = false;
 		playing = name;
 
 		choice.onended = () => {
+			paused = true;
 			playing = undefined;
 			resetFace();
 		};
@@ -52,10 +55,11 @@
 	};
 
 	$effect(() => {
-		if (playing !== name) {
+		if (playing !== name && !paused) {
 			audioEls.forEach((el) => {
 				el.pause();
 				el.currentTime = 0;
+				paused = true;
 			});
 			resetFace();
 		}

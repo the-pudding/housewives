@@ -71,12 +71,12 @@
 
 	<div class="wrapper">
 		<div class="overlay">
-			<button onclick={pausePlay} class="playpause"
+			<button onclick={pausePlay} class="playpause" class:playing={!paused}
 				>{@html paused ? playSvg : pauseSvg}</button
 			>
 		</div>
 
-		<button class="cc" onclick={toggleCC}>CC</button>
+		<button class="cc text-outline" onclick={toggleCC}>CC</button>
 
 		<video
 			playsinline
@@ -145,12 +145,16 @@
 
 	.playpause {
 		background: none;
-		color: var(--color-fg);
+		color: var(--color-dark-purple);
 		height: 3rem;
 		width: 3rem;
 		padding: 0;
 		display: flex;
-		opacity: 0.4;
+		opacity: 0.75;
+	}
+
+	.playpause.playing {
+		opacity: 0.2;
 	}
 
 	.playpause:hover {
@@ -160,8 +164,16 @@
 
 	.cc {
 		position: absolute;
-		bottom: 0;
-		right: 0;
+		background: none;
+		color: var(--color-dark-purple);
+		font-size: 1.2rem;
+		font-weight: bold;
+		top: 0;
+		left: 0;
 		z-index: 10;
+	}
+
+	.cc:hover {
+		color: var(--color-purple);
 	}
 </style>

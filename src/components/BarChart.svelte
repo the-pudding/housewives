@@ -4,7 +4,7 @@
 	import dataRaw from "$data/people.csv";
 	import _ from "lodash";
 
-	const { slideI, keys, highlight, showNumbers, percent } = $props();
+	const { slideI, keys, highlight, showNumbers = true, percent } = $props();
 
 	let width = $state(0);
 
@@ -61,8 +61,11 @@
 					style:width={`${xScale(d[key])}px`}
 					style:background={colors[key]}
 				>
-					{#if showNumbers === "true" && d[key] !== 0}
-						<div class="number">
+					{#if showNumbers && d[key] !== 0}
+						<div
+							class="number"
+							class:light={colors[key] === "var(--color-bad)"}
+						>
 							{percent === "true"
 								? `${((+d[key] / total) * 100).toFixed(0)}%`
 								: d[key]}
@@ -125,9 +128,12 @@
 		z-index: 10;
 		margin-left: 4px;
 		font-family: var(--mono);
-		color: white;
 		font-size: var(--12px);
 		transform: translate(calc(100% + 6px), 0);
+	}
+
+	.number.light {
+		color: white;
 	}
 
 	.split .number {
