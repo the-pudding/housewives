@@ -18,11 +18,11 @@
 
 	const faces = [
 		{ name: "meredith", phrases: 2, svg: meredithSvg },
-		{ name: "jen", phrases: 2, svg: jenSvg },
+		{ name: "mary", phrases: 2, svg: marySvg },
 		{ name: "heather", phrases: 2, svg: heatherSvg },
 		{ name: "angie", phrases: 1, svg: angieSvg },
 		{ name: "lisa", phrases: 2, svg: lisaSvg },
-		{ name: "mary", phrases: 2, svg: marySvg },
+		{ name: "jen", phrases: 2, svg: jenSvg },
 		{ name: "bronwyn", phrases: 1, svg: bronwynSvg },
 		{ name: "whitney", phrases: 2, svg: whitneySvg }
 	];
@@ -74,9 +74,10 @@
 <style>
 	.faces {
 		display: grid;
-		grid-template-columns: repeat(4, 100px);
+		grid-template-columns: repeat(4, 1fr);
 		justify-content: center;
 		gap: 1rem;
 		margin-top: 3rem;
+		padding: 20px 0;
 	}
 </style>

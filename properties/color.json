@@ -48,8 +48,14 @@
 		"blue": {
 			"value": "#49bde2"
 		},
-		"red": {
-			"value": "#ea4d4d"
+		"green": {
+			"value": "#71e2a6"
+		},
+		"orange": {
+			"value": "#d66e15"
+		},
+		"yellow": {
+			"value": "#ffdb1b"
 		}
 	}
 }

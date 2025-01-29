@@ -25,7 +25,9 @@
     "purple": "#F2C3FF",
     "dark-purple": "#BF6CD6",
     "blue": "#49bde2",
-    "red": "#ea4d4d"
+    "green": "#71e2a6",
+    "orange": "#d66e15",
+    "yellow": "#ffdb1b"
   },
   "": {
     "12px": "0.75rem",

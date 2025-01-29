@@ -243,14 +243,13 @@
 	}
 
 	:global(span.bad) {
-		background: gray;
+		background: var(--color-bad);
 		color: white;
 		padding: 0 4px;
 	}
 
 	:global(span.good) {
-		background: teal;
-		color: white;
+		background: var(--color-good);
 		padding: 0 4px;
 	}
 </style>

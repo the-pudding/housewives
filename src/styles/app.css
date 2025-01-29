@@ -25,7 +25,7 @@
 	--color-fg: var(--color-black);
 	--color-primary: var(--color-black);
 	--color-link: var(--color-dark-purple);
-	--color-link-hover: var(--color-black);
+	--color-link-hover: var(--color-purple);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
 	--color-selection: var(--color-gray-300);
@@ -36,6 +36,9 @@
 	--color-input-bg: var(--color-gray-50);
 	--color-input-fg: var(--color-gray-900);
 	--color-placeholder: var(--color-gray-500);
+
+	--color-good: var(--color-green);
+	--color-bad: var(--color-orange);
 
 	/* "1" second duration */
 	--1s: 1ms;
@@ -87,4 +90,9 @@ svg {
 
 img {
 	margin: 0 auto;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	text-decoration: 2px underline var(--color-link-hover);
 }

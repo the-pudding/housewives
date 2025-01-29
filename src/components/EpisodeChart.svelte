@@ -52,22 +52,32 @@
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
 						{@const highlight =
-							view === "color-coded" && chart_highlight === "TRUE"}
+							(chart_highlight === "TRUE" &&
+								view === "good" &&
+								solid_apology === "TRUE") ||
+							(chart_highlight === "TRUE" &&
+								view === "bad" &&
+								solid_apology === "FALSE")}
 
 						<div
 							class="apology"
 							class:visible={showApologies}
 							class:highlight
 							style:left
-							style:background={view === "color-coded"
-								? solid_apology === "TRUE"
-									? "teal"
-									: "gray"
-								: `var(--color-dark-purple)`}
+							style:background={view === "all"
+								? "var(--color-dark-purple)"
+								: solid_apology === "TRUE"
+									? "var(--color-good)"
+									: "var(--color-bad)"}
 						></div>
 						{#if highlight}
 							<div class="example" style:left>
-								<Clip {slideI} id={`s${season}_e${episode}_example`} />
+								<Clip
+									{slideI}
+									id={season === "1" && episode === "1"
+										? `s1_e1_slam`
+										: `s${season}_e${episode}_example`}
+								/>
 							</div>
 						{/if}
 					{/each}

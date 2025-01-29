@@ -35,11 +35,11 @@
 			.range([0, width])
 	);
 	const colors = {
-		num_good_apologies: "teal",
-		num_bad_apologies: "gray",
-		num_apologies: "lightblue",
-		num_sorrys: "lightblue",
-		num_real_sorrys: "lightblue"
+		num_good_apologies: "var(--color-good)",
+		num_bad_apologies: "var(--color-bad)",
+		num_apologies: "var(--color-purple)",
+		num_sorrys: "var(--color-purple)",
+		num_real_sorrys: "var(--color-purple)"
 	};
 </script>
 

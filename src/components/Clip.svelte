@@ -3,20 +3,12 @@
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
-	const {
-		id,
-		caption,
-		apologyText,
-		overlayId,
-		enablePause = true,
-		slideI
-	} = $props();
+	const { id, caption, slideI } = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let paused = $state(true);
-	let showOverlayVideo = $state(false);
 	let loaded = $state(false);
 	let showCC = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
@@ -35,10 +27,6 @@
 	const onEnd = () => {
 		currentTime = 0;
 		paused = true;
-
-		if (overlayId) {
-			showOverlayVideo = true;
-		}
 	};
 
 	const toggleCC = () => {
@@ -67,7 +55,6 @@
 			paused = true;
 			currentTime = 0;
 			videoEl.pause();
-			showOverlayVideo = false;
 		}
 	};
 
@@ -83,13 +70,12 @@
 	{/if}
 
 	<div class="wrapper">
-		{#if enablePause}
-			<div class="overlay">
-				<button onclick={pausePlay} class="playpause"
-					>{@html paused ? playSvg : pauseSvg}</button
-				>
-			</div>
-		{/if}
+		<div class="overlay">
+			<button onclick={pausePlay} class="playpause"
+				>{@html paused ? playSvg : pauseSvg}</button
+			>
+		</div>
+
 		<button class="cc" onclick={toggleCC}>CC</button>
 
 		<video
@@ -109,10 +95,6 @@
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
-
-{#if apologyText}
-	<div class="apology">"{@html apologyText}"</div>
-{/if}
 
 <style>
 	.progress {
@@ -181,17 +163,5 @@
 		bottom: 0;
 		right: 0;
 		z-index: 10;
-	}
-
-	.apology {
-		font-family: var(--mono);
-		font-size: var(--32px);
-		margin-top: 1rem;
-		width: 100%;
-		text-align: center;
-	}
-
-	:global(.apology strong) {
-		color: var(--color-dark-purple);
 	}
 </style>

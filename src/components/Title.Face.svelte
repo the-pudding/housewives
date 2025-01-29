@@ -3,12 +3,19 @@
 
 	let { name, phrases, svg, playing = $bindable() } = $props();
 
+	let wrapperEl;
 	let audioEls = [];
 
 	const onClick = () => {
-		const wrapper = document.getElementById(`${name}-face`);
-		const outline = wrapper.querySelector("svg path");
+		if (playing === name) {
+			playing = undefined;
+			resetFace();
+			return;
+		}
+
+		const outline = wrapperEl.querySelector("svg path");
 		outline.style.fill = "var(--color-blue)";
+		wrapperEl.style.transform = `rotate(${Math.random() * 5}deg) scale(1.5)`;
 
 		const allAudioEls = document.querySelectorAll("audio");
 		allAudioEls.forEach((el) => {
@@ -19,12 +26,29 @@
 		const choice = _.sample(audioEls);
 		choice.play();
 		playing = name;
+
 		choice.onended = () => {
 			playing = undefined;
-			const wrapper = document.getElementById(`${name}-face`);
-			const outline = wrapper.querySelector("svg path");
-			outline.style.fill = "var(--color-dark-purple)";
+			resetFace();
 		};
+	};
+
+	const resetFace = () => {
+		const outline = wrapperEl.querySelector("svg path");
+		outline.style.fill = "var(--color-dark-purple)";
+		wrapperEl.style.transform = "none";
+	};
+
+	const onMouseEnter = () => {
+		if (playing === name) return;
+		const outline = wrapperEl.querySelector("svg path");
+		outline.style.fill = "var(--color-purple)";
+		wrapperEl.style.transform = `rotate(${Math.random() * 3}deg) scale(1.1)`;
+	};
+
+	const onMouseLeave = () => {
+		if (playing === name) return;
+		resetFace();
 	};
 
 	$effect(() => {
@@ -33,9 +57,7 @@
 				el.pause();
 				el.currentTime = 0;
 			});
-			const wrapper = document.getElementById(`${name}-face`);
-			const outline = wrapper.querySelector("svg path");
-			outline.style.fill = "var(--color-dark-purple)";
+			resetFace();
 		}
 	});
 </script>
@@ -45,6 +67,10 @@
 	class="face"
 	class:playing={playing === name}
 	on:click={onClick}
+	on:mouseenter={onMouseEnter}
+	on:mouseleave={onMouseLeave}
+	bind:this={wrapperEl}
+	tabindex="0"
 >
 	{@html svg}
 </span>
@@ -58,16 +84,15 @@
 
 <style>
 	.face {
-		width: 100px;
+		width: 100%;
 		transition: transform 0.2s ease-out;
 	}
 
-	.face:hover {
-		cursor: pointer;
-		transform: rotate(1deg) scale(1.1);
+	:global(.face svg path) {
+		transition: fill 0.2s;
 	}
 
-	.face.playing {
-		transform: rotate(5deg) scale(1.5);
+	.face {
+		cursor: pointer;
 	}
 </style>
