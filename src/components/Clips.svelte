@@ -1,13 +1,20 @@
 <script>
 	import Clip from "$components/Clip.svelte";
+	import { mediaPlaying } from "$runes/misc.svelte.js";
 
 	let { clips, slideI } = $props();
 
 	let currentClipIndex = $state(0);
 	const currentClip = $derived(clips[currentClipIndex]);
 
+	$inspect({ currentClipIndex, currentClip, clips });
+
 	const advance = (i) => {
-		currentClipIndex = (currentClipIndex + i) % clips.length;
+		currentClipIndex =
+			currentClipIndex + 1 < 0
+				? clips.length - 1
+				: (currentClipIndex + 1) % clips.length;
+		mediaPlaying.id = undefined;
 	};
 </script>
 

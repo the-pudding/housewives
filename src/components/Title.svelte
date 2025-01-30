@@ -22,11 +22,11 @@
 	const slideChange = () => {
 		if (current.slide === 0) {
 			showingTitle = true;
-			document.body.style.background = "rgb(216 227 231)";
-			document.body.style.transition = "background 1s";
+			// document.body.style.background = "rgb(216 227 231)";
+			// document.body.style.transition = "background 1s";
 		} else if (showingTitle) {
 			showingTitle = false;
-			document.body.style.background = "white";
+			// document.body.style.background = "white";
 		}
 	};
 
