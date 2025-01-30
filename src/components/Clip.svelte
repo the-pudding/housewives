@@ -1,5 +1,5 @@
 <script>
-	import { current } from "$runes/misc.svelte.js";
+	import { current, mediaPlaying } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
@@ -18,8 +18,10 @@
 	const pausePlay = () => {
 		if (paused) {
 			videoEl.play();
+			mediaPlaying.id = id;
 		} else {
 			videoEl.pause();
+			mediaPlaying.id = undefined;
 		}
 		paused = !paused;
 	};
@@ -27,6 +29,7 @@
 	const onEnd = () => {
 		currentTime = 0;
 		paused = true;
+		mediaPlaying.id = undefined;
 	};
 
 	const toggleCC = () => {
@@ -51,14 +54,24 @@
 			loaded = true;
 		}
 
+		// When the slide changes, pause and restart the clip
 		if (slideI !== current.slide && !paused) {
 			paused = true;
 			currentTime = 0;
 			videoEl.pause();
+			mediaPlaying.id = undefined;
 		}
 	};
 
 	$effect(() => slideChange(current.slide));
+	$effect(() => {
+		// If mediaPlaying is set to undefined, pause and restart the clip
+		if (mediaPlaying.id === undefined && !paused) {
+			paused = true;
+			videoEl.pause();
+			currentTime = 0;
+		}
+	});
 </script>
 
 <figure>
@@ -104,12 +117,13 @@
 
 	figure {
 		height: 100%;
-		margin-top: 2rem;
 	}
 
 	.wrapper {
 		position: relative;
 		height: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	figcaption {

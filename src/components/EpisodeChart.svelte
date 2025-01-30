@@ -4,14 +4,15 @@
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
-	import { current } from "$runes/misc.svelte.js";
+	import Viewport from "$runes/Viewport.svelte.js";
+	import { current, mediaPlaying } from "$runes/misc.svelte.js";
 
-	const { slideI, view } = $props(); // TODO: instead of slideI, probably use current within Clip to detect changes
+	const { slideI, view } = $props();
 
 	let showing = $state(undefined);
 	let width = $state(0);
-	let showApologies = $derived(view !== "blank");
 
+	const viewport = new Viewport();
 	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 
@@ -35,7 +36,15 @@
 	);
 
 	const onClick = (id) => {
+		if (showing === id) {
+			return;
+		}
 		showing = id;
+	};
+
+	const close = () => {
+		showing = undefined;
+		mediaPlaying.id = undefined;
 	};
 
 	const slideChange = () => {
@@ -47,7 +56,7 @@
 </script>
 
 <figure bind:clientWidth={width}>
-	<div class="episodes">
+	<div class="episodes" class:showing>
 		<div class="x-labels">
 			<div>0 minutes</div>
 			<div>60 m</div>
@@ -56,19 +65,27 @@
 			{@const apologiesInEpisode = data.filter(
 				(d) => +d.totalEpisode === i + 1
 			)}
-			<div class="episode">
+			{@const season = apologiesInEpisode[0]?.season}
+			{@const episode = apologiesInEpisode[0]?.episode}
+			{@const id =
+				season === "1" && episode === "1"
+					? `s1_e1_slam`
+					: `s${season}_e${episode}_example`}
+
+			<div
+				class="episode"
+				class:showing
+				class:shrink={showing && showing !== id}
+			>
 				{#if i === 0 || i === totalEpisodes - 1}
 					<div class="y-label">ep #{i + 1}</div>
 				{/if}
 
 				<div class="full">
 					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
-						{@const id =
-							season === "1" && episode === "1"
-								? `s1_e1_slam`
-								: `s${season}_e${episode}_example`}
 						{@const parsedTime = standardize(timestamp)}
-						{@const left = `${xScale(parsedTime)}px`}
+						{@const left =
+							showing && showing === id ? 0 : `${xScale(parsedTime)}px`}
 						{@const highlight =
 							(chart_highlight === "TRUE" &&
 								view === "good" &&
@@ -89,26 +106,29 @@
 								? 1
 								: 0.3}
 						<div
+							id={highlight ? id : undefined}
 							class="apology"
-							class:visible={showApologies}
 							class:highlight
 							class:showing={highlight && showing === id}
-							style:left={highlight && showing && showing === id ? 0 : left}
+							style:left
 							style:background
 							style:opacity
 							on:click={() => onClick(id)}
-						></div>
-
-						{#if highlight}
-							<div class="example" style:left>
-								<!-- <Clip
-									{slideI}
-									id={season === "1" && episode === "1"
-										? `s1_e1_slam`
-										: `s${season}_e${episode}_example`}
-								/> -->
-							</div>
-						{/if}
+						>
+							{#if highlight}
+								<div class="example" class:visible={showing === id}>
+									<Clip
+										{slideI}
+										id={season === "1" && episode === "1"
+											? `s1_e1_slam`
+											: `s${season}_e${episode}_example`}
+									/>
+									<button class="close" on:click|stopPropagation={close}
+										>close</button
+									>
+								</div>
+							{/if}
+						</div>
 					{/each}
 				</div>
 			</div>
@@ -140,9 +160,25 @@
 		gap: 2px;
 	}
 
+	.episodes.showing {
+		gap: 0;
+	}
+
 	.episode {
 		display: flex;
 		align-items: center;
+		transition:
+			height calc(var(--1s) * 0.5),
+			opacity calc(var(--1s) * 0.5);
+	}
+
+	.episode.showing {
+		transform: translate(0, 1rem);
+	}
+
+	.episode.shrink {
+		height: 0px;
+		opacity: 0;
 	}
 
 	.full {
@@ -156,15 +192,11 @@
 		position: absolute;
 		height: 100%;
 		width: 20px;
-		opacity: 0;
 		transition:
 			transform calc(var(--1s) * 0.5),
+			left calc(var(--1s) * 0.5),
 			width calc(var(--1s) * 0.5),
 			opacity calc(var(--1s) * 0.5);
-	}
-
-	.apology.visible {
-		opacity: 1;
 	}
 
 	.apology.highlight {
@@ -207,14 +239,23 @@
 	}
 
 	.example {
-		position: absolute;
-		top: 0;
-		height: 100px;
-		transform: translate(-50%, 0);
-		z-index: 10;
+		height: var(--video-example-height);
+		transform: none;
+		display: none;
+		margin-top: 10px;
+	}
+
+	.example.visible {
+		display: block;
 	}
 
 	.example:hover {
 		cursor: pointer;
+	}
+
+	.close {
+		position: absolute;
+		top: 0;
+		right: 0;
 	}
 </style>

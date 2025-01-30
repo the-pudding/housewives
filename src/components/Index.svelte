@@ -3,15 +3,26 @@
 	import Title from "$components/Title.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
+	import TalkingHead from "$components/TalkingHead.svelte";
 	import Checklist from "$components/Checklist.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
-	import { current } from "$runes/misc.svelte.js";
+	import { current, mediaPlaying } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
-	const components = { Title, Clip, Clips, Checklist, EpisodeChart, BarChart };
+	$inspect({ mediaPlaying });
+
+	const components = {
+		Title,
+		Clip,
+		Clips,
+		Checklist,
+		EpisodeChart,
+		BarChart,
+		TalkingHead
+	};
 
 	let w = $state();
 

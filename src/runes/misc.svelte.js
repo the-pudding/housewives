@@ -4,3 +4,7 @@ export const current = $state({
 	subslide: 0,
 	slideInSection: 0
 });
+
+export const mediaPlaying = $state({
+	id: undefined
+});

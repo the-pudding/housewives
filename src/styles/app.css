@@ -40,6 +40,7 @@
 
 	--color-good: var(--color-green);
 	--color-bad: var(--color-orange);
+	--video-example-height: 20rem;
 
 	/* "1" second duration */
 	--1s: 1ms;
