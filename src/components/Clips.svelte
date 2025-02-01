@@ -1,43 +1,48 @@
 <script>
 	import Clip from "$components/Clip.svelte";
-	import { mediaPlaying } from "$runes/misc.svelte.js";
 
 	let { clips, slideI } = $props();
 
-	let currentClipIndex = $state(0);
-	const currentClip = $derived(clips[currentClipIndex]);
+	const captionsShowing = $state(
+		clips.map((d) => ({ id: d.id, caption: d.caption, show: false }))
+	);
 
-	const advance = (i) => {
-		currentClipIndex =
-			currentClipIndex + 1 < 0
-				? clips.length - 1
-				: (currentClipIndex + 1) % clips.length;
-		mediaPlaying.id = undefined;
+	const finish = (id) => {
+		captionsShowing.find((d) => d.id === id).show = true;
 	};
 </script>
 
 <div class="clips">
-	<button onclick={() => advance(-1)}>prev</button>
-	{#each clips as { id }}
-		<div class="clip" class:visible={currentClip.id === id}>
-			<Clip {id} {slideI} />
+	{#each clips as { id, caption }, i}
+		<div class="clip">
+			<Clip {id} {slideI} autoplay={i === 0} {finish} />
+			<div
+				class="caption"
+				class:visible={captionsShowing.find((d) => d.id === id).show}
+			>
+				{caption}
+			</div>
 		</div>
 	{/each}
-	<button onclick={() => advance(1)}>next</button>
 </div>
 
 <style>
 	.clips {
-		display: flex;
-		gap: 2px;
-		align-items: center;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		height: 400px;
+		gap: 3rem;
 	}
 
-	.clip {
-		display: none;
+	.caption {
+		font-size: 1.2rem;
+		margin-top: 0.25rem;
+		opacity: 0.2;
+		transition: opacity calc(var(--1s) * 0.2);
 	}
 
-	.clip.visible {
-		display: flex;
+	.caption.visible {
+		opacity: 1;
 	}
 </style>

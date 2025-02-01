@@ -3,7 +3,7 @@
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
-	const { id, autoplay = true, caption, slideI } = $props();
+	const { id, autoplay = true, caption, slideI, finish } = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
@@ -27,6 +27,7 @@
 	};
 
 	const onEnd = () => {
+		if (finish) finish(id);
 		currentTime = 0;
 		paused = true;
 		mediaPlaying.id = undefined;
@@ -82,16 +83,17 @@
 			currentTime = 0;
 		}
 	});
+	$effect(() => {
+		// If within the same slide the media changes
+		if (mediaPlaying.id !== id && !paused) {
+			paused = true;
+			videoEl.pause();
+			currentTime = 0;
+		}
+	});
 </script>
 
 <figure>
-	{#if caption}
-		<figcaption>
-			<span>S{season}E{episode}</span>
-			{@html caption}
-		</figcaption>
-	{/if}
-
 	<div class="overlay">
 		{#if !autoplay}
 			<button onclick={pausePlay} class="playpause" class:playing={!paused}
@@ -113,6 +115,13 @@
 		<track kind="captions" src={`assets/video/${id}/${id}.vtt`} srclang="en" />
 	</video>
 
+	<!-- {#if caption}
+		<figcaption>
+			<span>S{season}E{episode}</span>
+			{@html caption}
+		</figcaption>
+	{/if} -->
+
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
 
@@ -126,6 +135,7 @@
 	}
 
 	figure {
+		position: relative;
 		width: 100%;
 		height: 100%;
 	}
@@ -148,7 +158,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100vh;
+		height: 100%;
 		object-fit: cover;
 	}
 
