@@ -24,8 +24,8 @@
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-black);
 	--color-primary: var(--color-black);
-	--color-link: var(--color-dark-purple);
-	--color-link-hover: var(--color-purple);
+	--color-link: var(--color-fg);
+	--color-link-hover: var(--color-dark-purple);
 	--color-text-outline: var(--color-fg);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
@@ -64,6 +64,8 @@ h1 {
 }
 
 h2 {
+	font-family: var(--serif);
+	font-weight: bold;
 	font-size: var(--36px, 36px);
 	line-height: 1.2;
 }

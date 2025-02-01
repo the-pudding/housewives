@@ -7,8 +7,6 @@
 	let currentClipIndex = $state(0);
 	const currentClip = $derived(clips[currentClipIndex]);
 
-	$inspect({ currentClipIndex, currentClip, clips });
-
 	const advance = (i) => {
 		currentClipIndex =
 			currentClipIndex + 1 < 0

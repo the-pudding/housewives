@@ -99,17 +99,17 @@
 	$effect(() => slideChange(current.slide));
 </script>
 
-<span
+<button
 	id={`${name}-face`}
 	class="face"
 	class:playing={mediaPlaying.id === name}
-	on:click={onClick}
-	on:mouseenter={onMouseEnter}
-	on:mouseleave={onMouseLeave}
+	onclick={onClick}
+	onmouseenter={onMouseEnter}
+	onmouseleave={onMouseLeave}
 	bind:this={wrapperEl}
 >
 	{@html svg}
-</span>
+</button>
 
 {#if audio}
 	<audio bind:this={audioEls[0]} src={`assets/audio/${audio}.mp3`}></audio>
@@ -123,21 +123,16 @@
 {/if}
 
 <style>
-	span {
+	button.face {
 		display: flex;
+		background: none;
+		padding: 0;
 		height: 200px;
-	}
-
-	.face {
 		width: 100%;
 		transition: transform 0.2s ease-out;
 	}
 
-	:global(.face svg path) {
+	:global(button.face svg path) {
 		transition: fill 0.2s;
-	}
-
-	.face {
-		cursor: pointer;
 	}
 </style>

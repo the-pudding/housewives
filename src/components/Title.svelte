@@ -33,13 +33,15 @@
 	$effect(() => slideChange(current.slide));
 </script>
 
-{@html titleSvg}
-<CMS {content} />
+<div class="title">
+	{@html titleSvg}
+	<CMS {content} />
 
-<div class="faces">
-	{#each names as name}
-		<TalkingHead {name} />
-	{/each}
+	<div class="faces">
+		{#each names as name}
+			<TalkingHead {name} />
+		{/each}
+	</div>
 </div>
 
 <!-- <img src="assets/img/cloud.png" /> -->
@@ -52,12 +54,5 @@
 		justify-content: center;
 		gap: 1rem;
 		margin-top: 3rem;
-		padding: 20px 0;
-	}
-
-	img {
-		position: absolute;
-		top: 0;
-		z-index: -1;
 	}
 </style>

@@ -3,7 +3,7 @@
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
-	const { id, caption, slideI } = $props();
+	const { id, autoplay = true, caption, slideI } = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
@@ -47,11 +47,21 @@
 	};
 
 	const slideChange = () => {
+		// Load video when slide is near
 		const comingUp = Math.abs(slideI - current.slide) <= 2;
 		if (!loaded && comingUp) {
 			videoEl.src = `assets/video/${id}/${id}.mp4`;
 			videoEl.load();
-			loaded = true;
+			videoEl.addEventListener("loadedmetadata", () => {
+				loaded = true;
+			});
+		}
+
+		// Start video if autoplay
+		if (slideI === current.slide && autoplay) {
+			paused = false;
+			videoEl.play();
+			mediaPlaying.id = id;
 		}
 
 		// When the slide changes, pause and restart the clip
@@ -82,48 +92,42 @@
 		</figcaption>
 	{/if}
 
-	<div class="wrapper">
-		<div class="overlay">
+	<div class="overlay">
+		{#if !autoplay}
 			<button onclick={pausePlay} class="playpause" class:playing={!paused}
 				>{@html paused ? playSvg : pauseSvg}</button
 			>
-		</div>
-
-		<button class="cc text-outline" onclick={toggleCC}>CC</button>
-
-		<video
-			playsinline
-			bind:this={videoEl}
-			bind:currentTime
-			bind:duration
-			onended={onEnd}
-		>
-			<track
-				kind="captions"
-				src={`assets/video/${id}/${id}.vtt`}
-				srclang="en"
-			/>
-		</video>
+		{/if}
 	</div>
+
+	<button class="cc" class:on={showCC} onclick={toggleCC}>CC</button>
+
+	<video
+		class:visible={current.slide === slideI}
+		playsinline
+		bind:this={videoEl}
+		bind:currentTime
+		bind:duration
+		onended={onEnd}
+	>
+		<track kind="captions" src={`assets/video/${id}/${id}.vtt`} srclang="en" />
+	</video>
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
 
 <style>
 	.progress {
+		position: absolute;
+		left: 0;
+		bottom: 0;
 		height: 1rem;
 		background: var(--color-purple);
 	}
 
 	figure {
+		width: 100%;
 		height: 100%;
-	}
-
-	.wrapper {
-		position: relative;
-		height: 100%;
-		display: flex;
-		justify-content: center;
 	}
 
 	figcaption {
@@ -139,7 +143,17 @@
 	}
 
 	video {
-		height: 100%;
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+	}
+
+	video.visible {
+		display: block;
 	}
 
 	.lazarus {
@@ -179,13 +193,19 @@
 
 	.cc {
 		position: absolute;
-		background: none;
-		color: var(--color-dark-purple);
-		font-size: 1.2rem;
+		left: 1rem;
+		bottom: 1.5rem;
+		background: var(--color-gray-600);
+		border-radius: 50%;
+		color: var(--color-white);
+		height: 42px;
+		width: 42px;
 		font-weight: bold;
-		top: 0;
-		left: 0;
 		z-index: 10;
+	}
+
+	.cc.on {
+		background: var(--color-dark-purple);
 	}
 
 	.cc:hover {

@@ -1,6 +1,8 @@
 <script>
 	import Chapters from "$components/Chapters.svelte";
 	import Title from "$components/Title.svelte";
+	import Text from "$components/Text.svelte";
+	import ClipPreview from "$components/ClipPreview.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
 	import TalkingHead from "$components/TalkingHead.svelte";
@@ -8,16 +10,16 @@
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
-	import { current, mediaPlaying } from "$runes/misc.svelte.js";
+	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
-	$inspect({ mediaPlaying });
-
 	const components = {
 		Title,
+		Text,
 		Clip,
 		Clips,
+		ClipPreview,
 		Checklist,
 		EpisodeChart,
 		BarChart,
@@ -78,48 +80,44 @@
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
-<article bind:clientWidth={w}>
+<article bind:clientWidth={w} style={`--n: ${allSlides.length}`}>
 	<Chapters {allSlides} />
 
-	<div class="slider">
+	<div class="outer">
 		<div
-			class="slides"
+			class="inner"
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
-			{#each allSlides as { content, section: sectionI, multi }, slideI}
-				{@const index =
-					slideI +
-					copy.sections
-						.slice(0, sectionI)
-						.reduce((acc, { slides }) => acc + slides.length, 0)}
-				{@const neededComponents = Object.fromEntries(
-					Object.entries(components).filter(([key]) =>
-						content.some((item) => item.type === key)
-					)
-				)}
-				{#if multi}
-					<div class="slide" id={`slide-${slideI}`}>
-						<div class="content">
-							<CMS
-								components={Object.fromEntries(
-									Object.entries(components).filter(([key]) =>
-										content[current.subslide].content.some(
-											(item) => item.type === key
-										)
-									)
-								)}
-								content={content[current.subslide].content}
-								{slideI}
-							/>
-						</div>
+			{#each allSlides as { content, multi }, slideI}
+				{@const neededComponents = multi
+					? Object.fromEntries(
+							Object.entries(components).filter(([key]) =>
+								content[current.subslide].content.some(
+									(item) => item.type === key
+								)
+							)
+						)
+					: Object.fromEntries(
+							Object.entries(components).filter(([key]) =>
+								content.some((item) => item.type === key)
+							)
+						)}
+				{@const slideContent = multi
+					? content[current.subslide].content
+					: content}
+				{@const full =
+					Object.keys(neededComponents).includes("ClipPreview") ||
+					Object.keys(neededComponents).includes("Clip")}
+
+				<div class="slide" id={`slide-${slideI}`}>
+					<div class="content" class:full>
+						<CMS
+							components={neededComponents}
+							content={slideContent}
+							{slideI}
+						/>
 					</div>
-				{:else}
-					<div class="slide" id={`slide-${slideI}`}>
-						<div class="content">
-							<CMS components={neededComponents} {content} {slideI} />
-						</div>
-					</div>
-				{/if}
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -132,44 +130,44 @@
 
 <style>
 	article {
-		position: absolute;
-		top: 3rem;
-		left: 50%;
-		transform: translate(-50%, 0);
 		width: 100%;
-		max-width: 45rem;
+		height: 100vh;
 		z-index: 2;
+		pointer-events: none;
+		position: relative;
 	}
 
-	.slider {
-		position: relative;
+	.outer {
 		width: 100%;
 		height: 100%;
-		margin: 0;
-		padding: 0;
 		overflow: hidden;
 	}
 
-	.slides {
-		display: flex;
-		flex-direction: row;
-		position: relative;
-		width: 100%;
+	.inner {
+		width: calc(var(--n) * 100%);
 		height: 100%;
+		display: flex;
 	}
 
 	.slide {
 		position: relative;
-		width: 100%;
-		height: 100%;
+		background: linear-gradient(to bottom, #f9e4ff 0%, #f5d0ff 100%);
+		width: calc(100% / var(--n));
 		flex-shrink: 0;
-		padding: 0 1rem;
 	}
 
 	.content {
-		position: relative;
-		max-width: 600px;
+		max-width: 45rem;
 		margin: 0 auto;
+		margin-top: 6rem;
+		margin-bottom: 2rem;
+	}
+
+	.content.full {
+		height: 100vh;
+		width: 100%;
+		max-width: none;
+		margin: 0;
 	}
 
 	small {
@@ -200,5 +198,9 @@
 	:global(span.good) {
 		background: var(--color-good);
 		padding: 0 4px;
+	}
+
+	:global(.slide a, .slide button, #chapters button) {
+		pointer-events: auto;
 	}
 </style>
