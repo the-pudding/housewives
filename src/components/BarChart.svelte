@@ -1,4 +1,5 @@
 <script>
+	import TalkingHead from "$components/TalkingHead.svelte";
 	import { scaleLinear } from "d3-scale";
 	import { max } from "d3-array";
 	import dataRaw from "$data/people.csv";
@@ -21,9 +22,9 @@
 		"desc"
 	);
 	const title = keys.includes("num_real_sorrys")
-		? "Total 'sorry's by character"
+		? 'Total "sorry"s by cast member'
 		: keys.includes("num_good_apologies")
-			? "Good vs. bad apologies by character"
+			? "<span class=good>Good</span> vs. <span class=bad>bad</span> apologies by cast member"
 			: null;
 
 	const xScale = $derived(
@@ -44,7 +45,7 @@
 </script>
 
 <div id={`slide-${slideI}-chart`} class="bar-chart" bind:clientWidth={width}>
-	{#if title}<h3>{title}</h3>{/if}
+	{#if title}<h3>{@html title}</h3>{/if}
 
 	{#each data as d}
 		<div
@@ -88,8 +89,6 @@
 	h3 {
 		margin: 0;
 		margin-bottom: 0.5rem;
-		font-size: var(--20px);
-		font-family: var(--sans);
 	}
 
 	.row {

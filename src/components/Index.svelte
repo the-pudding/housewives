@@ -157,6 +157,7 @@
 	}
 
 	.content {
+		position: relative;
 		max-width: 45rem;
 		margin: 0 auto;
 		margin-top: 6rem;
@@ -200,7 +201,19 @@
 		padding: 0 4px;
 	}
 
-	:global(.slide a, .slide button, #chapters button) {
+	:global(
+		.slide a,
+		.slide button,
+		#chapters button,
+		#episode-chart .apology.highlight,
+		details
+	) {
 		pointer-events: auto;
+	}
+
+	:global(span.dark-purple) {
+		background: var(--color-dark-purple);
+		color: var(--color-white);
+		padding: 0 2px;
 	}
 </style>

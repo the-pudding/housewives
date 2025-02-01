@@ -3,7 +3,14 @@
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
-	const { id, autoplay = true, showEpisode = true, slideI, finish } = $props();
+	const {
+		id,
+		caption,
+		autoplay = true,
+		showEpisode = true,
+		slideI,
+		finish
+	} = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
@@ -94,6 +101,17 @@
 </script>
 
 <figure>
+	<video
+		class:visible={current.slide === slideI}
+		playsinline
+		bind:this={videoEl}
+		bind:currentTime
+		bind:duration
+		onended={onEnd}
+	>
+		<track kind="captions" src={`assets/video/${id}/${id}.vtt`} srclang="en" />
+	</video>
+
 	<div class="overlay">
 		{#if !autoplay}
 			<button onclick={pausePlay} class="playpause" class:playing={!paused}
@@ -111,23 +129,14 @@
 		<button class="mute" class:on={true}>mute</button>
 	</div>
 
-	<video
-		class:visible={current.slide === slideI}
-		playsinline
-		bind:this={videoEl}
-		bind:currentTime
-		bind:duration
-		onended={onEnd}
-	>
-		<track kind="captions" src={`assets/video/${id}/${id}.vtt`} srclang="en" />
-	</video>
-
-	<!-- {#if caption}
-		<figcaption>
-			<span>S{season}E{episode}</span>
-			{@html caption}
-		</figcaption>
-	{/if} -->
+	{#if caption}
+		<div class="caption">
+			<details>
+				<summary><span>S{season}E{episode}</span></summary>
+				{@html caption}
+			</details>
+		</div>
+	{/if}
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
@@ -145,18 +154,6 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-	}
-
-	figcaption {
-		margin-bottom: 0.5rem;
-		font-size: var(--12px);
-		font-family: var(--mono);
-	}
-
-	figcaption span {
-		background: var(--color-dark-purple);
-		color: var(--color-bg);
-		padding: 2px 4px;
 	}
 
 	video {
@@ -242,5 +239,14 @@
 
 	.controls button:hover {
 		color: var(--color-purple);
+	}
+
+	.caption {
+		position: absolute;
+		right: 0;
+		bottom: 3rem;
+		background: var(--color-purple);
+		padding: 1rem;
+		z-index: 2;
 	}
 </style>

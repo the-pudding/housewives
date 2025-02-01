@@ -71,7 +71,9 @@ h2 {
 }
 
 h3 {
+	font-family: var(--serif);
 	font-size: var(--28px, 28px);
+	font-weight: bold;
 }
 
 h4 {

@@ -55,7 +55,7 @@
 	$effect(() => slideChange(current.slide, current.subslide));
 </script>
 
-<figure bind:clientWidth={width}>
+<figure bind:clientWidth={width} id="episode-chart">
 	<div class="episodes" class:showing>
 		<div class="x-labels">
 			<div>0 minutes</div>
@@ -118,6 +118,7 @@
 							{#if highlight}
 								<div class="example" class:visible={showing === id}>
 									<Clip
+										autoplay={false}
 										{slideI}
 										id={season === "1" && episode === "1"
 											? `s1_e1_slam`
@@ -193,10 +194,10 @@
 		height: 100%;
 		width: 20px;
 		transition:
-			transform calc(var(--1s) * 0.5),
-			left calc(var(--1s) * 0.5),
-			width calc(var(--1s) * 0.5),
-			opacity calc(var(--1s) * 0.5);
+			transform calc(var(--1s) * 0.4),
+			left calc(var(--1s) * 0.4),
+			width calc(var(--1s) * 0.4),
+			opacity calc(var(--1s) * 0.4);
 	}
 
 	.apology.highlight {
