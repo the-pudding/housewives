@@ -66,9 +66,9 @@
 <style>
 	#chapters {
 		position: absolute;
-		top: 1rem;
+		top: 1.5rem;
 		width: 100%;
-		padding: 0 2rem;
+		padding: 0 4.5rem;
 		display: flex;
 		gap: 4px;
 		opacity: 0;

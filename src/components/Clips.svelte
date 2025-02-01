@@ -15,7 +15,7 @@
 <div class="clips">
 	{#each clips as { id, caption }, i}
 		<div class="clip">
-			<Clip {id} {slideI} autoplay={i === 0} {finish} />
+			<Clip {id} {slideI} autoplay={i === 0} showEpisode={false} {finish} />
 			<div
 				class="caption"
 				class:visible={captionsShowing.find((d) => d.id === id).show}

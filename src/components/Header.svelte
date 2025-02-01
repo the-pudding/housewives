@@ -28,10 +28,9 @@
 	}
 
 	header.small {
-		max-width: 3rem;
-		top: auto;
-		bottom: 1rem;
-		right: 1rem;
+		max-width: 2.5rem;
+		top: 1rem;
+		left: 1rem;
 	}
 
 	.wordmark {

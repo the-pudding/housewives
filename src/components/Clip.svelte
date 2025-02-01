@@ -3,7 +3,7 @@
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
 
-	const { id, autoplay = true, caption, slideI, finish } = $props();
+	const { id, autoplay = true, showEpisode = true, slideI, finish } = $props();
 
 	let videoEl;
 	let currentTime = $state(0);
@@ -102,7 +102,14 @@
 		{/if}
 	</div>
 
-	<button class="cc" class:on={showCC} onclick={toggleCC}>CC</button>
+	<div class="controls">
+		{#if showEpisode}
+			<div class="episode">S{season} E{episode}</div>
+		{/if}
+
+		<button class="cc" class:on={showCC} onclick={toggleCC}>CC</button>
+		<button class="mute" class:on={true}>mute</button>
+	</div>
 
 	<video
 		class:visible={current.slide === slideI}
@@ -201,24 +208,39 @@
 		opacity: 1;
 	}
 
-	.cc {
+	.episode {
+		background: var(--color-dark-purple);
+		color: white;
+		font-size: 1.5rem;
+		padding: 2px 4px;
+	}
+
+	.controls {
 		position: absolute;
-		left: 1rem;
-		bottom: 1.5rem;
+		bottom: 2rem;
+		left: 2rem;
+		z-index: 10;
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+	}
+
+	.controls button {
 		background: var(--color-gray-600);
 		border-radius: 50%;
 		color: var(--color-white);
-		height: 42px;
-		width: 42px;
+		height: 40px;
+		width: 40px;
 		font-weight: bold;
-		z-index: 10;
+		font-size: var(--14px);
+		white-space: nowrap;
 	}
 
-	.cc.on {
+	.controls button.on {
 		background: var(--color-dark-purple);
 	}
 
-	.cc:hover {
+	.controls button:hover {
 		color: var(--color-purple);
 	}
 </style>
