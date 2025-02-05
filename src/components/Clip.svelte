@@ -7,6 +7,7 @@
 		id,
 		caption,
 		autoplay = true,
+		inline = false,
 		showEpisode = true,
 		slideI,
 		finish
@@ -103,6 +104,7 @@
 <figure>
 	<video
 		class:visible={current.slide === slideI}
+		class:inline
 		playsinline
 		bind:this={videoEl}
 		bind:currentTime
@@ -168,6 +170,10 @@
 
 	video.visible {
 		display: block;
+	}
+
+	video.inline {
+		position: static;
 	}
 
 	.lazarus {

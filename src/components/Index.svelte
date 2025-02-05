@@ -107,7 +107,8 @@
 					: content}
 				{@const full =
 					Object.keys(neededComponents).includes("ClipPreview") ||
-					Object.keys(neededComponents).includes("Clip")}
+					(Object.keys(neededComponents).includes("Clip") &&
+						content.find((d) => d.type === "Clip").value.inline !== "true")}
 
 				<div class="slide" id={`slide-${slideI}`}>
 					<div class="content" class:full>
@@ -162,6 +163,10 @@
 		margin: 0 auto;
 		margin-top: 6rem;
 		margin-bottom: 2rem;
+	}
+
+	.slide:first-of-type .content {
+		margin-top: 2rem;
 	}
 
 	.content.full {

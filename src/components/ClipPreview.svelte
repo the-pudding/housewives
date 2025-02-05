@@ -7,6 +7,7 @@
 <style>
 	img {
 		object-fit: cover;
+		width: 100%;
 		height: 100vh;
 		opacity: 0.9;
 	}
