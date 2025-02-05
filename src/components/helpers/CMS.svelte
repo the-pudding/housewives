@@ -1,7 +1,5 @@
 <script>
 	let { components = {}, content = [], slideI } = $props();
-
-	$inspect(components);
 </script>
 
 {#each content as { type, value }}

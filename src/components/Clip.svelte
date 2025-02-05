@@ -36,9 +36,16 @@
 
 	const onEnd = () => {
 		if (finish) finish(id);
-		currentTime = 0;
 		paused = true;
 		mediaPlaying.id = undefined;
+	};
+
+	const restart = () => {
+		console.log("restart");
+		currentTime = 0;
+		mediaPlaying.id = id;
+		paused = false;
+		videoEl.play();
 	};
 
 	const toggleCC = () => {
@@ -129,16 +136,17 @@
 
 		<button class="cc" class:on={showCC} onclick={toggleCC}>CC</button>
 		<button class="mute" class:on={true}>mute</button>
+		<button class="restart" class:on={true} onclick={restart}>restart</button>
 	</div>
 
-	{#if caption}
+	<!-- {#if caption}
 		<div class="caption">
 			<details>
 				<summary><span>S{season}E{episode}</span></summary>
 				{@html caption}
 			</details>
 		</div>
-	{/if}
+	{/if} -->
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>

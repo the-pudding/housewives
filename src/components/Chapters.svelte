@@ -4,8 +4,6 @@
 
 	const { allSlides } = $props();
 
-	$inspect(allSlides);
-
 	const goTo = (section, slideInSection, subslide) => {
 		const slide = allSlides.find(
 			(d) => d.section === section && d.slideInSection === slideInSection
@@ -27,37 +25,49 @@
 
 <div id="chapters" class:visible={current.section > 0}>
 	{#each copy.sections as { section, slides }, sectionI}
+		{@const active = sectionI === current.section}
 		{#if sectionI > 0}
-			<div class="section" class:active={current.section === sectionI}>
-				<div class="bars">
-					{#each slides as slide, barI}
-						{#if slide.multi}
-							{#each slide.content as subslide, subI}
+			<div class="section" class:active>
+				{#if active}
+					<div class="bars">
+						{#each slides as slide, barI}
+							{#if slide.multi}
+								{#each slide.content as subslide, subI}
+									<button
+										class="bar-wrapper"
+										onclick={() => goTo(sectionI, barI, subI)}
+									>
+										<div
+											class="bar"
+											class:active={current.section === sectionI &&
+												current.slideInSection === barI &&
+												current.subslide === subI}
+										></div>
+									</button>
+								{/each}
+							{:else}
 								<button
 									class="bar-wrapper"
-									onclick={() => goTo(sectionI, barI, subI)}
+									onclick={() => goTo(sectionI, barI)}
 								>
 									<div
 										class="bar"
 										class:active={current.section === sectionI &&
-											current.slideInSection === barI &&
-											current.subslide === subI}
+											current.slideInSection === barI}
 									></div>
 								</button>
-							{/each}
-						{:else}
-							<button class="bar-wrapper" onclick={() => goTo(sectionI, barI)}>
-								<div
-									class="bar"
-									class:active={current.section === sectionI &&
-										current.slideInSection === barI}
-								></div>
-							</button>
-						{/if}
-					{/each}
-				</div>
+							{/if}
+						{/each}
+					</div>
 
-				<div class="title" style:color={textColor}>{@html section}</div>
+					<div class="title" style:color={textColor}>
+						{sectionI} — {@html section}
+					</div>
+				{:else}
+					<button class="long-bar-wrapper" onclick={() => goTo(sectionI, 0)}>
+						<div class="long-bar" />
+					</button>
+				{/if}
 			</div>
 		{/if}
 	{/each}
@@ -84,7 +94,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		opacity: 0.4;
+		opacity: 0.5;
 	}
 
 	.section.active {
@@ -95,11 +105,6 @@
 	.title {
 		font-weight: bold;
 		font-size: var(--14px);
-		visibility: hidden;
-	}
-
-	.section.active .title {
-		visibility: visible;
 	}
 
 	.bars {
@@ -114,11 +119,13 @@
 		padding: 0;
 	}
 
-	.bar-wrapper:hover {
+	.bar-wrapper:hover,
+	.long-bar-wrapper:hover {
 		cursor: pointer;
 	}
 
-	.bar-wrapper:hover .bar {
+	.bar-wrapper:hover .bar,
+	.long-bar-wrapper:hover .long-bar {
 		background: var(--color-purple);
 	}
 
@@ -129,5 +136,19 @@
 
 	.bar.active {
 		background: var(--color-dark-purple);
+	}
+
+	.long-bar-wrapper {
+		height: 20px;
+		background: none;
+		padding: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	.long-bar {
+		width: 100%;
+		height: 4px;
+		background: var(--color-white);
 	}
 </style>
