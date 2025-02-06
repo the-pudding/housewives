@@ -1,6 +1,8 @@
 <script>
 	import copy from "$data/copy.json";
-	import { current } from "$runes/misc.svelte.js";
+	import { current, videoSettings } from "$runes/misc.svelte.js";
+	import soundOnSvg from "$svg/sound-on.svg";
+	import soundOffSvg from "$svg/sound-off.svg";
 
 	const { allSlides } = $props();
 
@@ -64,6 +66,13 @@
 		{/if}
 	{/each}
 </div>
+
+<button
+	class="mute"
+	onclick={() => (videoSettings.soundOn = !videoSettings.soundOn)}
+>
+	{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
+</button>
 
 <style>
 	#chapters {
@@ -143,5 +152,24 @@
 		width: 100%;
 		height: 4px;
 		background: var(--color-white);
+	}
+
+	button.mute {
+		position: absolute;
+		max-width: 2.5rem;
+		top: 1rem;
+		right: 1rem;
+		background: var(--color-dark-purple);
+		border-radius: 50%;
+		color: var(--color-white);
+		font-weight: bold;
+		font-size: var(--14px);
+		white-space: nowrap;
+		opacity: 0.9;
+		z-index: 100;
+	}
+
+	button.mute:hover {
+		background: var(--color-purple);
 	}
 </style>

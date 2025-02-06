@@ -8,7 +8,7 @@
 	import marySvg from "$svg/faces/mary.svg";
 	import meredithSvg from "$svg/faces/meredith.svg";
 	import whitneySvg from "$svg/faces/whitney.svg";
-	import { mediaPlaying } from "$runes/misc.svelte.js";
+	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import { current } from "../runes/misc.svelte";
 	import copy from "$data/copy.json";
 
@@ -104,6 +104,12 @@
 			});
 			resetFace();
 		}
+	});
+	$effect(() => {
+		// Turn on/off sound
+		audioEls.forEach((el) => {
+			el.muted = !videoSettings.soundOn;
+		});
 	});
 
 	$effect(() => slideChange(current.slide));

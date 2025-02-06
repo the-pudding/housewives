@@ -206,13 +206,7 @@
 		padding: 0 4px;
 	}
 
-	:global(
-		.slide a,
-		.slide button,
-		#chapters button,
-		#episode-chart .apology.highlight,
-		details
-	) {
+	:global(.slide a, button, #episode-chart .apology.highlight, details) {
 		pointer-events: auto;
 	}
 

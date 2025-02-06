@@ -2,8 +2,6 @@
 	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
-	import soundOnSvg from "$svg/sound-on.svg";
-	import soundOffSvg from "$svg/sound-off.svg";
 	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
 
@@ -53,10 +51,6 @@
 
 	const toggleCC = () => {
 		videoSettings.ccOn = !videoSettings.ccOn;
-	};
-
-	const toggleSound = () => {
-		videoSettings.soundOn = !videoSettings.soundOn;
 	};
 
 	const slideChange = () => {
@@ -149,10 +143,6 @@
 
 	{#if controls}
 		<div class="controls">
-			<button class="mute" onclick={toggleSound}>
-				{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
-			</button>
-
 			<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
 				{@html ccSvg}
 			</button>
@@ -273,7 +263,7 @@
 	}
 
 	:global(.full .episode) {
-		top: 3.5rem;
+		top: 4rem;
 		right: 0.5rem;
 	}
 </style>

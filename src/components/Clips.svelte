@@ -1,7 +1,5 @@
 <script>
 	import Clip from "$components/Clip.svelte";
-	import soundOnSvg from "$svg/sound-on.svg";
-	import soundOffSvg from "$svg/sound-off.svg";
 	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
 	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
@@ -20,10 +18,6 @@
 
 	const toggleCC = () => {
 		videoSettings.ccOn = !videoSettings.ccOn;
-	};
-
-	const toggleSound = () => {
-		videoSettings.soundOn = !videoSettings.soundOn;
 	};
 
 	const restartClip = () => {
@@ -59,10 +53,6 @@
 </div>
 
 <div class="controls">
-	<button class="mute" onclick={toggleSound}>
-		{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
-	</button>
-
 	<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
 		{@html ccSvg}
 	</button>
