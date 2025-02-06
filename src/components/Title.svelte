@@ -39,7 +39,7 @@
 
 	<div class="faces">
 		{#each names as name}
-			<TalkingHead {name} />
+			<TalkingHead {name} showTagline={true} />
 		{/each}
 	</div>
 </div>
