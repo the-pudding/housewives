@@ -13,8 +13,10 @@
 		list-style: none;
 		padding: 0;
 		padding-left: 2rem;
-		font-family: var(--mono);
-		font-size: var(--20px);
+		font-family: var(--serif);
+		font-size: var(--24px);
+		margin-top: 2rem;
+		font-weight: bold;
 	}
 
 	li {

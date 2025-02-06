@@ -210,7 +210,7 @@
 		.slide a,
 		.slide button,
 		#chapters button,
-		#episode-chart .apology.highlight,
+		#episode-chart button,
 		details
 	) {
 		pointer-events: auto;

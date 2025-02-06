@@ -1,10 +1,9 @@
 <script>
-	import Clip from "$components/Clip.svelte";
+	import Example from "$components/EpisodeChart.Example.svelte";
 	import data from "$data/apologies.csv";
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
-	import Viewport from "$runes/Viewport.svelte.js";
 	import { current, mediaPlaying } from "$runes/misc.svelte.js";
 
 	const { slideI, view } = $props();
@@ -12,7 +11,6 @@
 	let showing = $state(undefined);
 	let width = $state(0);
 
-	const viewport = new Viewport();
 	const parseDuration = timeParse("%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 
@@ -56,7 +54,7 @@
 </script>
 
 <figure bind:clientWidth={width} id="episode-chart">
-	<div class="episodes" class:showing>
+	<div class="episodes">
 		<div class="x-labels">
 			<div>0 minutes</div>
 			<div>60 m</div>
@@ -72,20 +70,15 @@
 					? `s1_e1_slam`
 					: `s${season}_e${episode}_example`}
 
-			<div
-				class="episode"
-				class:showing
-				class:shrink={showing && showing !== id}
-			>
+			<div class="episode">
 				{#if i === 0 || i === totalEpisodes - 1}
 					<div class="y-label">ep #{i + 1}</div>
 				{/if}
 
-				<div class="full">
+				<div class="long-bar">
 					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
 						{@const parsedTime = standardize(timestamp)}
-						{@const left =
-							showing && showing === id ? 0 : `${xScale(parsedTime)}px`}
+						{@const left = `${xScale(parsedTime)}px`}
 						{@const highlight =
 							(chart_highlight === "TRUE" &&
 								view === "good" &&
@@ -105,31 +98,37 @@
 							(solid_apology === "FALSE" && view === "bad")
 								? 1
 								: 0.3}
-						<div
-							id={highlight ? id : undefined}
-							class="apology"
-							class:highlight
-							class:showing={highlight && showing === id}
-							style:left
-							style:background
-							style:opacity
-							on:click={() => onClick(id)}
-						>
-							{#if highlight}
-								<div class="example" class:visible={showing === id}>
-									<Clip
-										autoplay={false}
-										{slideI}
-										id={season === "1" && episode === "1"
-											? `s1_e1_slam`
-											: `s${season}_e${episode}_example`}
-									/>
-									<button class="close" on:click|stopPropagation={close}
-										>close</button
-									>
-								</div>
-							{/if}
-						</div>
+
+						{#if highlight}
+							<button
+								{id}
+								class="apology"
+								class:highlight
+								style:left
+								style:background
+								style:opacity
+								onclick={() => onClick(id)}
+								aria-label={`Season ${season}, Episode ${episode} example`}
+							>
+							</button>
+							<Example
+								{showing}
+								{close}
+								{left}
+								{slideI}
+								{season}
+								{episode}
+								{background}
+							/>
+						{:else}
+							<div
+								class="apology"
+								class:highlight
+								style:left
+								style:background
+								style:opacity
+							></div>
+						{/if}
 					{/each}
 				</div>
 			</div>
@@ -161,10 +160,6 @@
 		gap: 2px;
 	}
 
-	.episodes.showing {
-		gap: 0;
-	}
-
 	.episode {
 		display: flex;
 		align-items: center;
@@ -173,16 +168,7 @@
 			opacity calc(var(--1s) * 0.5);
 	}
 
-	.episode.showing {
-		transform: translate(0, 1rem);
-	}
-
-	.episode.shrink {
-		height: 0px;
-		opacity: 0;
-	}
-
-	.full {
+	.long-bar {
 		position: relative;
 		height: 5px;
 		width: 100%;
@@ -198,6 +184,7 @@
 			left calc(var(--1s) * 0.4),
 			width calc(var(--1s) * 0.4),
 			opacity calc(var(--1s) * 0.4);
+		visibility: visible;
 	}
 
 	.apology.highlight {
@@ -208,15 +195,14 @@
 		z-index: 11;
 	}
 
-	.apology.highlight:not(.apology.showing):hover {
+	.apology.highlight:hover {
 		cursor: pointer;
 		transform: scale(1.75);
 	}
 
-	.apology.showing {
-		transform: none;
-		width: 100%;
-		border: none;
+	button.apology {
+		padding: 0;
+		border-radius: 0;
 	}
 
 	.x-labels {
@@ -237,26 +223,5 @@
 		position: absolute;
 		left: 0;
 		transform: translate(-110%, 0);
-	}
-
-	.example {
-		height: var(--video-example-height);
-		transform: none;
-		display: none;
-		margin-top: 10px;
-	}
-
-	.example.visible {
-		display: block;
-	}
-
-	.example:hover {
-		cursor: pointer;
-	}
-
-	.close {
-		position: absolute;
-		top: 0;
-		right: 0;
 	}
 </style>
