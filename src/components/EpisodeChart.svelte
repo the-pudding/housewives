@@ -48,6 +48,7 @@
 	const slideChange = () => {
 		if (current.slide !== slideI) return;
 		showing = undefined;
+		mediaPlaying.id = undefined;
 	};
 
 	$effect(() => slideChange(current.slide, current.subslide));
@@ -98,21 +99,20 @@
 							(solid_apology === "FALSE" && view === "bad")
 								? 1
 								: 0.3}
+						<div
+							id={chart_highlight === "TRUE" ? id : undefined}
+							class="apology"
+							class:highlight
+							style:left
+							style:background
+							style:opacity
+							onclick={() => onClick(id)}
+						></div>
 
-						{#if highlight}
-							<button
-								{id}
-								class="apology"
-								class:highlight
-								style:left
-								style:background
-								style:opacity
-								onclick={() => onClick(id)}
-								aria-label={`Season ${season}, Episode ${episode} example`}
-							>
-							</button>
+						{#if chart_highlight === "TRUE"}
 							<Example
 								{showing}
+								showPreview={highlight}
 								{close}
 								{left}
 								{slideI}
@@ -120,14 +120,6 @@
 								{episode}
 								{background}
 							/>
-						{:else}
-							<div
-								class="apology"
-								class:highlight
-								style:left
-								style:background
-								style:opacity
-							></div>
 						{/if}
 					{/each}
 				</div>

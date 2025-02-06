@@ -2,8 +2,16 @@
 	import Clip from "$components/Clip.svelte";
 	import closeSvg from "$svg/close.svg";
 
-	const { showing, left, close, slideI, season, episode, background } =
-		$props();
+	const {
+		showing,
+		showPreview,
+		left,
+		close,
+		slideI,
+		season,
+		episode,
+		background
+	} = $props();
 
 	let videoEl;
 
@@ -33,7 +41,7 @@
 	bind:this={videoEl}
 	style:left
 	class="preview"
-	class:visible={!visible}
+	class:visible={showPreview}
 	src={`assets/video/${id}/${id}_preview.mp4`}
 	muted
 	loop
@@ -80,10 +88,11 @@
 		position: absolute;
 		z-index: 10;
 		transform: translate(calc(-50% + 6px), 4px);
-		visibility: hidden;
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 
 	video.preview.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 </style>
