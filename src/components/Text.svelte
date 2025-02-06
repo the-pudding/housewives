@@ -17,12 +17,12 @@
 	}
 
 	.top-left {
-		top: 4rem;
+		top: 6rem;
 		left: 2rem;
 	}
 
 	.top-right {
-		top: 4rem;
+		top: 6rem;
 		right: 2rem;
 	}
 

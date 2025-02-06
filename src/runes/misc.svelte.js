@@ -8,3 +8,8 @@ export const current = $state({
 export const mediaPlaying = $state({
 	id: undefined
 });
+
+export const videoSettings = $state({
+	ccOn: false,
+	soundOn: true
+});

@@ -1,14 +1,18 @@
 <script>
-	import { current, mediaPlaying } from "$runes/misc.svelte.js";
+	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
+	import soundOnSvg from "$svg/sound-on.svg";
+	import soundOffSvg from "$svg/sound-off.svg";
+	import restartSvg from "$svg/restart.svg";
+	import ccSvg from "$svg/closed-captioning.svg";
 
 	const {
 		id,
 		caption,
 		autoplay = true,
 		inline = false,
-		showEpisode = true,
+		controls = true,
 		slideI,
 		finish
 	} = $props();
@@ -18,7 +22,6 @@
 	let duration = $state(0);
 	let paused = $state(true);
 	let loaded = $state(false);
-	let showCC = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
@@ -40,8 +43,7 @@
 		mediaPlaying.id = undefined;
 	};
 
-	const restart = () => {
-		console.log("restart");
+	export const restart = () => {
 		currentTime = 0;
 		mediaPlaying.id = id;
 		paused = false;
@@ -49,17 +51,11 @@
 	};
 
 	const toggleCC = () => {
-		const tracks = videoEl.textTracks;
-		if (tracks && tracks.length > 0) {
-			const captionsTrack = tracks[0];
-			if (captionsTrack.mode === "showing") {
-				captionsTrack.mode = "hidden";
-				showCC = false;
-			} else {
-				captionsTrack.mode = "showing";
-				showCC = true;
-			}
-		}
+		videoSettings.ccOn = !videoSettings.ccOn;
+	};
+
+	const toggleSound = () => {
+		videoSettings.soundOn = !videoSettings.soundOn;
 	};
 
 	const slideChange = () => {
@@ -106,6 +102,22 @@
 			currentTime = 0;
 		}
 	});
+	$effect(() => {
+		// Turn on/off CC
+		const tracks = videoEl.textTracks;
+		if (tracks && tracks.length > 0) {
+			const captionsTrack = tracks[0];
+			if (videoSettings.ccOn) {
+				captionsTrack.mode = "showing";
+			} else {
+				captionsTrack.mode = "hidden";
+			}
+		}
+	});
+	$effect(() => {
+		// Turn on/off sound
+		videoEl.muted = !videoSettings.soundOn;
+	});
 </script>
 
 <figure>
@@ -118,10 +130,15 @@
 		bind:duration
 		onended={onEnd}
 	>
-		<track kind="captions" src={`assets/video/${id}/${id}.vtt`} srclang="en" />
+		<track
+			kind="captions"
+			src={`assets/video/${id}/${id}.vtt`}
+			srclang="en"
+			mode="showing"
+		/>
 	</video>
 
-	<div class="overlay">
+	<div class="playpause-wrapper">
 		{#if !autoplay}
 			<button onclick={pausePlay} class="playpause" class:playing={!paused}
 				>{@html paused ? playSvg : pauseSvg}</button
@@ -129,24 +146,23 @@
 		{/if}
 	</div>
 
-	<div class="controls">
-		{#if showEpisode}
-			<div class="episode">S{season} E{episode}</div>
-		{/if}
+	{#if controls}
+		<div class="controls">
+			<button class="mute" onclick={toggleSound}>
+				{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
+			</button>
 
-		<button class="cc" class:on={showCC} onclick={toggleCC}>CC</button>
-		<button class="mute" class:on={true}>mute</button>
-		<button class="restart" class:on={true} onclick={restart}>restart</button>
-	</div>
+			<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
+				{@html ccSvg}
+			</button>
 
-	<!-- {#if caption}
-		<div class="caption">
-			<details>
-				<summary><span>S{season}E{episode}</span></summary>
-				{@html caption}
-			</details>
+			<button class="restart" onclick={restart}>{@html restartSvg}</button>
 		</div>
-	{/if} -->
+	{/if}
+
+	{#if season && episode && controls}
+		<div class="episode">S{season} E{episode}</div>
+	{/if}
 
 	<div class="progress" style:width={`${percentComplete}%`}></div>
 </figure>
@@ -184,15 +200,7 @@
 		position: static;
 	}
 
-	.lazarus {
-		display: none;
-	}
-
-	.lazarus.visible {
-		display: flex;
-	}
-
-	.overlay {
+	.playpause-wrapper {
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -219,17 +227,10 @@
 		opacity: 1;
 	}
 
-	.episode {
-		background: var(--color-dark-purple);
-		color: white;
-		font-size: 1.5rem;
-		padding: 2px 4px;
-	}
-
 	.controls {
 		position: absolute;
 		bottom: 2rem;
-		left: 2rem;
+		left: 1rem;
 		z-index: 10;
 		display: flex;
 		flex-direction: row;
@@ -237,7 +238,7 @@
 	}
 
 	.controls button {
-		background: var(--color-gray-600);
+		background: var(--color-dark-purple);
 		border-radius: 50%;
 		color: var(--color-white);
 		height: 40px;
@@ -245,22 +246,30 @@
 		font-weight: bold;
 		font-size: var(--14px);
 		white-space: nowrap;
+		opacity: 0.9;
 	}
 
-	.controls button.on {
-		background: var(--color-dark-purple);
+	.cc.on {
+		outline: 3px solid var(--color-white);
 	}
 
 	.controls button:hover {
-		color: var(--color-purple);
+		background: var(--color-purple);
 	}
 
-	.caption {
+	.episode {
 		position: absolute;
-		right: 0;
-		bottom: 3rem;
-		background: var(--color-purple);
-		padding: 1rem;
-		z-index: 2;
+		top: 1rem;
+		right: 1rem;
+		background: var(--color-dark-purple);
+		color: white;
+		font-size: var(--18px);
+		padding: 2px 4px;
+		opacity: 0.9;
+	}
+
+	:global(.full .episode) {
+		top: 3.5rem;
+		right: 0.5rem;
 	}
 </style>
