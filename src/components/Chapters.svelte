@@ -13,14 +13,6 @@
 		current.slide = slide.slide;
 		if (subslide !== undefined) current.subslide = subslide;
 	};
-
-	let textColor = $derived(
-		allSlides
-			.find((d) => d.slide === current.slide)
-			.content.some((d) => d.type === "Clip" || d.type === "ClipPreview")
-			? "var(--color-white)"
-			: "var(--color-fg)"
-	);
 </script>
 
 <div id="chapters" class:visible={current.section > 0}>
@@ -60,7 +52,7 @@
 						{/each}
 					</div>
 
-					<div class="title" style:color={textColor}>
+					<div class="title text-outline">
 						{sectionI} — {@html section}
 					</div>
 				{:else}
@@ -105,6 +97,7 @@
 	.title {
 		font-weight: bold;
 		font-size: var(--14px);
+		color: var(--color-dark-purple);
 	}
 
 	.bars {

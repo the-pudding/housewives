@@ -165,7 +165,7 @@
 		padding: 0.5rem;
 		border-radius: 6px;
 		font-size: var(--18px);
-		border: 2px solid var(--color-fg);
+		/* border: 2px solid var(--color-fg); */
 	}
 
 	.quote.visible {
