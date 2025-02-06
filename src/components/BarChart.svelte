@@ -1,5 +1,5 @@
 <script>
-	import TalkingHead from "$components/TalkingHead.svelte";
+	import Toggle from "$components/helpers/migrate/Toggle.svelte";
 	import { scaleLinear } from "d3-scale";
 	import { max } from "d3-array";
 	import dataRaw from "$data/people.csv";
@@ -8,39 +8,56 @@
 	const { slideI, keys, highlight, showNumbers = true, percent } = $props();
 
 	let width = $state(0);
+	let normalize = $state("off");
 
-	const data = _.orderBy(
-		dataRaw.map((d) => ({
-			apologizer: d.apologizer,
-			num_good_apologies: +d.num_good_apologies,
-			num_bad_apologies: +d.num_bad_apologies,
-			num_apologies: +d.num_apologies,
-			num_sorrys: +d.num_sorrys,
-			num_real_sorrys: +d.num_real_sorrys
-		})),
-		keys.length > 1 ? keys[1] : keys[0],
-		"desc"
+	const keysCurrent = $derived(
+		normalize === "on" ? keys.map((k) => `${k}_normalized`) : keys
 	);
-	const title = keys.includes("num_real_sorrys")
-		? 'Total "sorry"s by cast member'
-		: keys.includes("num_good_apologies")
-			? "<span class=good>Good</span> vs. <span class=bad>bad</span> apologies by cast member"
-			: null;
-
+	const data = $derived(
+		_.orderBy(
+			dataRaw.map((d) => {
+				const result = { apologizer: d.apologizer };
+				Object.keys(d).forEach((key) => {
+					if (key !== "apologizer") {
+						result[key] = +d[key];
+					}
+				});
+				return result;
+			}),
+			`num_real_sorrys${normalize === "on" ? "_normalized" : ""}`,
+			"desc"
+		)
+	);
 	const xScale = $derived(
 		scaleLinear()
 			.domain([
 				0,
-				max(data, (d) => keys.map((k) => d[k]).reduce((a, b) => a + b))
+				max(data, (d) => keysCurrent.map((k) => d[k]).reduce((a, b) => a + b))
 			])
 			.range([0, width])
 	);
+
+	const title = $derived.by(() => {
+		return keys.includes("num_real_sorrys")
+			? 'Total "sorry"s by cast member'
+			: keys.includes("num_good_apologies")
+				? "<span class=good>Good</span> vs. <span class=bad>bad</span> apologies by cast member"
+				: null;
+	});
+
+	const toggleOptions = [
+		{ text: "On", value: "on" },
+		{ text: "Off", value: "off" }
+	];
 	const colors = {
 		num_good_apologies: "var(--color-good)",
+		num_good_apologies_normalized: "var(--color-good)",
 		num_bad_apologies: "var(--color-bad)",
+		num_bad_apologies_normalized: "var(--color-bad)",
 		num_apologies: "var(--color-purple)",
 		num_sorrys: "var(--color-purple)",
-		num_real_sorrys: "var(--color-purple)"
+		num_real_sorrys: "var(--color-purple)",
+		num_real_sorrys_normalized: "var(--color-purple)"
 	};
 </script>
 
@@ -54,11 +71,11 @@
 		>
 			<div class="label">{d.apologizer}</div>
 
-			{#each keys as key}
-				{@const total = _.sum(keys.map((k) => +d[k]))}
+			{#each keysCurrent as key}
+				{@const total = _.sum(keysCurrent.map((k) => +d[k]))}
 				<div
 					class="bar"
-					class:split={keys.length > 1}
+					class:split={keysCurrent.length > 1}
 					style:width={`${xScale(d[key])}px`}
 					style:background={colors[key]}
 				>
@@ -69,13 +86,21 @@
 						>
 							{percent === "true"
 								? `${((+d[key] / total) * 100).toFixed(0)}%`
-								: d[key]}
+								: d[key].toFixed(0)}
 						</div>
 					{/if}
 				</div>
 			{/each}
 		</div>
 	{/each}
+
+	<div class="toggle">
+		<Toggle
+			label="Normalize by # of seasons on the show"
+			options={toggleOptions}
+			bind:value={normalize}
+		></Toggle>
+	</div>
 </div>
 
 <style>
@@ -138,5 +163,9 @@
 	.split .number {
 		margin: 0;
 		transform: translate(0, 0);
+	}
+
+	.toggle {
+		font-size: var(--14px);
 	}
 </style>

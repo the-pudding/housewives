@@ -1,10 +1,12 @@
 <script>
-	export let label;
-	export let style = "inner";
-	export let options = ["on", "off"];
-	export let value;
+	let {
+		label,
+		style = "inner",
+		options = ["on", "off"],
+		value = $bindable()
+	} = $props();
 
-	$: checked = value === options[0].value;
+	let checked = $state(value === options[0].value);
 
 	const id = `toggle-${Math.floor(Math.random() * 1000000)}`;
 
@@ -22,7 +24,7 @@
 		role="switch"
 		aria-checked={checked}
 		aria-labelledby={id}
-		on:click={handleClick}
+		onclick={handleClick}
 	>
 		{#if style === "inner"}
 			<span>{options[0].text}</span>
@@ -42,14 +44,14 @@
 	[role="switch"][aria-checked="false"] :last-child {
 		display: inline-block;
 		border-radius: 4px;
-		background: var(--color-gray-900);
+		background: var(--color-dark-purple);
 		color: var(--color-gray-100);
 	}
 
 	.toggle--inner button {
 		padding: 0.5em;
-		background-color: var(--color-white);
-		border: 2px solid var(--color-gray-900);
+		background-color: var(--color-purple);
+		border: 2px solid var(--color-dark-purple);
 	}
 
 	.toggle--inner button span {
@@ -93,7 +95,7 @@
 	}
 
 	.toggle--slider button[aria-checked="true"] {
-		background-color: var(--color-gray-900);
+		background-color: var(--color-dark-purple);
 	}
 
 	.toggle--slider button[aria-checked="true"]::before {
