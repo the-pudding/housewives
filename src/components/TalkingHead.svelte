@@ -12,7 +12,7 @@
 	import { current } from "../runes/misc.svelte";
 	import copy from "$data/copy.json";
 
-	const { name, audio, showTagline = false } = $props();
+	const { name, audio, quote, title = false, queen } = $props();
 
 	const svgs = {
 		angie: angieSvg,
@@ -32,9 +32,10 @@
 		svg: svgs[name]
 	}));
 
-	let { svg, taglines, numTaglines } = housewives.find(
+	let { svg, numTaglines } = housewives.find(
 		(housewife) => housewife.name === name
 	);
+	let taglines = quote ? [quote] : copy.taglines[name];
 
 	let wrapperEl;
 	let taglineI;
@@ -42,6 +43,7 @@
 	let paused = true;
 
 	const onClick = () => {
+		if (queen) return;
 		if (mediaPlaying.id === name) {
 			mediaPlaying.id = undefined;
 			resetFace();
@@ -60,7 +62,7 @@
 
 		const choice = audioEls.length > 1 ? _.sample(audioEls) : audioEls[0];
 		choice.play();
-		if (showTagline) taglineI = audioEls.indexOf(choice);
+		taglineI = audioEls.indexOf(choice);
 		paused = false;
 		mediaPlaying.id = name;
 
@@ -78,12 +80,12 @@
 	};
 
 	const onMouseEnter = () => {
-		if (mediaPlaying.id === name) return;
+		if (mediaPlaying.id === name || queen) return;
 		wrapperEl.style.transform = `rotate(${Math.random() * 3}deg) scale(1.1)`;
 	};
 
 	const onMouseLeave = () => {
-		if (mediaPlaying.id === name) return;
+		if (mediaPlaying.id === name || queen) return;
 		resetFace();
 	};
 
@@ -115,7 +117,7 @@
 	$effect(() => slideChange(current.slide));
 </script>
 
-<div class="wrapper">
+<div class="wrapper" class:absolute={!title} class:queen={queen === "true"}>
 	<button
 		id={`${name}-face`}
 		class="face"
@@ -126,17 +128,19 @@
 		bind:this={wrapperEl}
 	>
 		{@html svg}
+
+		{#if queen}
+			<span class="crown">👑</span>
+		{/if}
 	</button>
 
-	{#if showTagline}
-		<div
-			class="quote"
-			class:visible={mediaPlaying.id === name}
-			class:left-side={name === "whitney" || name === "angie"}
-		>
-			{taglines[taglineI]}
-		</div>
-	{/if}
+	<div
+		class="quote"
+		class:visible={mediaPlaying.id === name}
+		class:left-side={name === "whitney" || name === "angie"}
+	>
+		{taglines[taglineI]}
+	</div>
 
 	{#if audio}
 		<audio bind:this={audioEls[0]} src={`assets/audio/${audio}.mp3`}></audio>
@@ -155,7 +159,33 @@
 		position: relative;
 	}
 
+	.wrapper.absolute {
+		position: absolute;
+		width: 11rem;
+		right: 1rem;
+		top: 10rem;
+	}
+
+	.wrapper.queen {
+		position: static;
+		margin: 5rem auto 1rem;
+		width: 50%;
+	}
+
+	.queen button {
+		pointer-events: none;
+	}
+
+	.crown {
+		font-size: var(--128px);
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(-10deg);
+	}
+
 	button.face {
+		position: relative;
 		display: flex;
 		background: none;
 		padding: 0;

@@ -8,6 +8,7 @@
 	import TalkingHead from "$components/TalkingHead.svelte";
 	import Checklist from "$components/Checklist.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
+	import ImageGrid from "$components/ImageGrid.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
 	import vennDiagram from "$svg/venn-diagram.svg";
@@ -24,7 +25,8 @@
 		Checklist,
 		EpisodeChart,
 		BarChart,
-		TalkingHead
+		TalkingHead,
+		ImageGrid
 	};
 	const svgs = {
 		vennDiagram
@@ -166,6 +168,7 @@
 		position: relative;
 		max-width: 45rem;
 		margin: 0 auto;
+		padding: 0 1rem;
 		margin-top: 6rem;
 		margin-bottom: 2rem;
 	}
@@ -179,6 +182,7 @@
 		width: 100%;
 		max-width: none;
 		margin: 0;
+		padding: 0;
 	}
 
 	small {
@@ -219,5 +223,17 @@
 		background: var(--color-dark-purple);
 		color: var(--color-white);
 		padding: 0 2px;
+	}
+
+	:global(.reddit:first-of-type) {
+		transform: rotate(-1deg);
+	}
+
+	:global(.reddit:nth-of-type(2)) {
+		transform: rotate(3deg);
+	}
+
+	:global(.reddit:nth-of-type(3)) {
+		transform: rotate(1deg);
 	}
 </style>
