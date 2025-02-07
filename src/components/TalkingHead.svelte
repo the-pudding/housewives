@@ -129,7 +129,11 @@
 	</button>
 
 	{#if showTagline}
-		<div class="quote" class:visible={mediaPlaying.id === name}>
+		<div
+			class="quote"
+			class:visible={mediaPlaying.id === name}
+			class:left-side={name === "whitney" || name === "angie"}
+		>
 			{taglines[taglineI]}
 		</div>
 	{/if}
@@ -171,11 +175,14 @@
 		padding: 0.5rem;
 		border-radius: 6px;
 		font-size: var(--18px);
-		/* border: 2px solid var(--color-fg); */
 	}
 
 	.quote.visible {
 		visibility: visible;
+	}
+
+	.quote.left-side {
+		left: -100%;
 	}
 
 	:global(button.face svg path) {

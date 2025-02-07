@@ -10,6 +10,7 @@
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import BarChart from "$components/BarChart.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
+	import vennDiagram from "$svg/venn-diagram.svg";
 	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
@@ -24,6 +25,9 @@
 		EpisodeChart,
 		BarChart,
 		TalkingHead
+	};
+	const svgs = {
+		vennDiagram
 	};
 
 	let w = $state();
@@ -114,6 +118,7 @@
 					<div class="content" class:full>
 						<CMS
 							components={neededComponents}
+							{svgs}
 							content={slideContent}
 							{slideI}
 						/>

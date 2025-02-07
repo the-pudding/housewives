@@ -1,5 +1,5 @@
 <script>
-	let { components = {}, content = [], slideI } = $props();
+	let { components = {}, svgs = {}, content = [], slideI } = $props();
 </script>
 
 {#each content as { type, value }}
@@ -9,6 +9,8 @@
 		<C {...value} {slideI} />
 	{:else if type === "text"}
 		<p>{@html value}</p>
+	{:else if type === "svg"}
+		{@html svgs[value.src]}
 	{:else if isString}
 		<svelte:element this={type}>
 			{@html value}
