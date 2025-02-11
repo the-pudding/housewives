@@ -1,4 +1,5 @@
 <script>
+	import Loading from "$components/Loading.svelte";
 	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import playSvg from "$svg/play.svg";
 	import pauseSvg from "$svg/pause.svg";
@@ -20,6 +21,7 @@
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let paused = $state(true);
+	let startedLoad = $state(false);
 	let loaded = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
@@ -56,16 +58,20 @@
 	const slideChange = () => {
 		// Load video when slide is near
 		const comingUp = Math.abs(slideI - current.slide) <= 2;
-		if (!loaded && comingUp) {
+		if (!loaded && !startedLoad && comingUp) {
+			console.log("load", id);
 			videoEl.src = `assets/video/${id}/${id}.mp4`;
+			startedLoad = true;
 			videoEl.load();
-			videoEl.addEventListener("loadedmetadata", () => {
+
+			videoEl.addEventListener("canplaythrough", () => {
+				console.log("can play", id);
 				loaded = true;
 			});
 		}
 
 		// Start video if autoplay
-		if (slideI === current.slide && autoplay) {
+		if (slideI === current.slide && autoplay && loaded && paused) {
 			paused = false;
 			videoEl.play();
 			mediaPlaying.id = id;
@@ -78,25 +84,16 @@
 			videoEl.pause();
 			mediaPlaying.id = undefined;
 		}
+
+		// We've moved on, either wihin the slide or to the next one
+		if ((mediaPlaying.id === undefined || mediaPlaying.id !== id) && !paused) {
+			paused = true;
+			videoEl.pause();
+			currentTime = 0;
+		}
 	};
 
-	$effect(() => slideChange(current.slide));
-	$effect(() => {
-		// If mediaPlaying is set to undefined, pause and restart the clip
-		if (mediaPlaying.id === undefined && !paused) {
-			paused = true;
-			videoEl.pause();
-			currentTime = 0;
-		}
-	});
-	$effect(() => {
-		// If within the same slide the media changes
-		if (mediaPlaying.id !== id && !paused) {
-			paused = true;
-			videoEl.pause();
-			currentTime = 0;
-		}
-	});
+	$effect(() => slideChange(current.slide, mediaPlaying.id));
 	$effect(() => {
 		// Turn on/off CC
 		const tracks = videoEl.textTracks;
@@ -116,8 +113,15 @@
 </script>
 
 <figure>
+	<div class="loading" class:visible={current.slide === slideI && !loaded}>
+		<img class="still" src={`assets/img/clip_stills/${id}.png`} />
+		<div class="animation">
+			<Loading />
+		</div>
+	</div>
+
 	<video
-		class:visible={current.slide === slideI}
+		class:visible={current.slide === slideI && loaded}
 		class:inline
 		playsinline
 		bind:this={videoEl}
@@ -192,6 +196,34 @@
 
 	video.inline {
 		position: static;
+	}
+
+	.loading {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.loading.visible {
+		display: block;
+	}
+
+	img.still {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.animation {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 100;
+		color: white;
+		transform: translate(-50%, -50%);
 	}
 
 	.playpause-wrapper {
