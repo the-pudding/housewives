@@ -14,7 +14,7 @@
 		controls = true,
 		slideI,
 		finish,
-		progressColor = "var(--color-purple-200)"
+		progressColor = "var(--color-purple-300)"
 	} = $props();
 
 	let videoEl;
@@ -159,20 +159,22 @@
 		</div>
 	{/if}
 
-	<div class="progress-outer">
+	<div class="progress-outer" class:small={!controls}>
 		<div
 			class="progress-inner"
 			style:width={`${percentComplete}%`}
 			style:background={progressColor}
 		></div>
-		<div class="context">
-			{#if season && episode}
-				<span>S{season}E{episode}</span>
-			{/if}
-			{#if context}
-				{context}
-			{/if}
-		</div>
+		{#if controls}
+			<div class="context">
+				{#if season && episode}
+					<span>S{season}E{episode}</span>
+				{/if}
+				{#if context}
+					{context}
+				{/if}
+			</div>
+		{/if}
 	</div>
 </figure>
 
@@ -187,6 +189,10 @@
 		align-items: center;
 		background: var(--color-purple-100);
 		padding-left: 1rem;
+	}
+
+	.progress-outer.small {
+		height: 1rem;
 	}
 
 	.progress-inner {

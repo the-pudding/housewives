@@ -10,6 +10,6 @@ export const mediaPlaying = $state({
 });
 
 export const videoSettings = $state({
-	ccOn: true,
+	ccOn: false,
 	soundOn: true
 });
