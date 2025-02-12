@@ -31,29 +31,36 @@
 
 	<div class="faces">
 		{#each names as name}
-			<TalkingHead {name} title={true} />
+			<div class="face">
+				<TalkingHead {name} title={true} />
+			</div>
 		{/each}
 	</div>
 </div>
 
 <style>
-	.wordmark {
-		position: fixed;
-		top: 1rem;
-		left: 1rem;
-		transition: transform calc(var(--1s) * 0.25);
+	#title {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 	}
 
-	.wordmark:hover {
-		transform: translate(0, -4px);
+	.wordmark {
+		height: 10rem;
+		display: flex;
+		width: fit-content;
 	}
 
 	.faces {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		justify-content: center;
+		display: flex;
 		gap: 1rem;
+		overflow: scroll;
 		margin-top: 3rem;
+	}
+
+	.face {
+		width: 200px;
+		flex-shrink: 0;
 	}
 
 	:global(#title h1) {
@@ -61,6 +68,9 @@
 	}
 
 	:global(#title h2) {
+		font-family: var(--sans);
+		font-weight: normal;
+		margin: 0;
 		font-style: italic;
 		color: var(--color-purple-400);
 		font-size: var(--22px);

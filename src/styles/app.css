@@ -25,7 +25,7 @@
 	--color-fg: var(--color-black);
 	--color-primary: var(--color-black);
 	--color-link: var(--color-fg);
-	--color-link-hover: var(--color-purple-400);
+	--color-link-hover: var(--color-purple-500);
 	--color-text-outline: var(--color-white);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
@@ -65,11 +65,15 @@ h1 {
 }
 
 h2 {
+	font-family: var(--serif);
+	font-weight: bold;
 	font-size: var(--36px, 36px);
 	line-height: 1.2;
 }
 
 h3 {
+	font-family: var(--serif);
+	font-weight: bold;
 	font-size: var(--28px, 28px);
 }
 

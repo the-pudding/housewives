@@ -11,7 +11,6 @@
 		font-size: var(--36px);
 		padding: 0.5rem 1rem;
 		max-width: 38rem;
-		font-family: var(--serif);
 		font-weight: bold;
 		z-index: 2;
 	}

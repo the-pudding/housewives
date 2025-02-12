@@ -193,7 +193,6 @@
 		display: flex;
 		background: none;
 		padding: 0;
-		height: 200px;
 		width: 100%;
 		transition: transform 0.2s ease-out;
 	}

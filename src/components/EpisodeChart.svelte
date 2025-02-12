@@ -86,7 +86,8 @@
 								solid_apology === "TRUE") ||
 							(chart_highlight === "TRUE" &&
 								view === "bad" &&
-								solid_apology === "FALSE")}
+								solid_apology === "FALSE") ||
+							(view === "all" && id === "s1_e1_slam")}
 						{@const background =
 							view === "all"
 								? "var(--color-purple-400)"
@@ -109,7 +110,7 @@
 							onclick={() => onClick(id)}
 						></div>
 
-						{#if chart_highlight === "TRUE"}
+						{#if chart_highlight === "TRUE" || (view === "all" && id === "s1_e1_slam")}
 							<Example
 								{showing}
 								showPreview={highlight}

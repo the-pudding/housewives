@@ -225,6 +225,7 @@
 	:global(span.dark-purple) {
 		background: var(--color-purple-400);
 		color: var(--color-white);
+		font-weight: bold;
 		padding: 0 2px;
 	}
 
