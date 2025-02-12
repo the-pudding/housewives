@@ -21,8 +21,9 @@
 	let currentTime = $state(0);
 	let duration = $state(0);
 	let paused = $state(true);
-	let startedLoad = $state(false);
+	let done = $state(false);
 	let loaded = $state(false);
+	let startedLoad = $state(false);
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
@@ -40,14 +41,17 @@
 
 	const onEnd = () => {
 		if (finish) finish(id);
+		done = true;
 		paused = true;
+		videoEl.pause();
 		mediaPlaying.id = undefined;
 	};
 
 	export const restart = () => {
+		done = false;
+		paused = false;
 		currentTime = 0;
 		mediaPlaying.id = id;
-		paused = false;
 		videoEl.play();
 	};
 
@@ -59,26 +63,25 @@
 		// Load video when slide is near
 		const comingUp = Math.abs(slideI - current.slide) <= 2;
 		if (!loaded && !startedLoad && comingUp) {
-			console.log("load", id);
 			videoEl.src = `assets/video/${id}/${id}.mp4`;
 			startedLoad = true;
 			videoEl.load();
 
 			videoEl.addEventListener("canplaythrough", () => {
-				console.log("can play", id);
 				loaded = true;
 			});
 		}
 
-		// Start video if autoplay
-		if (slideI === current.slide && autoplay && loaded && paused) {
+		// Start video
+		if (slideI === current.slide && autoplay && loaded && paused && !done) {
 			paused = false;
 			videoEl.play();
 			mediaPlaying.id = id;
 		}
 
 		// When the slide changes, pause and restart the clip
-		if (slideI !== current.slide && !paused) {
+		if (slideI !== current.slide && (!paused || done)) {
+			done = false;
 			paused = true;
 			currentTime = 0;
 			videoEl.pause();
@@ -93,7 +96,8 @@
 		}
 	};
 
-	$effect(() => slideChange(current.slide, mediaPlaying.id));
+	$effect(() => slideChange(current.slide));
+
 	$effect(() => {
 		// Turn on/off CC
 		const tracks = videoEl.textTracks;

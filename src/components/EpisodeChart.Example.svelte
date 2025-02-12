@@ -24,9 +24,9 @@
 
 	$effect(() => {
 		// Pause previews when we're watching an example
-		if (showing && showing !== id) {
+		if (showing) {
 			videoEl.pause();
-		} else if (!showing) {
+		} else {
 			videoEl.play();
 		}
 	});
