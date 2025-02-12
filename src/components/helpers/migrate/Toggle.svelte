@@ -44,14 +44,14 @@
 	[role="switch"][aria-checked="false"] :last-child {
 		display: inline-block;
 		border-radius: 4px;
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		color: var(--color-gray-100);
 	}
 
 	.toggle--inner button {
 		padding: 0.5em;
-		background-color: var(--color-purple);
-		border: 2px solid var(--color-dark-purple);
+		background-color: var(--color-purple-200);
+		border: 2px solid var(--color-purple-400);
 	}
 
 	.toggle--inner button span {
@@ -95,7 +95,7 @@
 	}
 
 	.toggle--slider button[aria-checked="true"] {
-		background-color: var(--color-dark-purple);
+		background-color: var(--color-purple-400);
 	}
 
 	.toggle--slider button[aria-checked="true"]::before {

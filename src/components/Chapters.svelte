@@ -106,7 +106,7 @@
 	.title {
 		font-weight: bold;
 		font-size: var(--14px);
-		color: var(--color-dark-purple);
+		color: var(--color-purple-400);
 	}
 
 	.bars {
@@ -128,7 +128,7 @@
 
 	.bar-wrapper:hover .bar,
 	.long-bar-wrapper:hover .long-bar {
-		background: var(--color-purple);
+		background: var(--color-purple-200);
 	}
 
 	.bar {
@@ -137,7 +137,7 @@
 	}
 
 	.bar.active {
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 	}
 
 	.long-bar-wrapper {
@@ -159,7 +159,7 @@
 		max-width: 2.5rem;
 		top: 1rem;
 		right: 1rem;
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
 		font-weight: bold;
@@ -170,6 +170,6 @@
 	}
 
 	button.mute:hover {
-		background: var(--color-purple);
+		background: var(--color-purple-200);
 	}
 </style>

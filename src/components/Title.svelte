@@ -62,7 +62,7 @@
 
 	:global(#title h2) {
 		font-style: italic;
-		color: var(--color-dark-purple);
+		color: var(--color-purple-400);
 		font-size: var(--22px);
 	}
 </style>

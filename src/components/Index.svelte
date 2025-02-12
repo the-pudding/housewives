@@ -223,7 +223,7 @@
 	}
 
 	:global(span.dark-purple) {
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		color: var(--color-white);
 		padding: 0 2px;
 	}

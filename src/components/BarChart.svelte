@@ -54,10 +54,10 @@
 		num_good_apologies_normalized: "var(--color-good)",
 		num_bad_apologies: "var(--color-bad)",
 		num_bad_apologies_normalized: "var(--color-bad)",
-		num_apologies: "var(--color-purple)",
-		num_sorrys: "var(--color-purple)",
-		num_real_sorrys: "var(--color-purple)",
-		num_real_sorrys_normalized: "var(--color-purple)"
+		num_apologies: "var(--color-purple-200)",
+		num_sorrys: "var(--color-purple-200)",
+		num_real_sorrys: "var(--color-purple-200)",
+		num_real_sorrys_normalized: "var(--color-purple-200)"
 	};
 </script>
 

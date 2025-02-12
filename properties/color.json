@@ -39,11 +39,20 @@
 		"gray-1000": {
 			"value": "rgb(25, 25, 25)"
 		},
-		"purple": {
-			"value": "#F2C3FF"
+		"purple-100": {
+			"value": "#F9E4FF"
 		},
-		"dark-purple": {
+		"purple-200": {
+			"value": "#F5D0FF"
+		},
+		"purple-300": {
+			"value": "#ECA9FF"
+		},
+		"purple-400": {
 			"value": "#BF6CD6"
+		},
+		"purple-500": {
+			"value": "#894D99"
 		},
 		"blue": {
 			"value": "#49bde2"

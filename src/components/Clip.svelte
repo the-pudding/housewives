@@ -8,13 +8,13 @@
 
 	const {
 		id,
-		caption,
+		context,
 		autoplay = true,
 		inline = false,
 		controls = true,
 		slideI,
 		finish,
-		progressColor = "var(--color-purple)"
+		progressColor = "var(--color-purple-200)"
 	} = $props();
 
 	let videoEl;
@@ -159,23 +159,48 @@
 		</div>
 	{/if}
 
-	{#if season && episode && controls}
-		<div class="episode">S{season} E{episode}</div>
-	{/if}
-
-	<div
-		class="progress"
-		style:width={`${percentComplete}%`}
-		style:background={progressColor}
-	></div>
+	<div class="progress-outer">
+		<div
+			class="progress-inner"
+			style:width={`${percentComplete}%`}
+			style:background={progressColor}
+		></div>
+		<div class="context">
+			{#if season && episode}
+				<span>S{season}E{episode}</span>
+			{/if}
+			{#if context}
+				{context}
+			{/if}
+		</div>
+	</div>
 </figure>
 
 <style>
-	.progress {
+	.progress-outer {
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		height: 1rem;
+		height: 2.5rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		background: var(--color-purple-100);
+		padding-left: 1rem;
+	}
+
+	.progress-inner {
+		position: absolute;
+		left: 0;
+		height: 100%;
+	}
+
+	.context {
+		z-index: 10;
+	}
+	.context span {
+		font-weight: bold;
+		margin-right: 1rem;
 	}
 
 	figure {
@@ -240,7 +265,7 @@
 
 	.playpause {
 		background: none;
-		color: var(--color-dark-purple);
+		color: var(--color-purple-400);
 		height: 3rem;
 		width: 3rem;
 		padding: 0;
@@ -253,13 +278,13 @@
 	}
 
 	.playpause:hover {
-		color: var(--color-purple);
+		color: var(--color-purple-200);
 		opacity: 1;
 	}
 
 	.controls {
 		position: absolute;
-		bottom: 2rem;
+		bottom: 3rem;
 		left: 1rem;
 		z-index: 10;
 		display: flex;
@@ -268,7 +293,7 @@
 	}
 
 	.controls button {
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
 		height: 40px;
@@ -284,18 +309,24 @@
 	}
 
 	.controls button:hover {
-		background: var(--color-purple);
+		background: var(--color-purple-200);
 	}
 
 	.episode {
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		color: white;
 		font-size: var(--18px);
 		padding: 2px 4px;
 		opacity: 0.9;
+	}
+
+	:global(video::cue) {
+		color: var(--color-white);
+		font-family: var(--sans);
+		font-size: var(--32px);
 	}
 
 	:global(.full .episode) {

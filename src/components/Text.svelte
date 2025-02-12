@@ -7,7 +7,7 @@
 <style>
 	div {
 		position: absolute;
-		background: var(--color-purple);
+		background: var(--color-purple-200);
 		font-size: var(--36px);
 		padding: 0.5rem 1rem;
 		max-width: 38rem;

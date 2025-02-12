@@ -80,7 +80,7 @@
 	}
 
 	.close:hover {
-		color: var(--color-purple);
+		color: var(--color-purple-200);
 	}
 
 	video.preview {

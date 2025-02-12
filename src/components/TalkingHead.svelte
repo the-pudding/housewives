@@ -75,7 +75,7 @@
 
 	const resetFace = () => {
 		const outline = wrapperEl.querySelector("svg path");
-		outline.style.fill = "var(--color-dark-purple)";
+		outline.style.fill = "var(--color-purple-400)";
 		wrapperEl.style.transform = "none";
 	};
 

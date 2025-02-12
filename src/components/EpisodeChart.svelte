@@ -89,7 +89,7 @@
 								solid_apology === "FALSE")}
 						{@const background =
 							view === "all"
-								? "var(--color-dark-purple)"
+								? "var(--color-purple-400)"
 								: solid_apology === "TRUE"
 									? "var(--color-good)"
 									: "var(--color-bad)"}

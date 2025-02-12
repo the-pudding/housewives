@@ -25,7 +25,7 @@
 	--color-fg: var(--color-black);
 	--color-primary: var(--color-black);
 	--color-link: var(--color-fg);
-	--color-link-hover: var(--color-dark-purple);
+	--color-link-hover: var(--color-purple-400);
 	--color-text-outline: var(--color-white);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);

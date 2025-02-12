@@ -89,7 +89,7 @@
 	}
 
 	button {
-		background: var(--color-dark-purple);
+		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
 		height: 40px;
@@ -110,6 +110,6 @@
 	}
 
 	button:hover {
-		background: var(--color-purple);
+		background: var(--color-purple-200);
 	}
 </style>
