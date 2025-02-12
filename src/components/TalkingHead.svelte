@@ -118,6 +118,10 @@
 </script>
 
 <div class="wrapper" class:absolute={!title} class:queen={queen === "true"}>
+	{#if title}
+		<div class="name">{_.startCase(name)}</div>
+	{/if}
+
 	<button
 		id={`${name}-face`}
 		class="face"
@@ -192,6 +196,10 @@
 		height: 200px;
 		width: 100%;
 		transition: transform 0.2s ease-out;
+	}
+
+	.name {
+		text-align: center;
 	}
 
 	.quote {

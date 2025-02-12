@@ -174,7 +174,10 @@
 	}
 
 	.slide:first-of-type .content {
-		margin-top: 2rem;
+		margin: 0 auto;
+		height: 100%;
+		display: flex;
+		align-items: center;
 	}
 
 	.content.full {

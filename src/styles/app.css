@@ -8,7 +8,7 @@
 	/* font */
 	--sans: "Atlas Grotesk", -apple-system, BlinkMacSystemFont, Helvetica, Arial,
 		sans-serif;
-	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
+	--serif: "Tiempos Text", Iowan Old Style, Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
 	/* z-index */
@@ -61,19 +61,16 @@
 
 h1 {
 	font-size: var(--48px, 48px);
+	line-height: 1.2;
 }
 
 h2 {
-	font-family: var(--serif);
-	font-weight: bold;
 	font-size: var(--36px, 36px);
 	line-height: 1.2;
 }
 
 h3 {
-	font-family: var(--serif);
 	font-size: var(--28px, 28px);
-	font-weight: bold;
 }
 
 h4 {
