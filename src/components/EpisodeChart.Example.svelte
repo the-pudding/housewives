@@ -53,9 +53,8 @@
 <style>
 	.example {
 		position: fixed;
-		height: var(--video-example-height);
 		width: 720px;
-		height: 360px;
+		height: -webkit-fill-available;
 		top: 50%;
 		transform: translate(0, -50%);
 		visibility: hidden;

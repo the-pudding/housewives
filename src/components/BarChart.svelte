@@ -5,14 +5,13 @@
 	import dataRaw from "$data/people.csv";
 	import _ from "lodash";
 
-	const { slideI, keys, highlight, showNumbers = true, percent } = $props();
+	const { slideI, keys, highlight, showNumbers = true } = $props();
 
 	let width = $state(0);
-	let normalize = $state("off");
-
-	const keysCurrent = $derived(
-		normalize === "on" ? keys.map((k) => `${k}_normalized`) : keys
+	let toggleValue = $state(
+		!keys.includes("num_real_sorrys") ? "percent" : "number"
 	);
+
 	const data = $derived(
 		_.orderBy(
 			dataRaw.map((d) => {
@@ -24,7 +23,7 @@
 				});
 				return result;
 			}),
-			`num_real_sorrys${normalize === "on" ? "_normalized" : ""}`,
+			`num_real_sorrys`,
 			"desc"
 		)
 	);
@@ -32,7 +31,7 @@
 		scaleLinear()
 			.domain([
 				0,
-				max(data, (d) => keysCurrent.map((k) => d[k]).reduce((a, b) => a + b))
+				max(data, (d) => keys.map((k) => d[k]).reduce((a, b) => a + b))
 			])
 			.range([0, width])
 	);
@@ -46,18 +45,13 @@
 	});
 
 	const toggleOptions = [
-		{ text: "On", value: "on" },
-		{ text: "Off", value: "off" }
+		{ text: "#", value: "number" },
+		{ text: "%", value: "percent" }
 	];
 	const colors = {
 		num_good_apologies: "var(--color-good)",
-		num_good_apologies_normalized: "var(--color-good)",
 		num_bad_apologies: "var(--color-bad)",
-		num_bad_apologies_normalized: "var(--color-bad)",
-		num_apologies: "var(--color-purple-300)",
-		num_sorrys: "var(--color-purple-300)",
-		num_real_sorrys: "var(--color-purple-300)",
-		num_real_sorrys_normalized: "var(--color-purple-300)"
+		num_real_sorrys: "var(--color-purple-300)"
 	};
 </script>
 
@@ -69,13 +63,20 @@
 			class="row"
 			class:fade={highlight && highlight !== _.kebabCase(d.apologizer)}
 		>
-			<div class="label">{d.apologizer}</div>
+			<div class="label">
+				<div class="name">
+					{d.apologizer}
+				</div>
+				<div class="seasons">
+					{d.num_seasons_main} season{d.num_seasons_main > 1 ? "s" : ""}
+				</div>
+			</div>
 
-			{#each keysCurrent as key}
-				{@const total = _.sum(keysCurrent.map((k) => +d[k]))}
+			{#each keys as key}
+				{@const total = _.sum(keys.map((k) => +d[k]))}
 				<div
 					class="bar"
-					class:split={keysCurrent.length > 1}
+					class:split={keys.length > 1}
 					style:width={`${xScale(d[key])}px`}
 					style:background={colors[key]}
 				>
@@ -84,7 +85,7 @@
 							class="number"
 							class:light={colors[key] === "var(--color-bad)"}
 						>
-							{percent === "true"
+							{toggleValue === "percent"
 								? `${((+d[key] / total) * 100).toFixed(0)}%`
 								: d[key].toFixed(0)}
 						</div>
@@ -94,13 +95,12 @@
 		</div>
 	{/each}
 
-	<div class="toggle">
-		<Toggle
-			label="Normalize by # of seasons on the show"
-			options={toggleOptions}
-			bind:value={normalize}
-		></Toggle>
-	</div>
+	{#if !keys.includes("num_real_sorrys")}
+		<div class="toggle">
+			<Toggle label="Show" options={toggleOptions} bind:value={toggleValue}
+			></Toggle>
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -118,7 +118,7 @@
 
 	.row {
 		position: relative;
-		height: 25px;
+		height: 40px;
 		display: flex;
 		align-items: center;
 	}
@@ -132,7 +132,19 @@
 		left: 0;
 		transform: translate(-110%, 0);
 		font-family: var(--sans);
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+	}
+
+	.label .name {
+		text-transform: uppercase;
+		font-weight: bold;
 		font-size: var(--14px);
+	}
+
+	.label .seasons {
+		font-size: var(--12px);
 	}
 
 	.bar {
@@ -152,7 +164,7 @@
 		z-index: 10;
 		margin-left: 4px;
 		font-family: var(--mono);
-		font-size: var(--12px);
+		font-size: var(--14px);
 		transform: translate(calc(100% + 6px), 0);
 	}
 
