@@ -112,6 +112,7 @@
 					? content[current.subslide].content
 					: content}
 				{@const full =
+					slideI === 0 ||
 					Object.keys(neededComponents).includes("ClipPreview") ||
 					(Object.keys(neededComponents).includes("Clip") &&
 						content.find((d) => d.type === "Clip").value.inline !== "true")}
@@ -166,6 +167,7 @@
 
 	.content {
 		position: relative;
+		font-size: var(--18px);
 		max-width: 45rem;
 		margin: 0 auto;
 		padding: 0 1rem;

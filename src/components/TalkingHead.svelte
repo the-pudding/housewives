@@ -199,6 +199,8 @@
 
 	.name {
 		text-align: center;
+		pointer-events: none;
+
 	}
 
 	.quote {
