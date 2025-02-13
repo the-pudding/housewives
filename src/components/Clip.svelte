@@ -257,7 +257,7 @@
 		top: 50%;
 		left: 50%;
 		z-index: 100;
-		color: white;
+		color: var(--color-purple-100);
 		transform: translate(-50%, -50%);
 	}
 

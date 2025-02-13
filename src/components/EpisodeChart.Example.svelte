@@ -4,7 +4,7 @@
 
 	const {
 		showing,
-		showPreview,
+		previewVisible,
 		left,
 		close,
 		slideI,
@@ -21,6 +21,8 @@
 			: `s${season}_e${episode}_example`;
 
 	let visible = $derived(showing === id);
+
+	$inspect({ previewVisible, season, episode });
 
 	$effect(() => {
 		// Pause previews when we're watching an example
@@ -41,7 +43,7 @@
 	bind:this={videoEl}
 	style:left
 	class="preview"
-	class:visible={showPreview}
+	class:visible={previewVisible}
 	src={`assets/video/${id}/${id}_preview.mp4`}
 	muted
 	loop
@@ -88,11 +90,12 @@
 		position: absolute;
 		z-index: 10;
 		transform: translate(calc(-50% + 6px), 4px);
-		opacity: 0;
 		transition: opacity calc(var(--1s) * 0.3);
+		display: none;
 	}
 
 	video.preview.visible {
 		opacity: 1;
+		display: flex;
 	}
 </style>

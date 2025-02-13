@@ -113,7 +113,7 @@
 						{#if chart_highlight === "TRUE" || (view === "all" && id === "s1_e1_slam")}
 							<Example
 								{showing}
-								showPreview={highlight}
+								previewVisible={highlight && current.slide === slideI}
 								{close}
 								{left}
 								{slideI}

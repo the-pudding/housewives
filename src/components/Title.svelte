@@ -23,6 +23,12 @@
 			swiperEl.swiper.slideTo(index);
 		}
 	};
+
+	$effect(() => {
+		if (swiperEl) {
+			swiperEl.swiper.slideTo(4);
+		}
+	});
 </script>
 
 <section id="title">
