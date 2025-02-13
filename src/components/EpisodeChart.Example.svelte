@@ -22,8 +22,6 @@
 
 	let visible = $derived(showing === id);
 
-	$inspect({ previewVisible, season, episode });
-
 	$effect(() => {
 		// Pause previews when we're watching an example
 		if (showing) {

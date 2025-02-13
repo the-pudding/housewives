@@ -10,6 +10,8 @@
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import ImageGrid from "$components/ImageGrid.svelte";
 	import BarChart from "$components/BarChart.svelte";
+	import Footer from "$components/Footer.svelte";
+	import StartOver from "$components/StartOver.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
 	import vennDiagram from "$svg/venn-diagram.svg";
 	import { current } from "$runes/misc.svelte.js";
@@ -26,7 +28,9 @@
 		EpisodeChart,
 		BarChart,
 		TalkingHead,
-		ImageGrid
+		ImageGrid,
+		Footer,
+		StartOver
 	};
 	const svgs = {
 		vennDiagram
@@ -179,6 +183,12 @@
 		margin: 0 auto;
 		height: 100%;
 		display: flex;
+		align-items: center;
+	}
+
+	.slide:last-of-type .content {
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 	}
 
