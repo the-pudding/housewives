@@ -229,6 +229,7 @@
 		color: var(--color-white);
 		font-weight: bold;
 		padding: 0 2px;
+		line-height: 1.4;
 	}
 
 	:global(.reddit:first-of-type) {
