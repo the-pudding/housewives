@@ -12,7 +12,7 @@
 		>
 	</div> -->
 
-	<div class="wordmark" class:visible={current.slide > 0}>
+	<div class="wordmark" class:visible={current.section > 0}>
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
 			>{@html logo}</a
 		>

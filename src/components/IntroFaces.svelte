@@ -4,8 +4,6 @@
 	import titleSvg from "$svg/housewives-logo.svg";
 	import { current } from "$runes/misc.svelte.js";
 
-	const { content } = $props();
-
 	let swiperEl;
 	let entered = $state(false);
 
@@ -30,24 +28,13 @@
 		if (swiperEl && current.slide === 1) {
 			entered = true;
 			swiperEl.swiper.slideTo(3);
+		} else if (current.slide !== 1 && entered) {
+			entered = false;
 		}
 	});
 </script>
 
-<section id="title">
-	<div class="text">
-		<a
-			class="wordmark"
-			href="https://pudding.cool"
-			aria-label="The Pudding"
-			target="_self"
-		>
-			{@html titleSvg}
-		</a>
-
-		<CMS {content} />
-	</div>
-
+<div id="intro-faces">
 	<div class="faces">
 		<swiper-container
 			class:entered
@@ -63,35 +50,9 @@
 			{/each}
 		</swiper-container>
 	</div>
-</section>
+</div>
 
 <style>
-	#title {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		width: 100%;
-		height: 100%;
-		padding: 2rem 0 0 0;
-	}
-
-	.text {
-		max-width: 45rem;
-		margin: 0 auto;
-		padding: 0 1rem;
-	}
-
-	.wordmark {
-		height: 10rem;
-		display: flex;
-		width: fit-content;
-		transition: transform 0.2s;
-	}
-
-	.wordmark:hover {
-		transform: translate(0, -8px);
-	}
-
 	.faces {
 		display: flex;
 		flex-direction: column;
@@ -101,12 +62,13 @@
 	}
 
 	swiper-container {
-		height: 100%;
+		visibility: hidden;
 		transform: translate(100%, 0);
 		transition: transform calc(var(--1s) * 0.8);
 	}
 
 	swiper-container.entered {
+		visibility: visible;
 		transform: translate(0, 0);
 	}
 
@@ -115,22 +77,9 @@
 		width: auto;
 		max-width: 200px;
 		display: flex;
-		align-items: end;
+		align-items: start;
 		flex-shrink: 0;
-		padding-bottom: 2rem;
-	}
-
-	:global(#title h1) {
-		font-weight: bold;
-		margin-top: 0;
-	}
-
-	:global(#title h2) {
-		font-family: var(--sans);
-		font-weight: normal;
-		margin: 0;
-		font-style: italic;
-		color: var(--color-purple-400);
-		font-size: var(--22px);
+		padding-top: 8rem;
+		padding-bottom: 4rem;
 	}
 </style>

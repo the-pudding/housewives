@@ -1,11 +1,11 @@
 <script>
 	import Chapters from "$components/Chapters.svelte";
-	import Title from "$components/Title.svelte";
 	import Text from "$components/Text.svelte";
 	import ClipPreview from "$components/ClipPreview.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
 	import TalkingHead from "$components/TalkingHead.svelte";
+	import IntroFaces from "$components/IntroFaces.svelte";
 	import Checklist from "$components/Checklist.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import ImageGrid from "$components/ImageGrid.svelte";
@@ -19,7 +19,6 @@
 	import _ from "lodash";
 
 	const components = {
-		Title,
 		Text,
 		Clip,
 		Clips,
@@ -30,7 +29,8 @@
 		TalkingHead,
 		ImageGrid,
 		Footer,
-		StartOver
+		StartOver,
+		IntroFaces
 	};
 	const svgs = {
 		vennDiagram
@@ -98,7 +98,7 @@
 			class="inner"
 			style:transform={`translate(${current.slide * w * -1}px, 0)`}
 		>
-			{#each allSlides as { content, multi }, slideI}
+			{#each allSlides as { content, multi, section }, slideI}
 				{@const neededComponents = multi
 					? Object.fromEntries(
 							Object.entries(components).filter(([key]) =>
@@ -116,13 +116,13 @@
 					? content[current.subslide].content
 					: content}
 				{@const full =
-					slideI === 0 ||
 					Object.keys(neededComponents).includes("ClipPreview") ||
 					(Object.keys(neededComponents).includes("Clip") &&
 						content.find((d) => d.type === "Clip").value.inline !== "true")}
+				{@const intro = section === 0}
 
 				<div class="slide" id={`slide-${slideI}`}>
-					<div class="content" class:full>
+					<div class="content" class:full class:intro>
 						<CMS
 							components={neededComponents}
 							{svgs}
@@ -183,13 +183,6 @@
 		margin-bottom: 2rem;
 	}
 
-	.slide:first-of-type .content {
-		margin: 0 auto;
-		height: 100%;
-		display: flex;
-		align-items: center;
-	}
-
 	.slide:last-of-type .content {
 		display: flex;
 		flex-direction: column;
@@ -202,6 +195,21 @@
 		max-width: none;
 		margin: 0;
 		padding: 0;
+	}
+
+	.content.intro {
+		margin: 0;
+		padding: 0;
+		max-width: none;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	#slide-1 .content.intro {
+		justify-content: start;
 	}
 
 	small {
@@ -256,5 +264,24 @@
 
 	:global(.reddit:nth-of-type(3)) {
 		transform: rotate(1deg);
+	}
+
+	:global(.intro span.tap) {
+		background: var(--color-purple-100);
+		padding: 1rem;
+		text-transform: uppercase;
+		font-size: var(--16px);
+	}
+
+	:global(.intro span.byline) {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 1.5rem;
+		font-size: var(--14px);
+		font-weight: bold;
+	}
+
+	:global(.intro span.small) {
+		font-size: var(--14px);
 	}
 </style>
