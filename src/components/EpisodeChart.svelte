@@ -96,6 +96,7 @@
 									: "var(--color-bad)"}
 						{@const opacity =
 							view === "all" ||
+							view === "wrapping-up" ||
 							(solid_apology === "TRUE" && view === "good") ||
 							(solid_apology === "FALSE" && view === "bad")
 								? 1

@@ -234,11 +234,13 @@
 	:global(span.bad) {
 		background: var(--color-bad);
 		color: white;
+		font-weight: bold;
 		padding: 0 4px;
 	}
 
 	:global(span.good) {
 		background: var(--color-good);
+		font-weight: bold;
 		padding: 0 4px;
 	}
 
