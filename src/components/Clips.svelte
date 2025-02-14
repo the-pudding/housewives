@@ -1,54 +1,53 @@
 <script>
 	import Clip from "$components/Clip.svelte";
-	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
-	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
+	import { current, videoSettings } from "$runes/misc.svelte.js";
 
 	let { clips, slideI } = $props();
 
 	let clipComponents = [];
-
-	const captionsShowing = $state(
-		clips.map((d) => ({ id: d.id, caption: d.caption, show: false }))
-	);
+	let activeClipI = $state(0);
 
 	const finish = (id) => {
-		captionsShowing.find((d) => d.id === id).show = true;
+		if (activeClipI < clips.length - 1) activeClipI += 1;
 	};
 
 	const toggleCC = () => {
 		videoSettings.ccOn = !videoSettings.ccOn;
 	};
 
-	const restartClip = () => {
-		const index = clips.findIndex((d) => d.id === mediaPlaying.id);
-		clipComponents[index].restart();
+	const playClip = (i) => {
+		activeClipI = i;
 	};
+
+	$effect(() => {
+		if (slideI === current.slide) {
+			clipComponents[activeClipI].restartPlay();
+		} else if (slideI !== current.slide && activeClipI !== 0) {
+			activeClipI = 0;
+		}
+	});
 </script>
 
 <div class="clips">
 	{#each clips as { id, caption }, i}
-		<div class="clip">
+		<button
+			class="clip"
+			class:active={i === activeClipI}
+			onclick={() => playClip(i)}
+		>
 			<Clip
 				bind:this={clipComponents[i]}
 				{id}
 				{slideI}
-				autoplay={i === 0}
+				autoplay={false}
 				{finish}
 				controls={false}
 			/>
-			<div
-				class="caption"
-				class:visible={captionsShowing.find((d) => d.id === id).show}
-			>
+			<div class="caption">
 				{caption}
-				<button
-					class="restart"
-					disabled={id !== mediaPlaying.id}
-					onclick={restartClip}>{@html restartSvg}</button
-				>
 			</div>
-		</div>
+		</button>
 	{/each}
 </div>
 
@@ -67,18 +66,29 @@
 		gap: 3rem;
 	}
 
+	.clip {
+		background: none;
+		padding: 0;
+		opacity: 0.2;
+		transition:
+			transform calc(var(--1s) * 0.3),
+			opacity calc(var(--1s) * 0.3);
+	}
+
+	.clip.active {
+		opacity: 1;
+	}
+
+	.clip:hover {
+		transform: translate(0, -6px);
+	}
+
 	.caption {
 		display: flex;
 		align-items: center;
 		gap: 4px;
 		font-size: 1.2rem;
 		margin-top: 0.25rem;
-		opacity: 0.2;
-		transition: opacity calc(var(--1s) * 0.2);
-	}
-
-	.caption.visible {
-		opacity: 1;
 	}
 
 	.controls {
@@ -88,7 +98,7 @@
 		margin-top: 3rem;
 	}
 
-	button {
+	.cc {
 		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
@@ -100,16 +110,11 @@
 		opacity: 0.9;
 	}
 
-	.restart {
-		height: 32px;
-		width: 32px;
-	}
-
 	.cc.on {
 		outline: 3px solid var(--color-white);
 	}
 
-	button:hover {
+	.cc:hover {
 		background: var(--color-purple-200);
 	}
 </style>

@@ -1,8 +1,6 @@
 <script>
 	import Loading from "$components/Loading.svelte";
 	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
-	import playSvg from "$svg/play.svg";
-	import pauseSvg from "$svg/pause.svg";
 	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
 
@@ -28,15 +26,13 @@
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
 
-	const pausePlay = () => {
-		if (paused) {
-			videoEl.play();
-			mediaPlaying.id = id;
-		} else {
-			videoEl.pause();
-			mediaPlaying.id = undefined;
-		}
-		paused = !paused;
+	export const restartPlay = () => {
+		console.log("play", id);
+		mediaPlaying.id = id;
+		done = false;
+		paused = false;
+		currentTime = 0;
+		videoEl.play();
 	};
 
 	const onEnd = () => {
@@ -45,14 +41,6 @@
 		paused = true;
 		videoEl.pause();
 		mediaPlaying.id = undefined;
-	};
-
-	export const restart = () => {
-		done = false;
-		paused = false;
-		currentTime = 0;
-		mediaPlaying.id = id;
-		videoEl.play();
 	};
 
 	const toggleCC = () => {
@@ -90,6 +78,7 @@
 
 		// We've moved on, either wihin the slide or to the next one
 		if ((mediaPlaying.id === undefined || mediaPlaying.id !== id) && !paused) {
+			// BUG HERE that is pausing Mary's first video when we return to it from another slide
 			paused = true;
 			videoEl.pause();
 			currentTime = 0;
@@ -97,7 +86,6 @@
 	};
 
 	$effect(() => slideChange(current.slide));
-
 	$effect(() => {
 		// Turn on/off CC
 		const tracks = videoEl.textTracks;
@@ -141,22 +129,14 @@
 		/>
 	</video>
 
-	<div class="playpause-wrapper">
-		{#if !autoplay}
-			<button onclick={pausePlay} class="playpause" class:playing={!paused}
-				>{@html paused ? playSvg : pauseSvg}</button
-			>
-		{/if}
-	</div>
-
 	{#if controls}
-		<div class="controls">
-			<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
-				{@html ccSvg}
-			</button>
+		<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
+			{@html ccSvg}
+		</button>
 
-			<button class="restart" onclick={restart}>{@html restartSvg}</button>
-		</div>
+		<button class="restart" class:visible={done} onclick={restartPlay}
+			>{@html restartSvg}</button
+		>
 	{/if}
 
 	<div class="progress-outer" class:small={!controls}>
@@ -261,34 +241,7 @@
 		transform: translate(-50%, -50%);
 	}
 
-	.playpause-wrapper {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 10;
-	}
-
-	.playpause {
-		background: none;
-		color: var(--color-purple-400);
-		height: 3rem;
-		width: 3rem;
-		padding: 0;
-		display: flex;
-		opacity: 0.75;
-	}
-
-	.playpause.playing {
-		opacity: 0.2;
-	}
-
-	.playpause:hover {
-		color: var(--color-purple-200);
-		opacity: 1;
-	}
-
-	.controls {
+	.cc {
 		position: absolute;
 		bottom: 3rem;
 		left: 1rem;
@@ -298,7 +251,8 @@
 		gap: 0.5rem;
 	}
 
-	.controls button {
+	.cc,
+	.restart {
 		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
@@ -314,7 +268,20 @@
 		outline: 3px solid var(--color-white);
 	}
 
-	.controls button:hover {
+	.restart {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		visibility: hidden;
+	}
+
+	.restart.visible {
+		visibility: visible;
+	}
+
+	.cc:hover,
+	.restart:hover {
 		background: var(--color-purple-200);
 	}
 

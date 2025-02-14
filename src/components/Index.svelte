@@ -164,7 +164,11 @@
 
 	.slide {
 		position: relative;
-		background: linear-gradient(to bottom, #f9e4ff 0%, #f5d0ff 100%);
+		background: linear-gradient(
+			to bottom,
+			var(--color-purple-100) 0%,
+			var(--color-purple-300) 100%
+		);
 		width: calc(100% / var(--n));
 		flex-shrink: 0;
 	}
