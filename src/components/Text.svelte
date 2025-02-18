@@ -26,7 +26,7 @@
 	}
 
 	.bottom-left {
-		bottom: 4rem;
+		bottom: 6rem;
 		left: 2rem;
 	}
 

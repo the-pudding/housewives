@@ -1,4 +1,5 @@
 <script>
+	import Mute from "$components/Mute.svelte";
 	import Chapters from "$components/Chapters.svelte";
 	import Text from "$components/Text.svelte";
 	import ClipPreview from "$components/ClipPreview.svelte";
@@ -19,6 +20,7 @@
 	import _ from "lodash";
 
 	const components = {
+		Mute,
 		Text,
 		Clip,
 		Clips,
@@ -86,6 +88,11 @@
 		if (e.keyCode === 39) advance(1);
 		else if (e.keyCode === 37) advance(-1);
 	};
+
+	$effect(() => {
+		const soundSpan = document.querySelector(".intro span.sound");
+		// add the Mute component to the inside of that span using svelte 5
+	});
 </script>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
@@ -283,7 +290,7 @@
 		font-weight: bold;
 	}
 
-	:global(.intro span.small) {
+	:global(.intro span.sound) {
 		font-size: var(--14px);
 	}
 </style>
