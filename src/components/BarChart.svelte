@@ -51,7 +51,7 @@
 	const colors = {
 		num_good_apologies: "var(--color-good)",
 		num_bad_apologies: "var(--color-bad)",
-		num_real_sorrys: "var(--color-purple-300)"
+		num_real_sorrys: "var(--color-light-blue)"
 	};
 </script>
 

@@ -105,6 +105,7 @@
 							id={chart_highlight === "TRUE" ? id : undefined}
 							class="apology"
 							class:highlight
+							class:pulse={highlight}
 							style:left
 							style:background
 							style:opacity
@@ -141,14 +142,17 @@
 	figure {
 		position: absolute;
 		top: 6rem;
-		width: 100%;
+		left: 1rem;
+		width: calc(100% - 2rem);
+		height: calc(100vh - 12rem);
 		display: flex;
 		gap: 0.5rem;
-		padding-bottom: 1rem;
+		padding-bottom: 3rem;
 	}
 
 	.episodes {
 		width: 100%;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
@@ -156,6 +160,7 @@
 
 	.episode {
 		display: flex;
+		flex: 1;
 		align-items: center;
 		transition:
 			height calc(var(--1s) * 0.5),
@@ -164,7 +169,7 @@
 
 	.long-bar {
 		position: relative;
-		height: 5px;
+		height: 100%;
 		width: 100%;
 		background: var(--color-gray-100);
 	}
@@ -199,6 +204,10 @@
 		border-radius: 0;
 	}
 
+	.pulse {
+		animation: pulse var(--1s) infinite;
+	}
+
 	.x-labels {
 		font-size: var(--12px);
 		font-family: var(--mono);
@@ -217,5 +226,18 @@
 		position: absolute;
 		left: 0;
 		transform: translate(-110%, 0);
+	}
+
+	/* pulse animation */
+	@keyframes pulse {
+		0% {
+			transform: scale(1.5);
+		}
+		50% {
+			transform: scale(2);
+		}
+		100% {
+			transform: scale(1.5);
+		}
 	}
 </style>

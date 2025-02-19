@@ -151,7 +151,7 @@
 					<span>S{season}E{episode}</span>
 				{/if}
 				{#if context}
-					{context}
+					<span>{context}</span>
 				{/if}
 			</div>
 		{/if}
@@ -183,10 +183,17 @@
 
 	.context {
 		z-index: 10;
+		display: flex;
+		align-items: center;
 	}
-	.context span {
+
+	.context span:first-child {
 		font-weight: bold;
 		margin-right: 1rem;
+	}
+
+	.context span:last-child {
+		font-size: var(--14px);
 	}
 
 	figure {

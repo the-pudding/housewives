@@ -62,7 +62,8 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
-		height: 400px;
+		height: 46vh;
+		max-height: 400px;
 		gap: 3rem;
 	}
 
@@ -80,7 +81,8 @@
 	}
 
 	.clip:hover {
-		transform: translate(0, -6px);
+		transform: translate(0, -4px);
+		opacity: 0.8;
 	}
 
 	.caption {
