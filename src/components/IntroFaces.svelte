@@ -1,22 +1,11 @@
 <script>
-	import CMS from "$components/helpers/CMS.svelte";
 	import TalkingHead from "$components/TalkingHead.svelte";
-	import titleSvg from "$svg/housewives-logo.svg";
 	import { current } from "$runes/misc.svelte.js";
+
+	let { taglines } = $props();
 
 	let swiperEl;
 	let entered = $state(false);
-
-	const names = [
-		"meredith",
-		"mary",
-		"heather",
-		"angie",
-		"lisa",
-		"jen",
-		"bronwyn",
-		"whitney"
-	];
 
 	const onClick = (index) => {
 		if (swiperEl) {
@@ -43,9 +32,9 @@
 			centered-slides={true}
 			speed={500}
 		>
-			{#each names as name, i}
+			{#each taglines as { name, quote }, i}
 				<swiper-slide onclick={() => onClick(i)}>
-					<TalkingHead {name} title={true} />
+					<TalkingHead {name} {quote} title={true} />
 				</swiper-slide>
 			{/each}
 		</swiper-container>

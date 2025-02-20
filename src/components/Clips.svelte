@@ -63,7 +63,8 @@
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
 		height: 46vh;
-		max-height: 400px;
+		max-height: 450px;
+		margin-top: 3rem;
 		gap: 3rem;
 	}
 

@@ -10,7 +10,6 @@
 	import whitneySvg from "$svg/faces/whitney.svg";
 	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import { current } from "../runes/misc.svelte";
-	import copy from "$data/copy.json";
 
 	const { name, audio, quote, title = false, queen } = $props();
 
@@ -25,21 +24,11 @@
 		whitney: whitneySvg
 	};
 
-	const housewives = Object.keys(copy.taglines).map((name) => ({
-		name: name,
-		taglines: copy.taglines[name],
-		numTaglines: copy.taglines[name].length,
-		svg: svgs[name]
-	}));
-
-	let { svg, numTaglines } = housewives.find(
-		(housewife) => housewife.name === name
-	);
-	let taglines = quote ? [quote] : copy.taglines[name];
-
 	let wrapperEl;
-	let taglineI;
 	let audioEls = [];
+	let svg = svgs[name];
+	let numTaglines = Array.isArray(quote) ? quote.length : 1;
+	let taglineI = $state(0);
 	let paused = true;
 
 	const onClick = () => {
@@ -60,18 +49,21 @@
 			el.currentTime = 0;
 		});
 
-		const choice = audioEls.length > 1 ? _.sample(audioEls) : audioEls[0];
-		choice.play();
-		taglineI = audioEls.indexOf(choice);
+		const toPlay = audioEls[taglineI];
+		toPlay.play();
+		taglineI = (taglineI + 1) % numTaglines;
+
 		paused = false;
 		mediaPlaying.id = name;
 
-		choice.onended = () => {
+		toPlay.onended = () => {
 			paused = true;
 			mediaPlaying.id = undefined;
 			resetFace();
 		};
 	};
+
+	$inspect({ taglineI });
 
 	const resetFace = () => {
 		const outline = wrapperEl.querySelector("svg path");
@@ -113,7 +105,6 @@
 			el.muted = !videoSettings.soundOn;
 		});
 	});
-
 	$effect(() => slideChange(current.slide));
 </script>
 
@@ -139,7 +130,7 @@
 	</button>
 
 	<div class="quote" class:visible={mediaPlaying.id === name}>
-		{taglines[taglineI]}
+		{Array.isArray(quote) ? quote[taglineI] : quote}
 	</div>
 
 	{#if audio}
@@ -162,8 +153,8 @@
 	.wrapper.absolute {
 		position: absolute;
 		width: 11rem;
-		right: 1rem;
-		top: 10rem;
+		right: 0;
+		bottom: 0;
 	}
 
 	.wrapper.queen {
