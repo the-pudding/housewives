@@ -293,4 +293,8 @@
 	:global(.intro span.sound) {
 		font-size: var(--14px);
 	}
+
+	:global(#slide-1 .content p:first-of-type) {
+		margin: 0;
+	}
 </style>
