@@ -104,7 +104,7 @@
 	});
 </script>
 
-<figure>
+<figure class:inline>
 	<div class="loading" class:visible={current.slide === slideI && !loaded}>
 		<img class="still" src={`assets/img/clip_stills/${id}.png`} />
 		<div class="animation">
@@ -200,6 +200,9 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+	}
+
+	figure.inline {
 		min-height: 400px;
 	}
 

@@ -60,6 +60,7 @@
 
 	{#each data as d}
 		<div
+			id={_.kebabCase(d.apologizer)}
 			class="row"
 			class:fade={highlight && highlight !== _.kebabCase(d.apologizer)}
 		>
@@ -105,7 +106,7 @@
 
 <style>
 	.bar-chart {
-		margin-left: 150px;
+		margin-left: 190px;
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
@@ -130,7 +131,7 @@
 	.label {
 		position: absolute;
 		left: 0;
-		transform: translate(-110%, 0);
+		transform: translate(-120%, 0);
 		font-family: var(--sans);
 		display: flex;
 		flex-direction: column;
@@ -168,10 +169,6 @@
 		transform: translate(calc(100% + 6px), 0);
 	}
 
-	.number.light {
-		color: white;
-	}
-
 	.split .number {
 		margin: 0;
 		transform: translate(0, 0);
@@ -179,5 +176,9 @@
 
 	.toggle {
 		font-size: var(--14px);
+	}
+
+	#slide-14-chart #jennie-nguyen .bar:nth-child(3) .number {
+		transform: translate(7px, 0);
 	}
 </style>

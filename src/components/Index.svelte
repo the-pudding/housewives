@@ -1,4 +1,5 @@
 <script>
+	import Tap from "$components/Tap.svelte";
 	import Mute from "$components/Mute.svelte";
 	import Chapters from "$components/Chapters.svelte";
 	import Text from "$components/Text.svelte";
@@ -55,47 +56,7 @@
 			return acc.concat(slides);
 		}, [])
 		.map((d, i) => ({ slide: i, ...d }));
-
-	const advance = (i) => {
-		const currentSlideIndex = allSlides.findIndex(
-			(d) =>
-				d.section === current.section &&
-				d.slideInSection === current.slideInSection &&
-				d.slide === current.slide
-		);
-		const isMulti = allSlides[currentSlideIndex].multi;
-		const numSubslides = isMulti
-			? allSlides[currentSlideIndex].content.length
-			: 1;
-		if (
-			isMulti &&
-			current.subslide + i < numSubslides &&
-			current.subslide + i >= 0
-		) {
-			current.subslide += i;
-		} else if (
-			currentSlideIndex + i >= 0 &&
-			currentSlideIndex + i < allSlides.length
-		) {
-			const next = allSlides[currentSlideIndex + i];
-			current.section = next.section;
-			current.slideInSection = next.slideInSection;
-			current.slide = next.slide;
-		}
-	};
-
-	const onKeyDown = (e) => {
-		if (e.keyCode === 39) advance(1);
-		else if (e.keyCode === 37) advance(-1);
-	};
-
-	$effect(() => {
-		const soundSpan = document.querySelector(".intro span.sound");
-		// add the Mute component to the inside of that span using svelte 5
-	});
 </script>
-
-<svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <article bind:clientWidth={w} style={`--n: ${allSlides.length}`}>
 	<Chapters {allSlides} />
@@ -143,10 +104,7 @@
 	</div>
 </article>
 
-<div class="tap">
-	<button onclick={() => advance(-1)}></button>
-	<button onclick={() => advance(1)}></button>
-</div>
+<Tap {allSlides} />
 
 <style>
 	article {
@@ -223,24 +181,8 @@
 		padding-left: 2rem;
 	}
 
-	.tap {
-		position: fixed;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		z-index: 1;
-	}
-
-	.tap button {
-		height: 100%;
-		width: 50%;
-		opacity: 0;
-	}
-
 	:global(span.bad) {
 		background: var(--color-bad);
-		color: white;
 		font-weight: bold;
 		padding: 0 4px;
 	}
