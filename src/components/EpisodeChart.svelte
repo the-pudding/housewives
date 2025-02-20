@@ -141,10 +141,10 @@
 <style>
 	figure {
 		position: absolute;
-		top: 6rem;
+		top: 8rem;
 		left: 1rem;
 		width: calc(100% - 2rem);
-		height: calc(100vh - 12rem);
+		height: calc(100vh - 14rem);
 		display: flex;
 		gap: 0.5rem;
 		padding-bottom: 3rem;

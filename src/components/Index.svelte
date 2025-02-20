@@ -140,7 +140,7 @@
 
 	.content {
 		position: relative;
-		font-size: var(--18px);
+		font-size: var(--22px);
 		max-width: 45rem;
 		margin: 0 auto;
 		padding: 0 1rem;
