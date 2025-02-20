@@ -3,6 +3,7 @@
 	import closeSvg from "$svg/close.svg";
 
 	const {
+		id,
 		showing,
 		previewVisible,
 		left,
@@ -10,15 +11,16 @@
 		slideI,
 		season,
 		episode,
-		background
+		background,
+		onClick
 	} = $props();
 
 	let videoEl;
 
-	const id =
-		season === "1" && episode === "1"
-			? `s1_e1_slam`
-			: `s${season}_e${episode}_example`;
+	// const id =
+	// 	season === "1" && episode === "1"
+	// 		? `s1_e1_slam`
+	// 		: `s${season}_e${episode}_example`;
 
 	let visible = $derived(showing === id);
 
@@ -46,6 +48,7 @@
 	muted
 	loop
 	autoplay
+	onclick={() => onClick(id)}
 ></video>
 
 <style>
@@ -89,6 +92,11 @@
 		transform: translate(calc(-50% + 6px), 4px);
 		transition: opacity calc(var(--1s) * 0.3);
 		display: none;
+		pointer-events: all;
+	}
+
+	video.preview:hover {
+		cursor: pointer;
 	}
 
 	video.preview.visible {

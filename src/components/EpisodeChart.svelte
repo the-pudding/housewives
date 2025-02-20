@@ -114,6 +114,7 @@
 
 						{#if chart_highlight === "TRUE" || (view === "all" && id === "s1_e1_slam")}
 							<Example
+								{id}
 								{showing}
 								previewVisible={highlight && current.slide === slideI}
 								{close}
@@ -122,6 +123,7 @@
 								{season}
 								{episode}
 								{background}
+								{onClick}
 							/>
 						{/if}
 					{/each}
