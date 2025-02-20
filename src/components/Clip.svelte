@@ -3,6 +3,7 @@
 	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
+	import playSvg from "$svg/play.svg";
 
 	const {
 		id,
@@ -27,7 +28,6 @@
 	const episode = +id.split("_")[1]?.replace("e", "");
 
 	export const restartPlay = () => {
-		console.log("play", id);
 		mediaPlaying.id = id;
 		done = false;
 		paused = false;
@@ -61,7 +61,14 @@
 		}
 
 		// Start video
-		if (slideI === current.slide && autoplay && loaded && paused && !done) {
+		if (
+			slideI === current.slide &&
+			autoplay &&
+			!inline &&
+			loaded &&
+			paused &&
+			!done
+		) {
 			paused = false;
 			videoEl.play();
 			mediaPlaying.id = id;
@@ -136,6 +143,12 @@
 
 		<button class="restart" class:visible={done} onclick={restartPlay}
 			>{@html restartSvg}</button
+		>
+
+		<button
+			class="play"
+			class:visible={inline && paused && !done}
+			onclick={restartPlay}>{@html playSvg}</button
 		>
 	{/if}
 
@@ -263,7 +276,8 @@
 	}
 
 	.cc,
-	.restart {
+	.restart,
+	.play {
 		background: var(--color-purple-400);
 		border-radius: 50%;
 		color: var(--color-white);
@@ -279,7 +293,8 @@
 		outline: 3px solid var(--color-white);
 	}
 
-	.restart {
+	.restart,
+	.play {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -287,12 +302,14 @@
 		visibility: hidden;
 	}
 
-	.restart.visible {
+	.restart.visible,
+	.play.visible {
 		visibility: visible;
 	}
 
 	.cc:hover,
-	.restart:hover {
+	.restart:hover,
+	.play:hover {
 		background: var(--color-purple-200);
 	}
 
