@@ -1,5 +1,6 @@
 <script>
 	import Tap from "$components/Tap.svelte";
+	import Modal from "$components/Modal.svelte";
 	import Mute from "$components/Mute.svelte";
 	import Chapters from "$components/Chapters.svelte";
 	import Text from "$components/Text.svelte";
@@ -101,6 +102,8 @@
 				</div>
 			{/each}
 		</div>
+
+		<Modal {allSlides} />
 	</div>
 </article>
 

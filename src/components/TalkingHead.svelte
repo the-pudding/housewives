@@ -63,8 +63,6 @@
 		};
 	};
 
-	$inspect({ taglineI });
-
 	const resetFace = () => {
 		const outline = wrapperEl.querySelector("svg path");
 		outline.style.fill = "var(--color-purple-400)";

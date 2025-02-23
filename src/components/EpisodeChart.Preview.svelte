@@ -1,32 +1,17 @@
 <script>
-	import Clip from "$components/Clip.svelte";
-	import closeSvg from "$svg/close.svg";
+	import { mediaPlaying } from "../runes/misc.svelte";
 
-	const {
-		id,
-		showing,
-		previewVisible,
-		left,
-		close,
-		slideI,
-		season,
-		episode,
-		background,
-		onClick
-	} = $props();
+	const { id, visible, left } = $props();
 
 	let videoEl;
 
-	// const id =
-	// 	season === "1" && episode === "1"
-	// 		? `s1_e1_slam`
-	// 		: `s${season}_e${episode}_example`;
-
-	let visible = $derived(showing === id);
+	const onClick = () => {
+		mediaPlaying.id = id;
+	};
 
 	$effect(() => {
 		// Pause previews when we're watching an example
-		if (showing) {
+		if (mediaPlaying.id) {
 			videoEl.pause();
 		} else {
 			videoEl.play();
@@ -34,21 +19,16 @@
 	});
 </script>
 
-<div class="example" class:visible>
-	<Clip autoplay={visible} {slideI} {id} progressColor={background} />
-	<button class="close" onclick={close}>{@html closeSvg}</button>
-</div>
-
 <video
 	bind:this={videoEl}
-	style:left
 	class="preview"
-	class:visible={previewVisible}
+	class:visible
+	style:left
 	src={`assets/video/${id}/${id}_preview.mp4`}
 	muted
 	loop
 	autoplay
-	onclick={() => onClick(id)}
+	onclick={onClick}
 ></video>
 
 <style>
@@ -68,21 +48,6 @@
 
 	.example:hover {
 		cursor: pointer;
-	}
-
-	.close {
-		position: absolute;
-		top: 0.5rem;
-		left: 0.5rem;
-		background: none;
-		padding: 0;
-		color: white;
-		height: 32px;
-		width: 32px;
-	}
-
-	.close:hover {
-		color: var(--color-purple-200);
 	}
 
 	video.preview {

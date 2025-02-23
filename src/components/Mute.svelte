@@ -16,7 +16,7 @@
 
 <style>
 	button {
-		position: absolute;
+		position: fixed;
 		max-width: 2.5rem;
 		top: 1rem;
 		right: 1rem;

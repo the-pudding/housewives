@@ -1,5 +1,5 @@
 <script>
-	import Example from "$components/EpisodeChart.Example.svelte";
+	import Preview from "$components/EpisodeChart.Preview.svelte";
 	import data from "$data/apologies.csv";
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
@@ -8,7 +8,6 @@
 
 	const { slideI, view } = $props();
 
-	let showing = $state(undefined);
 	let width = $state(0);
 
 	const parseDuration = timeParse("%M:%S:%L");
@@ -34,20 +33,11 @@
 	);
 
 	const onClick = (id) => {
-		if (showing === id) {
-			return;
-		}
-		showing = id;
-	};
-
-	const close = () => {
-		showing = undefined;
-		mediaPlaying.id = undefined;
+		mediaPlaying.id = id;
 	};
 
 	const slideChange = () => {
 		if (current.slide !== slideI) return;
-		showing = undefined;
 		mediaPlaying.id = undefined;
 	};
 
@@ -77,7 +67,7 @@
 				{/if}
 
 				<div class="long-bar">
-					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode }}
+					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode, summary }}
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
 						{@const highlight =
@@ -105,7 +95,7 @@
 							id={chart_highlight === "TRUE" ? id : undefined}
 							class="apology"
 							class:highlight
-							class:pulse={highlight}
+							class:pulse={highlight && !mediaPlaying.id}
 							style:left
 							style:background
 							style:opacity
@@ -113,17 +103,10 @@
 						></div>
 
 						{#if chart_highlight === "TRUE" || (view === "all" && id === "s1_e1_slam")}
-							<Example
+							<Preview
 								{id}
-								{showing}
-								previewVisible={highlight && current.slide === slideI}
-								{close}
+								visible={highlight && current.slide === slideI}
 								{left}
-								{slideI}
-								{season}
-								{episode}
-								{background}
-								{onClick}
 							/>
 						{/if}
 					{/each}

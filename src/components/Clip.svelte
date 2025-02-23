@@ -112,6 +112,8 @@
 </script>
 
 <figure class:inline>
+	<figcaption class="sr-only">{context}</figcaption>
+
 	<div class="loading" class:visible={current.slide === slideI && !loaded}>
 		<img class="still" src={`assets/img/clip_stills/${id}.png`} />
 		<div class="animation">
@@ -147,7 +149,7 @@
 
 		<button
 			class="play"
-			class:visible={inline && paused && !done}
+			class:visible={inline && paused && !done && loaded}
 			onclick={restartPlay}>{@html playSvg}</button
 		>
 	{/if}
