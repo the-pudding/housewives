@@ -64,6 +64,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		display: none;
+		border: 6px solid black;
 	}
 
 	.modal.visible {

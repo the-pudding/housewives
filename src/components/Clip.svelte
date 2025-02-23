@@ -336,4 +336,10 @@
 		top: 4rem;
 		right: 0.5rem;
 	}
+
+	@media (max-width: 600px) {
+		figure.inline {
+			min-height: 233px;
+		}
+	}
 </style>

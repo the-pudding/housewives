@@ -71,12 +71,23 @@ h2 {
 	line-height: 1.2;
 }
 
+@media (max-width: 600px) {
+	h2 {
+		font-size: var(--28px);
+	}
+}
+
 h3 {
 	font-family: var(--serif);
 	font-weight: bold;
 	font-size: var(--28px, 28px);
 }
 
+@media (max-width: 600px) {
+	h3 {
+		font-size: var(--22px);
+	}
+}
 h4 {
 	font-size: var(--24px, 24px);
 }

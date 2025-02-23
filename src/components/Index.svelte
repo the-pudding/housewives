@@ -242,4 +242,10 @@
 	:global(#slide-1 .content p:first-of-type) {
 		margin: 0;
 	}
+
+	@media (max-width: 600px) {
+		.content {
+			font-size: var(--16px);
+		}
+	}
 </style>

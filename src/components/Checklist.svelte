@@ -22,4 +22,11 @@
 	li {
 		margin: 0.5rem 0;
 	}
+
+	@media (max-width: 600px) {
+		ul {
+			font-size: var(--18px);
+			padding-left: 1rem;
+		}
+	}
 </style>

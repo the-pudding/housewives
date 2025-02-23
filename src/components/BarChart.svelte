@@ -55,9 +55,8 @@
 	};
 </script>
 
+{#if title}<h3>{@html title}</h3>{/if}
 <div id={`slide-${slideI}-chart`} class="bar-chart" bind:clientWidth={width}>
-	{#if title}<h3>{@html title}</h3>{/if}
-
 	{#each data as d}
 		<div
 			id={_.kebabCase(d.apologizer)}
@@ -113,8 +112,7 @@
 	}
 
 	h3 {
-		margin: 0;
-		margin-bottom: 0.5rem;
+		margin: 2rem 0;
 	}
 
 	.row {
@@ -180,5 +178,28 @@
 
 	#slide-14-chart #jennie-nguyen .bar:nth-child(3) .number {
 		transform: translate(7px, 0);
+	}
+
+	@media (max-width: 600px) {
+		.bar-chart {
+			margin-left: 175px;
+		}
+
+		h3 {
+			margin: 1.5rem 0;
+		}
+
+		.label .name {
+			font-size: var(--12px);
+			line-height: 1;
+		}
+
+		.row {
+			height: 25px;
+		}
+
+		/* .number {
+			display: none;
+		} */
 	}
 </style>

@@ -71,4 +71,10 @@
 		padding-top: 8rem;
 		padding-bottom: 4rem;
 	}
+
+	@media (max-width: 600px) {
+		swiper-slide {
+			max-width: 150px;
+		}
+	}
 </style>
