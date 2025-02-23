@@ -156,7 +156,7 @@
 		position: relative;
 		height: 100%;
 		width: 100%;
-		background: var(--color-gray-100);
+		background: var(--color-gray-50);
 	}
 
 	.apology {

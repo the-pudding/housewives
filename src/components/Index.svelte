@@ -204,7 +204,7 @@
 		background: var(--color-purple-400);
 		color: var(--color-white);
 		font-weight: bold;
-		padding: 0 2px;
+		padding: 0 4px;
 		line-height: 1.4;
 	}
 
