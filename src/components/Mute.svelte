@@ -32,7 +32,6 @@
 
 	button.static {
 		position: static;
-		margin-bottom: 1rem;
 	}
 
 	button:hover {

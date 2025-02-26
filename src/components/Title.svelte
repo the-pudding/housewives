@@ -1,136 +1,114 @@
 <script>
-	import CMS from "$components/helpers/CMS.svelte";
-	import TalkingHead from "$components/TalkingHead.svelte";
-	import titleSvg from "$svg/housewives-logo.svg";
+	import Faces from "$components/Title.Faces.svelte";
+	import Mute from "$components/Mute.svelte";
 	import { current } from "$runes/misc.svelte.js";
-
-	const { content } = $props();
-
-	let swiperEl;
-	let entered = $state(false);
-
-	const names = [
-		"meredith",
-		"mary",
-		"heather",
-		"angie",
-		"lisa",
-		"jen",
-		"bronwyn",
-		"whitney"
-	];
-
-	const onClick = (index) => {
-		if (swiperEl) {
-			swiperEl.swiper.slideTo(index);
-		}
-	};
-
-	$effect(() => {
-		if (swiperEl && current.slide === 1) {
-			entered = true;
-			swiperEl.swiper.slideTo(3);
-		}
-	});
 </script>
 
-<section id="title">
-	<div class="text">
-		<a
-			class="wordmark"
-			href="https://pudding.cool"
-			aria-label="The Pudding"
-			target="_self"
+<div class="title">
+	<div class="byline">
+		By <a
+			href="https://pudding.cool/author/michelle-pera-mcghee"
+			target="_blank">Michelle Pera-McGhee</a
 		>
-			{@html titleSvg}
-		</a>
-
-		<CMS {content} />
 	</div>
 
-	<div class="faces">
-		<swiper-container
-			class:entered
-			bind:this={swiperEl}
-			slides-per-view={"auto"}
-			centered-slides={true}
-			speed={500}
-		>
-			{#each names as name, i}
-				<swiper-slide onclick={() => onClick(i)}>
-					<TalkingHead {name} title={true} />
-				</swiper-slide>
-			{/each}
-		</swiper-container>
+	<Faces />
+
+	<div class="text visible" class:fade={current.slide === 1}>
+		<strong>This is a story about apologies.</strong>
 	</div>
-</section>
+
+	<div class="tap" class:visible={current.slide === 0}>Tap anywhere</div>
+
+	<div class="text" class:visible={current.slide === 1}>
+		<strong
+			>…and the unexpected wisdom of <i>The Real Housewives of Salt Lake City</i
+			>.</strong
+		>
+	</div>
+	<div class="text sound" class:visible={current.slide === 1}>
+		Also it contains sound. <Mute positionStatic={true} />
+	</div>
+	<div class="tap" class:visible={current.slide === 1}>
+		Tap the left side to go back, right to go forward
+	</div>
+</div>
 
 <style>
-	#title {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		width: 100%;
-		height: 100%;
-		padding: 2rem 0 0 0;
-	}
-
-	.text {
-		max-width: 45rem;
-		margin: 0 auto;
-		padding: 0 1rem;
-	}
-
-	.wordmark {
-		height: 10rem;
-		display: flex;
-		width: fit-content;
-		transition: transform 0.2s;
-	}
-
-	.wordmark:hover {
-		transform: translate(0, -8px);
-	}
-
-	.faces {
+	.title {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: 2rem;
 		height: 100%;
-		width: 100%;
+		padding: 0;
 	}
 
-	swiper-container {
-		height: 100%;
-		transform: translate(100%, 0);
-		transition: transform calc(var(--1s) * 0.8);
+	div {
+		transition: opacity calc(var(--1s) * 0.5);
+		padding: 0 1rem;
 	}
 
-	swiper-container.entered {
-		transform: translate(0, 0);
+	.text {
+		font-size: var(--28px);
+		text-align: center;
+		opacity: 0;
 	}
 
-	swiper-slide {
-		pointer-events: all;
-		width: auto;
-		max-width: 200px;
+	.text:nth-child(5) {
+		margin-top: -4rem;
+	}
+
+	.logo {
 		display: flex;
-		align-items: end;
-		flex-shrink: 0;
-		padding-bottom: 2rem;
+		width: 14rem;
+		transform: rotate(-4deg);
+		transition: transform calc(var(--1s) * 0.25);
 	}
 
-	:global(#title h1) {
+	.logo:hover {
+		transform: rotate(-2deg) scale(1.05);
+	}
+
+	.presents {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: -12px;
+		font-size: var(--14px);
+		text-transform: uppercase;
 		font-weight: bold;
-		margin-top: 0;
 	}
 
-	:global(#title h2) {
-		font-family: var(--sans);
-		font-weight: normal;
-		margin: 0;
-		font-style: italic;
-		color: var(--color-purple-400);
-		font-size: var(--22px);
+	.tap {
+		background: var(--color-purple-100);
+		padding: 1rem;
+		text-transform: uppercase;
+		font-size: var(--16px);
+		opacity: 0;
+	}
+
+	.byline {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 1.5rem;
+		font-size: var(--14px);
+		font-weight: bold;
+		padding: 0;
+	}
+
+	.sound {
+		font-size: var(--16px);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.visible {
+		opacity: 1;
+	}
+
+	.fade {
+		opacity: 0.3;
 	}
 </style>

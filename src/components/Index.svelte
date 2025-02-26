@@ -2,13 +2,13 @@
 	import Tap from "$components/Tap.svelte";
 	import Modal from "$components/Modal.svelte";
 	import Mute from "$components/Mute.svelte";
+	import Title from "$components/Title.svelte";
 	import Chapters from "$components/Chapters.svelte";
 	import Text from "$components/Text.svelte";
 	import ClipPreview from "$components/ClipPreview.svelte";
 	import Clip from "$components/Clip.svelte";
 	import Clips from "$components/Clips.svelte";
 	import TalkingHead from "$components/TalkingHead.svelte";
-	import IntroFaces from "$components/IntroFaces.svelte";
 	import Checklist from "$components/Checklist.svelte";
 	import EpisodeChart from "$components/EpisodeChart.svelte";
 	import ImageGrid from "$components/ImageGrid.svelte";
@@ -22,6 +22,7 @@
 	import _ from "lodash";
 
 	const components = {
+		Title,
 		Mute,
 		Text,
 		Clip,
@@ -33,8 +34,7 @@
 		TalkingHead,
 		ImageGrid,
 		Footer,
-		StartOver,
-		IntroFaces
+		StartOver
 	};
 	const svgs = {
 		vennDiagram
@@ -103,7 +103,7 @@
 			{/each}
 		</div>
 
-		<Modal {allSlides} />
+		<!-- <Modal {allSlides} /> -->
 	</div>
 </article>
 
@@ -176,10 +176,6 @@
 		justify-content: center;
 	}
 
-	#slide-1 .content.intro {
-		justify-content: start;
-	}
-
 	small {
 		padding-left: 2rem;
 	}
@@ -206,41 +202,6 @@
 		font-weight: bold;
 		padding: 0 4px;
 		line-height: 1.4;
-	}
-
-	:global(.reddit:first-of-type) {
-		transform: rotate(-1deg);
-	}
-
-	:global(.reddit:nth-of-type(2)) {
-		transform: rotate(3deg);
-	}
-
-	:global(.reddit:nth-of-type(3)) {
-		transform: rotate(1deg);
-	}
-
-	:global(.intro span.tap) {
-		background: var(--color-purple-100);
-		padding: 1rem;
-		text-transform: uppercase;
-		font-size: var(--16px);
-	}
-
-	:global(.intro span.byline) {
-		position: absolute;
-		bottom: 1.5rem;
-		left: 1.5rem;
-		font-size: var(--14px);
-		font-weight: bold;
-	}
-
-	:global(.intro span.sound) {
-		font-size: var(--14px);
-	}
-
-	:global(#slide-1 .content p:first-of-type) {
-		margin: 0;
 	}
 
 	@media (max-width: 600px) {

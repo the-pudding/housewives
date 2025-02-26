@@ -1,8 +1,7 @@
 <script>
 	import TalkingHead from "$components/TalkingHead.svelte";
 	import { current } from "$runes/misc.svelte.js";
-
-	let { taglines } = $props();
+	import copy from "$data/copy.json";
 
 	let swiperEl;
 	let entered = $state(false);
@@ -32,7 +31,7 @@
 			centered-slides={true}
 			speed={500}
 		>
-			{#each taglines as { name, quote }, i}
+			{#each copy.taglines as { name, quote }, i}
 				<swiper-slide onclick={() => onClick(i)}>
 					<TalkingHead {name} {quote} title={true} />
 				</swiper-slide>
