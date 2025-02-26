@@ -4,7 +4,7 @@
 
 <ul>
 	{#each items as item}
-		<li>✅ {item}</li>
+		<li>☑️ {item}</li>
 	{/each}
 </ul>
 

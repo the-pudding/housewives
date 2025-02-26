@@ -44,23 +44,26 @@
 	$effect(() => slideChange(current.slide, current.subslide));
 
 	$effect(() => {
-		if (current.slide === slideI && view === "fade") {
-			const apologies = document.querySelectorAll(".apology");
-			// Fade to gray
-			apologies.forEach((apology) => {
-				apology.style.background = "var(--color-gray-300)";
-				apology.style.transition =
-					"background-color var(--1s) calc(var(--1s)* 2)";
-			});
-		} else if (current.slide + 1 === slideI || current.slide - 1 === slideI) {
-			const apologies = document.querySelectorAll(".apology");
-			// Reset to original colors
-			apologies.forEach((apology) => {
-				apology.style.background = apology.classList.contains("good")
-					? "var(--color-good)"
-					: "var(--color-bad)";
-				apology.style.transition = "background-color var(--1s)";
-			});
+		if (view === "fade") {
+			if (current.slide === slideI) {
+				const apologies = document.querySelectorAll(".apology");
+				// Fade to gray
+				apologies.forEach((apology) => {
+					apology.style.background = "var(--color-gray-300)";
+					apology.style.transition =
+						"background-color var(--1s) calc(var(--1s)* 2)";
+				});
+			} else if (current.slide + 1 === slideI || current.slide - 1 === slideI) {
+				console.log("changing color");
+				const apologies = document.querySelectorAll(".apology");
+				// Reset to original colors
+				apologies.forEach((apology) => {
+					apology.style.background = apology.classList.contains("good")
+						? "var(--color-good)"
+						: "var(--color-bad)";
+					apology.style.transition = "background-color var(--1s)";
+				});
+			}
 		}
 	});
 </script>

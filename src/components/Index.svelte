@@ -103,7 +103,7 @@
 			{/each}
 		</div>
 
-		<!-- <Modal {allSlides} /> -->
+		<Modal {allSlides} />
 	</div>
 </article>
 

@@ -75,7 +75,7 @@
 			{#each keys as key}
 				{@const total = _.sum(keys.map((k) => +d[k]))}
 				<div
-					class="bar"
+					class={`bar ${key}`}
 					class:split={keys.length > 1}
 					style:width={`${xScale(d[key])}px`}
 					style:background={colors[key]}
@@ -83,6 +83,8 @@
 					{#if showNumbers && d[key] !== 0}
 						<div
 							class="number"
+							class:text-outline={keys.length > 1}
+							class:percent={toggleValue === "percent"}
 							class:light={colors[key] === "var(--color-bad)"}
 						>
 							{toggleValue === "percent"
@@ -140,6 +142,7 @@
 		text-transform: uppercase;
 		font-weight: bold;
 		font-size: var(--14px);
+		white-space: nowrap;
 	}
 
 	.label .seasons {
@@ -172,12 +175,12 @@
 		transform: translate(0, 0);
 	}
 
-	.toggle {
-		font-size: var(--14px);
+	#jennie-nguyen .num_bad_apologies .number.percent {
+		transform: translate(12px, 0);
 	}
 
-	#slide-14-chart #jennie-nguyen .bar:nth-child(3) .number {
-		transform: translate(7px, 0);
+	.toggle {
+		font-size: var(--14px);
 	}
 
 	@media (max-width: 600px) {
@@ -198,8 +201,22 @@
 			height: 25px;
 		}
 
-		/* .number {
+		.number {
+			font-size: var(--12px);
+		}
+
+		#angie-katsanevas .num_bad_apologies .number {
 			display: none;
-		} */
+		}
+
+		#jennie-nguyen .num_bad_apologies .number {
+			display: none;
+		}
+	}
+
+	@media (max-width: 400px) {
+		#monica-garcia .num_bad_apologies .number {
+			display: none;
+		}
 	}
 </style>
