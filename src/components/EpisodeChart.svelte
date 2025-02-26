@@ -42,6 +42,27 @@
 	};
 
 	$effect(() => slideChange(current.slide, current.subslide));
+
+	$effect(() => {
+		if (current.slide === slideI && view === "fade") {
+			const apologies = document.querySelectorAll(".apology");
+			// Fade to gray
+			apologies.forEach((apology) => {
+				apology.style.background = "var(--color-gray-300)";
+				apology.style.transition =
+					"background-color var(--1s) calc(var(--1s)* 2)";
+			});
+		} else if (current.slide + 1 === slideI || current.slide - 1 === slideI) {
+			const apologies = document.querySelectorAll(".apology");
+			// Reset to original colors
+			apologies.forEach((apology) => {
+				apology.style.background = apology.classList.contains("good")
+					? "var(--color-good)"
+					: "var(--color-bad)";
+				apology.style.transition = "background-color var(--1s)";
+			});
+		}
+	});
 </script>
 
 <figure bind:clientWidth={width} id="episode-chart">
@@ -86,7 +107,7 @@
 									: "var(--color-bad)"}
 						{@const opacity =
 							view === "all" ||
-							view === "wrapping-up" ||
+							view === "fade" ||
 							(solid_apology === "TRUE" && view === "good") ||
 							(solid_apology === "FALSE" && view === "bad")
 								? 1
@@ -94,6 +115,8 @@
 						<div
 							id={chart_highlight === "TRUE" ? id : undefined}
 							class="apology"
+							class:good={solid_apology === "TRUE"}
+							class:bad={solid_apology === "FALSE"}
 							class:highlight
 							class:pulse={highlight && !mediaPlaying.id}
 							style:left
