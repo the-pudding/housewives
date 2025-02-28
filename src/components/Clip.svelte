@@ -129,6 +129,7 @@
 		bind:currentTime
 		bind:duration
 		onended={onEnd}
+		onclick={inline ? restartPlay : null}
 	>
 		<track
 			kind="captions"
@@ -163,10 +164,10 @@
 		{#if controls}
 			<div class="context">
 				{#if season && episode}
-					<span>S{season}E{episode}</span>
+					<span class="season-episode">S{season}E{episode}</span>
 				{/if}
 				{#if context}
-					<span>{context}</span>
+					<span class="context-text">{context}</span>
 				{/if}
 			</div>
 		{/if}
@@ -183,7 +184,6 @@
 		display: flex;
 		align-items: center;
 		background: var(--color-purple-100);
-		padding-left: 1rem;
 	}
 
 	.progress-outer.small {
@@ -196,19 +196,22 @@
 		height: 100%;
 	}
 
+	.season-episode {
+		font-weight: bold;
+		margin-left: 1rem;
+		z-index: 10;
+	}
+
 	.context {
 		z-index: 10;
 		display: flex;
 		align-items: center;
+		white-space: nowrap;
 	}
 
-	.context span:first-child {
-		font-weight: bold;
-		margin-right: 1rem;
-	}
-
-	.context span:last-child {
+	.context-text {
 		font-size: var(--14px);
+		margin: 0 1rem;
 	}
 
 	figure {
@@ -219,6 +222,14 @@
 
 	figure.inline {
 		min-height: 400px;
+	}
+
+	.inline video {
+		pointer-events: all;
+	}
+
+	.inline video:hover {
+		cursor: pointer;
 	}
 
 	video {
@@ -315,26 +326,10 @@
 		background: var(--color-purple-200);
 	}
 
-	.episode {
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-		background: var(--color-purple-400);
-		color: white;
-		font-size: var(--18px);
-		padding: 2px 4px;
-		opacity: 0.9;
-	}
-
 	:global(video::cue) {
 		color: var(--color-white);
 		font-family: var(--sans);
 		font-size: var(--32px);
-	}
-
-	:global(.full .episode) {
-		top: 4rem;
-		right: 0.5rem;
 	}
 
 	@media (max-width: 600px) {

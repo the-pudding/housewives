@@ -4,21 +4,33 @@
 	import bronwynSvg from "$svg/faces/bronwyn.svg";
 	import heatherSvg from "$svg/faces/heather.svg";
 	import jenSvg from "$svg/faces/jen.svg";
+	import jenSvg2 from "$svg/faces/jen2.svg";
 	import lisaSvg from "$svg/faces/lisa.svg";
+	import lisaSvg2 from "$svg/faces/lisa2.svg";
 	import marySvg from "$svg/faces/mary.svg";
 	import meredithSvg from "$svg/faces/meredith.svg";
 	import whitneySvg from "$svg/faces/whitney.svg";
 	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import { current } from "../runes/misc.svelte";
 
-	const { name, audio, quote, title = false, queen } = $props();
+	let {
+		name,
+		audio,
+		quote,
+		title = false,
+		queen,
+		bounce,
+		clickedOne = $bindable()
+	} = $props();
 
 	const svgs = {
 		angie: angieSvg,
 		bronwyn: bronwynSvg,
 		heather: heatherSvg,
 		jen: jenSvg,
+		jen2: jenSvg2,
 		lisa: lisaSvg,
+		lisa2: lisaSvg2,
 		mary: marySvg,
 		meredith: meredithSvg,
 		whitney: whitneySvg
@@ -32,6 +44,7 @@
 	let paused = true;
 
 	const onClick = () => {
+		if (!clickedOne) clickedOne = true;
 		if (queen) return;
 		if (mediaPlaying.id === name) {
 			mediaPlaying.id = undefined;
@@ -106,7 +119,12 @@
 	$effect(() => slideChange(current.slide));
 </script>
 
-<div class="wrapper" class:absolute={!title} class:queen={queen === "true"}>
+<div
+	class="wrapper"
+	class:absolute={!title}
+	class:queen={queen === "true"}
+	class:bounce={bounce && !clickedOne}
+>
 	{#if title}
 		<div class="name">{_.startCase(name)}</div>
 	{/if}
@@ -161,6 +179,10 @@
 		width: 50%;
 	}
 
+	.wrapper.bounce {
+		animation: bounce 0.8s ease-in-out infinite;
+	}
+
 	.queen button {
 		pointer-events: none;
 	}
@@ -205,6 +227,18 @@
 
 	.quote.visible {
 		visibility: visible;
+	}
+
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-1rem);
+		}
+		100% {
+			transform: translateY(0);
+		}
 	}
 
 	:global(button.face svg path) {

@@ -5,6 +5,9 @@
 
 	let swiperEl;
 	let entered = $state(false);
+	let clickedOne = $state(false);
+
+	const centeredOn = 3;
 
 	const onClick = (index) => {
 		if (swiperEl) {
@@ -15,7 +18,7 @@
 	$effect(() => {
 		if (swiperEl && current.slide === 1) {
 			entered = true;
-			swiperEl.swiper.slideTo(3);
+			swiperEl.swiper.slideTo(centeredOn);
 		} else if (current.slide !== 1 && entered) {
 			entered = false;
 		}
@@ -33,7 +36,13 @@
 		>
 			{#each copy.taglines as { name, quote }, i}
 				<swiper-slide onclick={() => onClick(i)}>
-					<TalkingHead {name} {quote} title={true} />
+					<TalkingHead
+						{name}
+						{quote}
+						title={true}
+						bounce={i === centeredOn && !clickedOne}
+						bind:clickedOne
+					/>
 				</swiper-slide>
 			{/each}
 		</swiper-container>
@@ -61,7 +70,6 @@
 	}
 
 	swiper-slide {
-		pointer-events: all;
 		width: auto;
 		max-width: 200px;
 		display: flex;
