@@ -50,6 +50,10 @@
 </div>
 
 <style>
+	#intro-faces {
+		width: 100%;
+	}
+
 	.faces {
 		display: flex;
 		flex-direction: column;
@@ -59,6 +63,7 @@
 	}
 
 	swiper-container {
+		width: 100%;
 		visibility: hidden;
 		transform: translate(100%, 0);
 		transition: transform calc(var(--1s) * 0.8);

@@ -221,8 +221,9 @@
 		padding: 0.5rem;
 		border-radius: 6px;
 		font-size: var(--18px);
-		font-family: var(--serif);
 		text-align: center;
+		outline: 4px solid var(--color-blue);
+		opacity: 0.9;
 	}
 
 	.quote.visible {

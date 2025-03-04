@@ -15,15 +15,19 @@
 	<Faces />
 
 	<div class="text visible" class:fade={current.slide === 1}>
-		<strong>This is a story about apologies.</strong>
+		<strong
+			>This is a story about apologies{current.slide === 1
+				? "..."
+				: "."}</strong
+		>
 	</div>
 
 	<div class="tap" class:visible={current.slide === 0}>Tap anywhere</div>
 
 	<div class="text" class:visible={current.slide === 1}>
 		<strong
-			>…and the unexpected wisdom of <i>The Real Housewives of Salt Lake City</i
-			>.</strong
+			>…and the unexpected wisdom of<br />
+			<i>The Real Housewives of Salt Lake City</i>.</strong
 		>
 	</div>
 	<div class="text sound" class:visible={current.slide === 1}>
@@ -39,8 +43,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2rem;
+		gap: 1rem;
 		height: 100%;
+		width: 100%;
 		padding: 0;
 	}
 
@@ -53,6 +58,7 @@
 		font-size: var(--28px);
 		text-align: center;
 		opacity: 0;
+		max-width: 48rem;
 	}
 
 	.text:nth-child(5) {
