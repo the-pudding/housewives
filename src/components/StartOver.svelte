@@ -1,4 +1,5 @@
 <script>
+	import restartSvg from "$svg/restart.svg";
 	import { current } from "$runes/misc.svelte.js";
 
 	const restart = () => {
@@ -9,19 +10,27 @@
 	};
 </script>
 
-<button onclick={restart}>Start from the beginning</button>
+<button onclick={restart}>Start over<span>{@html restartSvg}</span></button>
 
 <style>
 	button {
 		background: var(--color-purple-400);
-		border-radius: 0;
-		color: var(--color-white);
-		font-size: var(--20px);
+		color: white;
+		padding: 1rem;
 		text-transform: uppercase;
-		font-weight: bold;
+		font-size: var(--20px);
+		margin-top: 4rem;
+		display: flex;
+		align-items: center;
 	}
 
 	button:hover {
 		background: var(--color-purple-300);
+	}
+
+	span {
+		display: flex;
+		height: 2.2rem;
+		margin-left: 0.8rem;
 	}
 </style>

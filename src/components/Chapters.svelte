@@ -54,7 +54,8 @@
 					</div>
 
 					<div class="title text-outline">
-						{sectionI} — {@html section}
+						{#if sectionI !== copy.sections.length - 1}{sectionI} —
+						{/if}{@html section}
 					</div>
 				{:else}
 					<button class="long-bar-wrapper" onclick={() => goTo(sectionI, 0)}>
@@ -95,6 +96,10 @@
 	.section.active {
 		flex: 5;
 		opacity: 1;
+	}
+
+	.section.active:last-of-type {
+		flex: 1;
 	}
 
 	.title {

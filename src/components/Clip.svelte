@@ -278,6 +278,20 @@
 		transform: translate(-50%, -50%);
 	}
 
+	.cc,
+	.restart,
+	.play {
+		background: var(--color-purple-400);
+		border-radius: 50%;
+		color: var(--color-white);
+		height: 55px;
+		width: 55px;
+		font-weight: bold;
+		font-size: var(--14px);
+		white-space: nowrap;
+		opacity: 0.9;
+	}
+
 	.cc {
 		position: absolute;
 		bottom: 3rem;
@@ -286,20 +300,8 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
-	}
-
-	.cc,
-	.restart,
-	.play {
-		background: var(--color-purple-400);
-		border-radius: 50%;
-		color: var(--color-white);
 		height: 40px;
 		width: 40px;
-		font-weight: bold;
-		font-size: var(--14px);
-		white-space: nowrap;
-		opacity: 0.9;
 	}
 
 	.cc.on {
