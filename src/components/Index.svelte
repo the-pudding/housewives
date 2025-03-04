@@ -204,6 +204,14 @@
 		line-height: 1.4;
 	}
 
+	:global(span.blue) {
+		background: var(--color-blue);
+		color: var(--color-white);
+		font-weight: bold;
+		padding: 0 4px;
+		line-height: 1.4;
+	}
+
 	@media (max-width: 600px) {
 		.content {
 			font-size: var(--16px);
