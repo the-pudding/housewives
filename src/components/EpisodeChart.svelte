@@ -200,7 +200,7 @@
 	.apology.highlight {
 		height: 11px;
 		width: 26px;
-		border: 3px solid var(--color-gray-900);
+		border: 2px solid black;
 		transform: scale(1.5);
 		z-index: 11;
 	}

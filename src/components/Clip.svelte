@@ -111,7 +111,7 @@
 	});
 </script>
 
-<figure class:inline>
+<figure class:inline class:small={!controls}>
 	<figcaption class="sr-only">{context}</figcaption>
 
 	<div class="loading" class:visible={current.slide === slideI && !loaded}>
@@ -155,7 +155,7 @@
 		>
 	{/if}
 
-	<div class="progress-outer" class:small={!controls}>
+	<div class="progress-outer">
 		<div
 			class="progress-inner"
 			style:width={`${percentComplete}%`}
@@ -186,7 +186,7 @@
 		background: var(--color-purple-100);
 	}
 
-	.progress-outer.small {
+	.small .progress-outer {
 		height: 1rem;
 	}
 
@@ -242,12 +242,17 @@
 		object-fit: cover;
 	}
 
+	.small video {
+		object-position: 0px -10px;
+	}
+
 	video.visible {
 		display: block;
 	}
 
 	video.inline {
 		position: static;
+		object-position: 0px -21px;
 	}
 
 	.loading {
@@ -311,7 +316,7 @@
 	.restart,
 	.play {
 		position: absolute;
-		top: 50%;
+		top: calc(50% - 1.25rem);
 		left: 50%;
 		transform: translate(-50%, -50%);
 		visibility: hidden;

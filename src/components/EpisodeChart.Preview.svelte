@@ -51,13 +51,15 @@
 	}
 
 	video.preview {
-		height: 6rem;
+		height: 7rem;
 		position: absolute;
 		z-index: 10;
 		transform: translate(calc(-50% + 6px), 4px);
 		transition: opacity calc(var(--1s) * 0.3);
 		display: none;
 		pointer-events: all;
+		object-fit: cover;
+		object-position: 0px -6px;
 	}
 
 	video.preview:hover {
