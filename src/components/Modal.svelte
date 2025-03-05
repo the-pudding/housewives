@@ -2,7 +2,7 @@
 	import Clip from "$components/Clip.svelte";
 	import closeSvg from "$svg/close.svg";
 	import data from "$data/apologies.csv";
-	import { mediaPlaying, current } from "$runes/misc.svelte.js";
+	import { mediaPlaying, current, modalState } from "$runes/misc.svelte.js";
 
 	const { allSlides } = $props();
 
@@ -37,7 +37,12 @@
 
 	const close = () => {
 		mediaPlaying.id = undefined;
+		modalState.open = false;
 	};
+
+	$effect(() => {
+		if (!visible) modalState.open = false;
+	});
 </script>
 
 <div class="modal" class:visible>

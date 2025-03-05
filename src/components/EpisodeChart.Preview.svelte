@@ -1,5 +1,5 @@
 <script>
-	import { mediaPlaying } from "../runes/misc.svelte";
+	import { mediaPlaying, modalState } from "../runes/misc.svelte";
 
 	const { id, visible, left } = $props();
 
@@ -7,6 +7,7 @@
 
 	const onClick = () => {
 		mediaPlaying.id = id;
+		modalState.open = true;
 	};
 
 	$effect(() => {

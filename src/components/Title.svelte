@@ -35,6 +35,8 @@
 	</div>
 	<div class="tap" class:visible={current.slide === 1}>
 		Tap the left side to go back, right to go forward
+		<br />
+		<span>(or use the arrow keys)</span>
 	</div>
 </div>
 
@@ -94,6 +96,11 @@
 		font-size: var(--16px);
 		opacity: 0;
 		text-align: center;
+	}
+
+	.tap span {
+		text-transform: none;
+		font-size: var(--14px);
 	}
 
 	.byline {

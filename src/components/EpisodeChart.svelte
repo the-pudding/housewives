@@ -4,7 +4,7 @@
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
-	import { current, mediaPlaying } from "$runes/misc.svelte.js";
+	import { current, mediaPlaying, modalState } from "$runes/misc.svelte.js";
 
 	const { slideI, view } = $props();
 
@@ -34,6 +34,7 @@
 
 	const onClick = (id) => {
 		mediaPlaying.id = id;
+		modalState.open = true;
 	};
 
 	const slideChange = () => {
@@ -54,7 +55,6 @@
 						"background-color var(--1s) calc(var(--1s)* 2)";
 				});
 			} else if (current.slide + 1 === slideI || current.slide - 1 === slideI) {
-				console.log("changing color");
 				const apologies = document.querySelectorAll(".apology");
 				// Reset to original colors
 				apologies.forEach((apology) => {

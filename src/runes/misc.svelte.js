@@ -13,3 +13,5 @@ export const videoSettings = $state({
 	ccOn: false,
 	soundOn: true
 });
+
+export const modalState = $state({ open: false });

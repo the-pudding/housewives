@@ -17,7 +17,7 @@
 	import StartOver from "$components/StartOver.svelte";
 	import CMS from "$components/helpers/CMS.svelte";
 	import vennDiagram from "$svg/venn-diagram.svg";
-	import { current } from "$runes/misc.svelte.js";
+	import { current, modalState } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
@@ -91,7 +91,12 @@
 				{@const intro = section === 0}
 
 				<div class="slide" id={`slide-${slideI}`}>
-					<div class="content" class:full class:intro>
+					<div
+						class="content"
+						class:full
+						class:intro
+						class:fade={modalState.open}
+					>
 						<CMS
 							components={neededComponents}
 							{svgs}
@@ -149,6 +154,7 @@
 		padding: 0 1rem;
 		margin-top: 6rem;
 		margin-bottom: 2rem;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 
 	.slide:last-of-type .content {
@@ -178,6 +184,10 @@
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	.content.fade {
+		opacity: 0.3;
 	}
 
 	small {
