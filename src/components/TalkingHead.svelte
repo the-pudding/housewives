@@ -214,9 +214,9 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		transform: translate(0, -100%);
+		transform: translate(-65%, -110%);
 		z-index: 1000;
-		width: 100%;
+		width: 250px;
 		background: var(--color-white);
 		padding: 0.5rem;
 		border-radius: 6px;

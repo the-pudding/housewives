@@ -45,7 +45,7 @@
 				controls={false}
 			/>
 			<div class="caption">
-				{caption}
+				{@html caption}
 			</div>
 		</button>
 	{/each}
@@ -87,11 +87,14 @@
 	}
 
 	.caption {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		margin-top: 0.25rem;
+		text-align: start;
+	}
+
+	:global(.caption strong) {
+		font-size: 1.2rem;
+		margin-right: 4px;
 	}
 
 	.controls {
