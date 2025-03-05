@@ -251,4 +251,12 @@
 			transform: scale(1.5);
 		}
 	}
+
+	@media (max-width: 600px) {
+		figure {
+			left: 3.5rem;
+			width: calc(100% - 6rem);
+			gap: 0.5rem;
+		}
+	}
 </style>

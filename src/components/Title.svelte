@@ -89,9 +89,11 @@
 	.tap {
 		background: var(--color-purple-100);
 		padding: 1rem;
+		margin: 0 1rem;
 		text-transform: uppercase;
 		font-size: var(--16px);
 		opacity: 0;
+		text-align: center;
 	}
 
 	.byline {
@@ -116,5 +118,15 @@
 
 	.fade {
 		opacity: 0.3;
+	}
+
+	@media (max-width: 600px) {
+		.text {
+			font-size: var(--18px);
+		}
+
+		.sound {
+			font-size: var(--14px);
+		}
 	}
 </style>

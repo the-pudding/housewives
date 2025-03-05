@@ -214,9 +214,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		transform: translate(-65%, -110%);
+		transform: translate(0, -100%);
 		z-index: 1000;
-		width: 250px;
 		background: var(--color-white);
 		padding: 0.5rem;
 		border-radius: 6px;
@@ -244,5 +243,18 @@
 
 	:global(button.face svg path) {
 		transition: fill 0.2s;
+	}
+
+	@media (max-width: 600px) {
+		.crown {
+			font-size: var(--80px);
+		}
+
+		.quote {
+			top: 100%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 200px;
+		}
 	}
 </style>

@@ -108,6 +108,7 @@
 <style>
 	.bar-chart {
 		margin-left: 190px;
+		margin-right: 30px;
 		display: flex;
 		flex-direction: column;
 		gap: 4px;

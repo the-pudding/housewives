@@ -86,7 +86,9 @@
 
 	@media (max-width: 600px) {
 		swiper-slide {
-			max-width: 150px;
+			max-width: 120px;
+			padding-top: 2rem;
+			padding-bottom: 5rem;
 		}
 	}
 </style>

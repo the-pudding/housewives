@@ -124,4 +124,10 @@
 	.cc:hover {
 		background: var(--color-purple-200);
 	}
+
+	@media (max-width: 600px) {
+		.clips {
+			gap: 1rem;
+		}
+	}
 </style>

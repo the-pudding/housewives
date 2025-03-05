@@ -167,7 +167,10 @@
 					<span class="season-episode">S{season}E{episode}</span>
 				{/if}
 				{#if context}
-					<span class="context-text">{context}</span>
+					<details>
+						<summary>Click for more context</summary>
+						{context}
+					</details>
 				{/if}
 			</div>
 		{/if}
@@ -179,7 +182,7 @@
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		height: 2.5rem;
+		min-height: 2.5rem;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -187,7 +190,7 @@
 	}
 
 	.small .progress-outer {
-		height: 1rem;
+		min-height: 1rem;
 	}
 
 	.progress-inner {
@@ -206,12 +209,15 @@
 		z-index: 10;
 		display: flex;
 		align-items: center;
-		white-space: nowrap;
 	}
 
-	.context-text {
+	.context details {
 		font-size: var(--14px);
-		margin: 0 1rem;
+		margin: 1rem;
+	}
+
+	.context details:hover {
+		cursor: pointer;
 	}
 
 	figure {
@@ -343,6 +349,14 @@
 	@media (max-width: 600px) {
 		figure.inline {
 			min-height: 233px;
+		}
+
+		.progress-outer {
+			min-height: 2rem;
+		}
+
+		.context details {
+			margin: 0.75rem;
 		}
 	}
 </style>

@@ -71,4 +71,10 @@
 		opacity: 1;
 		display: flex;
 	}
+
+	@media (max-width: 600px) {
+		video.preview {
+			height: 5rem;
+		}
+	}
 </style>
