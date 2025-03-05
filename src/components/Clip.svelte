@@ -221,6 +221,7 @@
 	}
 
 	figure.inline {
+		border: 6px solid black;
 		min-height: 400px;
 	}
 

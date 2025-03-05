@@ -184,6 +184,10 @@
 		padding-left: 2rem;
 	}
 
+	:global(.content:not(.full) img) {
+		border: 6px solid black;
+	}
+
 	:global(span.bad) {
 		background: var(--color-bad);
 		font-weight: bold;

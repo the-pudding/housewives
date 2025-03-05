@@ -59,7 +59,8 @@
 		display: none;
 		pointer-events: all;
 		object-fit: cover;
-		object-position: 0px -6px;
+		border: 5px solid black;
+		border-top: none;
 	}
 
 	video.preview:hover {

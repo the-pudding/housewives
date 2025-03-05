@@ -106,6 +106,8 @@
 		font-weight: bold;
 		font-size: var(--14px);
 		color: var(--color-purple-400);
+		position: absolute;
+		top: 100%;
 	}
 
 	.bars {
@@ -151,5 +153,11 @@
 		width: 100%;
 		height: 4px;
 		background: var(--color-white);
+	}
+
+	@media (max-width: 600px) {
+		.title {
+			max-width: 150px;
+		}
 	}
 </style>

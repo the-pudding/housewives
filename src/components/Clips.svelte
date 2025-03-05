@@ -65,7 +65,7 @@
 		height: 46vh;
 		max-height: 450px;
 		margin-top: 3rem;
-		gap: 3rem;
+		gap: 3.5rem;
 	}
 
 	.clip {
@@ -75,6 +75,7 @@
 		transition:
 			transform calc(var(--1s) * 0.3),
 			opacity calc(var(--1s) * 0.3);
+		border: 4px solid black;
 	}
 
 	.clip.active {
@@ -88,7 +89,7 @@
 
 	.caption {
 		font-size: 1rem;
-		margin-top: 0.25rem;
+		margin-top: 0.5rem;
 		text-align: start;
 	}
 
