@@ -167,10 +167,11 @@
 					<span class="season-episode">S{season}E{episode}</span>
 				{/if}
 				{#if context}
-					<details>
+					<span class="context-text">{@html context}</span>
+					<!-- <details>
 						<summary>Click for more context</summary>
 						{context}
-					</details>
+					</details> -->
 				{/if}
 			</div>
 		{/if}
@@ -182,7 +183,7 @@
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		min-height: 2.5rem;
+		height: 2.5rem;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -190,7 +191,7 @@
 	}
 
 	.small .progress-outer {
-		min-height: 1rem;
+		height: 1rem;
 	}
 
 	.progress-inner {
@@ -203,6 +204,7 @@
 		font-weight: bold;
 		margin-left: 1rem;
 		z-index: 10;
+		font-size: var(--16px);
 	}
 
 	.context {
@@ -211,9 +213,9 @@
 		align-items: center;
 	}
 
-	.context details {
+	.context-text {
 		font-size: var(--14px);
-		margin: 1rem;
+		margin-left: 1rem;
 	}
 
 	.context details:hover {
@@ -344,6 +346,7 @@
 		color: var(--color-white);
 		font-family: var(--sans);
 		font-size: var(--32px);
+		transform: translate(0, -40px);
 	}
 
 	@media (max-width: 600px) {
@@ -351,12 +354,20 @@
 			min-height: 233px;
 		}
 
-		.progress-outer {
-			min-height: 2rem;
-		}
-
 		.context details {
 			margin: 0.75rem;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.season-episode {
+			margin-left: 0.5rem;
+			font-size: var(--12px);
+		}
+
+		.context-text {
+			font-size: var(--12px);
+			margin-left: 0.5rem;
 		}
 	}
 </style>

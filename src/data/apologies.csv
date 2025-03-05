@@ -1,5 +1,5 @@
 season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight
-1,1,1,50:00:00,Mary said Jen smelled like hospital and Jen wants an apology.,FALSE,TRUE
+1,1,1,50:00:00,Jen makes a dramatic exit.,FALSE,TRUE
 1,2,2,5:00:00,Mary tries a second time to apologize about saying Jen smelled like hospital.,FALSE,FALSE
 1,2,2,38:15:00,Heather confronts Lisa about saying she didn't know her in college.,FALSE,FALSE
 1,3,3,20:40:00,?,TRUE,FALSE
@@ -96,7 +96,7 @@ season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight
 3,11,51,5:54:00,Jen apologizes to Angie again for the drink pouring.,FALSE,FALSE
 3,11,51,18:34:00,Jen apologizes for being mean to Lisa on the boat.,FALSE,FALSE
 3,11,51,38:28:00,Whitney apologizes to Meredith for betraying her trust by sharing the rumours that Meredith told her about Lisa.,FALSE,FALSE
-3,11,51,41:50:00,Heather passive-aggressively apologizes to Whitney.,FALSE,TRUE
+3,11,51,41:50:00,Heather is passive-aggressive to Whitney.,FALSE,TRUE
 3,11,51,45:45:00,A continuation of Heather's apology to Whitney.,TRUE,FALSE
 3,13,53,40:13:00,Whitney apologizes to Heather as they talk about their friendship drama.,TRUE,FALSE
 3,14,54,11:30:00,Angie's husband (but mostly Angie) apologizes for starting the Instagram about Jen.,TRUE,FALSE
@@ -131,7 +131,7 @@ season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight
 4,11,67,38:27:00,"Lisa said Monica's mom seemed nice, which made Monica feel invalidated, so she tries to apologize.",TRUE,FALSE
 4,11,67,38:50:00,Monica apologizes for calling Lisa ugly.,TRUE,FALSE
 4,12,68,24:48:00,Monica apologizes to Heather for making a scene at the dinner.,FALSE,FALSE
-4,12,68,32:13:00,Monica apologizes more deeply to Lisa for their continued conflict.,TRUE,TRUE
+4,12,68,32:13:00,Monica apologizes to Lisa.,TRUE,TRUE
 4,12,68,36:24:00,Monica gives Bermuda-themed gifts to everyone and apologizes for the recent drama.,FALSE,FALSE
 4,12,68,37:38:00,"Whitney lost her best friend, and tells Lisa she felt ignored by her when she got to the party.",FALSE,FALSE
 4,13,69,29:11:00,Meredith tells the group she felt hurt by them ignoring her and not giving her a room with a bathtub when they got to Bermuda.,TRUE,FALSE
@@ -147,7 +147,7 @@ season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight
 4,18,74,35:10:00,"Whitney apologizes to Mary for the ""predator"" comment.",FALSE,FALSE
 4,19,75,18:15:00,Monica sort of apologizes for posting negative things about the women through the IG account (she says it's because she was trying to hurt Jen).,TRUE,FALSE
 4,19,75,36:12:00,"Heather apologizes for the whole black eye incident (to the cast, to the production, to the audience, etc).",FALSE,FALSE
-5,1,76,24:02:00,Angie brings out a scroll with a list of things she wants an apology for.,FALSE,TRUE
+5,1,76,24:02:00,Angie won't apologize until she's apologized to.,FALSE,TRUE
 5,1,76,32:45:00,Lisa confronts Whitney about saying mean things about her on a podcast.,TRUE,FALSE
 5,1,76,22:53:00,Heather apologizes for not standing up to Whitney in the group.,FALSE,FALSE
 5,2,77,51:12:00,Whitney apologizes to Lisa about her comments from the podcast.,TRUE,FALSE
