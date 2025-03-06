@@ -1,10 +1,5 @@
 <script>
-	import Viewport from "$runes/Viewport.svelte.js";
-
-	const viewport = new Viewport();
-
-	let { text, position = viewport.width < 600 ? "bottom-left" : "top-right" } =
-		$props();
+	let { text, position = "top-right" } = $props();
 </script>
 
 <div class={position}>{@html text}</div>
@@ -43,6 +38,12 @@
 	@media (max-width: 600px) {
 		div {
 			font-size: var(--20px);
+			bottom: 6rem !important;
+			top: auto !important;
+			right: auto !important;
+			left: 50% !important;
+			transform: translate(-50%, 0);
+			width: 100%;
 			max-width: 20rem;
 		}
 	}

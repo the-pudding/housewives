@@ -44,10 +44,10 @@
 				{finish}
 				controls={false}
 			/>
-			<div class="caption">
-				{@html caption}
-			</div>
 		</button>
+		<div class="caption">
+			{@html caption}
+		</div>
 	{/each}
 </div>
 
@@ -128,6 +128,18 @@
 	@media (max-width: 600px) {
 		.clips {
 			gap: 1rem;
+			margin-top: 0;
+			grid-template-rows: 1fr 1fr 1fr 1fr;
+			height: auto;
+			max-height: none;
+		}
+
+		.controls {
+			display: none;
+		}
+
+		.clip {
+			height: 100px;
 		}
 	}
 </style>

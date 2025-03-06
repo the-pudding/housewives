@@ -135,5 +135,9 @@
 		.sound {
 			font-size: var(--14px);
 		}
+
+		.tap {
+			padding: 0.75rem;
+		}
 	}
 </style>
