@@ -314,6 +314,10 @@
 		height: auto;
 	}
 
+	img {
+		border: none !important;
+	}
+
 	.donate img {
 		transform: rotate(var(--right-tilt, 2deg));
 		width: 100%;

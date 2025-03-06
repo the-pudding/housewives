@@ -50,7 +50,10 @@
 	const slideChange = () => {
 		// Load video when slide is near
 		const comingUp = Math.abs(slideI - current.slide) <= 2;
-		if (!loaded && !startedLoad && comingUp) {
+		if (
+			(!loaded && !startedLoad && comingUp) ||
+			(id === "s1_e1_opening" && !loaded && !startedLoad)
+		) {
 			videoEl.src = `assets/video/${id}/${id}.mp4`;
 			startedLoad = true;
 			videoEl.load();
