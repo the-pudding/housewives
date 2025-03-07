@@ -1,6 +1,7 @@
 <script>
 	import Preview from "$components/EpisodeChart.Preview.svelte";
 	import data from "$data/apologies.csv";
+	import episodes from "$data/episodes.csv";
 	import _ from "lodash";
 	import { scaleTime } from "d3-scale";
 	import { timeParse } from "d3-time-format";
@@ -10,11 +11,14 @@
 
 	let width = $state(0);
 
-	const parseDuration = timeParse("%M:%S:%L");
+	const parseDuration = timeParse("%I:%M:%S:%L");
 	const totalEpisodes = _.maxBy(data, "totalEpisode").totalEpisode;
 
 	const standardize = (timestamp) => {
-		const parsedTime = parseDuration(timestamp);
+		const containsHours = timestamp.split(":").length === 4;
+		const parsedTime = parseDuration(
+			containsHours ? timestamp : `00:${timestamp}`
+		);
 		if (!parsedTime) return null;
 
 		const baseDate = new Date(0);
@@ -25,10 +29,9 @@
 		return standardizedTime;
 	};
 
-	// TODO: each episode has a different duration
 	const xScale = $derived(
 		scaleTime()
-			.domain([standardize("00:00:00"), standardize("59:59:59")])
+			.domain([standardize("00:00:00:00"), standardize("01:05:00:00")])
 			.range([0, width])
 	);
 
@@ -72,9 +75,12 @@
 	<div class="episodes">
 		<div class="x-labels">
 			<div>0 minutes</div>
-			<div>60 m</div>
+			<div>65 m</div>
 		</div>
 		{#each _.range(totalEpisodes) as i}
+			{@const width = xScale(
+				standardize(episodes.find((e) => +e.totalEpisode === i + 1).duration)
+			)}
 			{@const apologiesInEpisode = data.filter(
 				(d) => +d.totalEpisode === i + 1
 			)}
@@ -90,7 +96,7 @@
 					<div class="y-label">ep #{i + 1}</div>
 				{/if}
 
-				<div class="long-bar">
+				<div class="long-bar" style:width={`${width}px`}>
 					{#each apologiesInEpisode as { timestamp, solid_apology, chart_highlight, season, episode, summary }}
 						{@const parsedTime = standardize(timestamp)}
 						{@const left = `${xScale(parsedTime)}px`}
@@ -181,14 +187,13 @@
 	.long-bar {
 		position: relative;
 		height: 100%;
-		width: 100%;
 		background: var(--color-gray-50);
 	}
 
 	.apology {
 		position: absolute;
 		height: 100%;
-		width: 20px;
+		width: 15px;
 		transition:
 			transform calc(var(--1s) * 0.4),
 			left calc(var(--1s) * 0.4),
@@ -257,6 +262,10 @@
 			left: 3.5rem;
 			width: calc(100% - 6rem);
 			gap: 0.5rem;
+		}
+
+		.apology {
+			width: 8px;
 		}
 	}
 </style>

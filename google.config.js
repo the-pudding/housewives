@@ -12,5 +12,10 @@ export default [
 		id: "1mLzX4nLQRP0T3SPrzMTblXaqW9mMs3IOTEI8-TlxxO8",
 		gid: "905930860",
 		filepath: "src/data/people.csv"
+	},
+	{
+		id: "1mLzX4nLQRP0T3SPrzMTblXaqW9mMs3IOTEI8-TlxxO8",
+		gid: "1121559319",
+		filepath: "src/data/episodes.csv"
 	}
 ];
