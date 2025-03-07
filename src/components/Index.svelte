@@ -146,10 +146,6 @@
 		flex-shrink: 0;
 	}
 
-	:global(p) {
-		margin: 0.5rem 0;
-	}
-
 	.content {
 		position: relative;
 		font-size: var(--22px);
@@ -201,6 +197,10 @@
 		padding-left: 2rem;
 	}
 
+	:global(.content p:first-child) {
+		margin-top: 0;
+	}
+
 	:global(.content:not(.full) img) {
 		border: 6px solid black;
 	}
@@ -213,6 +213,12 @@
 
 	:global(span.good) {
 		background: var(--color-good);
+		font-weight: bold;
+		padding: 0 4px;
+	}
+
+	:global(span.complicated) {
+		background: var(--color-gray-300);
 		font-weight: bold;
 		padding: 0 4px;
 	}
@@ -243,8 +249,11 @@
 		}
 
 		:global(h2) {
+			margin: 0;
+		}
+
+		:global(p + p) {
 			margin-top: 0;
-			margin-bottom: 0.5rem;
 		}
 	}
 </style>

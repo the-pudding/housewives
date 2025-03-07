@@ -65,7 +65,7 @@
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
 		height: 480px;
-		margin-top: 3rem;
+		margin-top: 2rem;
 		gap: 2rem;
 	}
 

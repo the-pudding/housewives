@@ -29,6 +29,7 @@
 	muted
 	loop
 	autoplay
+	playsinline
 	onclick={onClick}
 ></video>
 

@@ -73,7 +73,7 @@ h2 {
 
 @media (max-width: 600px) {
 	h2 {
-		font-size: var(--24px);
+		font-size: var(--22px);
 	}
 }
 
@@ -85,7 +85,7 @@ h3 {
 
 @media (max-width: 600px) {
 	h3 {
-		font-size: var(--18px);
+		font-size: var(--16px);
 	}
 }
 h4 {

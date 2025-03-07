@@ -15,7 +15,6 @@
 		padding-left: 2rem;
 		font-family: var(--serif);
 		font-size: var(--24px);
-		margin-top: 2rem;
 		font-weight: bold;
 	}
 

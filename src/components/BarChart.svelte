@@ -131,8 +131,9 @@
 
 	.label {
 		position: absolute;
+		width: 190px;
 		left: 0;
-		transform: translate(-120%, 0);
+		transform: translate(-200px, 0);
 		font-family: var(--sans);
 		display: flex;
 		flex-direction: column;
@@ -190,7 +191,12 @@
 
 	@media (max-width: 600px) {
 		.bar-chart {
-			margin-left: 175px;
+			margin-left: 165px;
+		}
+
+		.label {
+			width: 165px;
+			transform: translate(-175px, 0);
 		}
 
 		h3 {
@@ -207,6 +213,10 @@
 		}
 
 		.number {
+			font-size: var(--12px);
+		}
+
+		.toggle {
 			font-size: var(--12px);
 		}
 

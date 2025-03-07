@@ -11,6 +11,7 @@
 		autoplay = true,
 		inline = false,
 		controls = true,
+		shiftLeft,
 		slideI,
 		finish,
 		progressColor = "var(--color-purple-300)"
@@ -127,6 +128,7 @@
 	<video
 		class:visible={current.slide === slideI && loaded}
 		class:inline
+		class:shift-left={shiftLeft === "true"}
 		playsinline
 		bind:this={videoEl}
 		bind:currentTime
@@ -234,6 +236,7 @@
 	figure.inline {
 		border: 6px solid black;
 		max-height: 400px;
+		margin-top: 1rem;
 	}
 
 	.inline video {
@@ -265,6 +268,10 @@
 	video.inline {
 		position: static;
 		object-position: 0px -21px;
+	}
+
+	video.shift-left {
+		object-position: 20% 50%;
 	}
 
 	.loading {
@@ -355,10 +362,15 @@
 	@media (max-width: 600px) {
 		figure.inline {
 			min-height: 233px;
+			margin-top: 0;
 		}
 
 		.context details {
 			margin: 0.75rem;
+		}
+
+		video.shift-left {
+			object-position: 20% 50%;
 		}
 	}
 
