@@ -31,44 +31,52 @@
 
 <div class="clips">
 	{#each clips as { id, caption }, i}
-		<button
-			class="clip"
-			class:active={i === activeClipI}
-			onclick={() => playClip(i)}
-		>
-			<Clip
-				bind:this={clipComponents[i]}
-				{id}
-				{slideI}
-				autoplay={false}
-				{finish}
-				controls={false}
-			/>
-		</button>
-		<div class="caption">
-			{@html caption}
+		<div class="clip-wrapper">
+			<button
+				class="clip"
+				class:active={i === activeClipI}
+				onclick={() => playClip(i)}
+			>
+				<Clip
+					bind:this={clipComponents[i]}
+					{id}
+					{slideI}
+					autoplay={false}
+					{finish}
+					controls={false}
+				/>
+			</button>
+			<div class="caption">
+				{@html caption}
+			</div>
 		</div>
 	{/each}
 </div>
 
-<div class="controls">
+<!-- <div class="controls">
 	<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
 		{@html ccSvg}
 	</button>
-</div>
+</div> -->
 
 <style>
 	.clips {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
-		height: 46vh;
-		max-height: 450px;
+		height: 480px;
 		margin-top: 3rem;
-		gap: 3.5rem;
+		gap: 2rem;
+	}
+
+	.clip-wrapper {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.clip {
+		height: 100%;
+		width: 100%;
 		background: none;
 		padding: 0;
 		opacity: 0.2;
@@ -91,11 +99,6 @@
 		font-size: 1rem;
 		margin-top: 0.5rem;
 		text-align: start;
-	}
-
-	:global(.caption strong) {
-		font-size: 1.2rem;
-		margin-right: 4px;
 	}
 
 	.controls {
@@ -125,21 +128,22 @@
 		background: var(--color-purple-200);
 	}
 
+	:global(.caption strong) {
+		margin-right: 4px;
+	}
+
 	@media (max-width: 600px) {
 		.clips {
-			gap: 1rem;
-			margin-top: 0;
-			grid-template-rows: 1fr 1fr 1fr 1fr;
-			height: auto;
-			max-height: none;
+			margin: 0;
+			gap: 0.5rem;
 		}
 
-		.controls {
-			display: none;
+		.caption {
+			font-size: var(--12px);
 		}
 
-		.clip {
-			height: 100px;
+		:global(.caption strong) {
+			margin-right: 0;
 		}
 	}
 </style>

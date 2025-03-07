@@ -115,7 +115,7 @@
 	}
 
 	h3 {
-		margin: 2rem 0;
+		margin: 1rem 0;
 	}
 
 	.row {
@@ -194,7 +194,7 @@
 		}
 
 		h3 {
-			margin: 1.5rem 0;
+			margin: 0.75rem 0;
 		}
 
 		.label .name {

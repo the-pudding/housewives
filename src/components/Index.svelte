@@ -146,6 +146,10 @@
 		flex-shrink: 0;
 	}
 
+	:global(p) {
+		margin: 0.5rem 0;
+	}
+
 	.content {
 		position: relative;
 		font-size: var(--22px);
@@ -155,6 +159,9 @@
 		margin-top: 6rem;
 		margin-bottom: 2rem;
 		transition: opacity calc(var(--1s) * 0.3);
+		display: flex;
+		flex-direction: column;
+		height: calc(100% - 8rem);
 	}
 
 	.slide:last-of-type .content {
@@ -233,6 +240,11 @@
 	@media (max-width: 600px) {
 		.content {
 			font-size: var(--16px);
+		}
+
+		:global(h2) {
+			margin-top: 0;
+			margin-bottom: 0.5rem;
 		}
 	}
 </style>

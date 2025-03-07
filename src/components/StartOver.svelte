@@ -16,7 +16,7 @@
 	button {
 		background: var(--color-purple-400);
 		color: white;
-		padding: 1rem;
+		padding: 0.75rem;
 		text-transform: uppercase;
 		font-size: var(--20px);
 		margin-top: 6rem;

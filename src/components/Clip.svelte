@@ -233,7 +233,7 @@
 
 	figure.inline {
 		border: 6px solid black;
-		min-height: 400px;
+		max-height: 400px;
 	}
 
 	.inline video {
