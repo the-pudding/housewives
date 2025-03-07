@@ -16,6 +16,7 @@
 		font-family: var(--serif);
 		font-size: var(--24px);
 		font-weight: bold;
+		margin-top: 1rem;
 	}
 
 	li {
@@ -26,6 +27,7 @@
 		ul {
 			font-size: var(--18px);
 			padding-left: 1rem;
+			margin-top: 0;
 		}
 	}
 </style>

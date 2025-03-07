@@ -243,6 +243,10 @@
 		line-height: 1.4;
 	}
 
+	:global(p + p) {
+		margin-top: 0;
+	}
+
 	@media (max-width: 600px) {
 		.content {
 			font-size: var(--16px);
@@ -250,10 +254,6 @@
 
 		:global(h2) {
 			margin: 0;
-		}
-
-		:global(p + p) {
-			margin-top: 0;
 		}
 	}
 </style>
