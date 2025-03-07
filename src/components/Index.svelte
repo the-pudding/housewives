@@ -161,10 +161,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-around;
 		max-width: 60rem;
 		height: 100%;
 		margin: 0 auto;
+		gap: 3rem;
 	}
 
 	.content.full {

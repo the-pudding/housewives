@@ -2,6 +2,7 @@
 	import Faces from "$components/Title.Faces.svelte";
 	import Mute from "$components/Mute.svelte";
 	import { current } from "$runes/misc.svelte.js";
+	import pointerSvg from "$svg/pointer.svg";
 </script>
 
 <div class="title">
@@ -22,7 +23,11 @@
 		>
 	</div>
 
-	<div class="tap" class:visible={current.slide === 0}>Tap anywhere</div>
+	<div class="tap" class:visible={current.slide === 0}>
+		Tap anywhere
+
+		<span class="pointer">{@html pointerSvg}</span>
+	</div>
 
 	<div class="text" class:visible={current.slide === 1}>
 		<strong
@@ -36,7 +41,12 @@
 	<div class="tap" class:visible={current.slide === 1}>
 		Tap the left side to go back, right to go forward
 		<br />
-		<span>(or use the arrow keys)</span>
+		<span
+			>(or use the keyboard
+			<span class="key">{"<"}</span>
+			<span class="key">{">"}</span>
+			)</span
+		>
 	</div>
 </div>
 
@@ -49,6 +59,21 @@
 		height: 100%;
 		width: 100%;
 		padding: 0;
+	}
+
+	.key {
+		display: inline-block;
+		padding: 2px 6px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 2px 1px rgba(137, 77, 153, 0.4);
+		background-color: #f9f9f9;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.key:last-of-type {
+		background: var(--color-purple-200);
 	}
 
 	div {
@@ -96,6 +121,7 @@
 		font-size: var(--16px);
 		opacity: 0;
 		text-align: center;
+		position: relative;
 	}
 
 	.tap span {
@@ -125,6 +151,15 @@
 
 	.fade {
 		opacity: 0.3;
+	}
+
+	.pointer {
+		position: absolute;
+		height: 40px;
+		width: 40px;
+		top: 100%;
+		left: 100%;
+		transform: translate(-50%, -50%);
 	}
 
 	@media (max-width: 600px) {

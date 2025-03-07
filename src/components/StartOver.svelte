@@ -19,7 +19,7 @@
 		padding: 1rem;
 		text-transform: uppercase;
 		font-size: var(--20px);
-		margin-top: 4rem;
+		margin-top: 6rem;
 		display: flex;
 		align-items: center;
 	}

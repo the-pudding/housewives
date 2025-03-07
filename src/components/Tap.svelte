@@ -43,17 +43,9 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <div class="tap">
-	<button
-		class="left"
-		class:hidden={firstSlide}
-		class:full={lastSlide}
-		onclick={() => advance(-1)}
+	<button class="left" class:hidden={firstSlide} onclick={() => advance(-1)}
 	></button>
-	<button
-		class="right"
-		class:hidden={lastSlide}
-		class:full={firstSlide}
-		onclick={() => advance(1)}
+	<button class="right" class:full={firstSlide} onclick={() => advance(1)}
 	></button>
 </div>
 
