@@ -180,6 +180,10 @@
 		transform: translate(12px, 0);
 	}
 
+	#bronwyn-newport .num_bad_apologies .number.percent {
+		transform: translate(12px, 0);
+	}
+
 	.toggle {
 		font-size: var(--14px);
 	}
@@ -211,6 +215,10 @@
 		}
 
 		#jennie-nguyen .num_bad_apologies .number {
+			display: none;
+		}
+
+		#bronwyn-newport .num_bad_apologies .number {
 			display: none;
 		}
 	}

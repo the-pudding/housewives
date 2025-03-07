@@ -1,188 +1,188 @@
-season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight
-1,1,1,50:00:00,Jen makes a dramatic exit.,FALSE,TRUE
-1,2,2,5:00:00,Mary tries a second time to apologize about saying Jen smelled like hospital.,FALSE,FALSE
-1,2,2,38:15:00,Heather confronts Lisa about saying she didn't know her in college.,FALSE,FALSE
-1,3,3,20:40:00,Meredith apologizes to Brooks.,TRUE,FALSE
-1,4,4,41:50:00,"Jen shares with the group about her trauma and why she acts the way she does. She apologizes for yelling at Meredith, and Meredith feels the apology is genuine.",TRUE,FALSE
-1,6,6,18:49:00,Jen confronts Mary about dismissing her story and then kicking her out of the luncheon.,FALSE,FALSE
-1,6,6,18:49:00,"Mary confronts Jen about calling her a ""grandfather MFer.""",FALSE,FALSE
-1,7,7,8:10:00,Brooks confronts his dad about not being present at his fashion show.,FALSE,FALSE
-1,8,8,6:35:00,Seth apologizes to Brooks.,TRUE,FALSE
-1,10,10,23:26:00,Whitney apologizes over the phone to Jen about making her angry at Shareef's birthday party.,TRUE,FALSE
-1,10,10,27:28:00,Whitney brings Jen to a hot tub to apologize to her.,FALSE,FALSE
-1,10,10,28:18:00,"Heather apologizes to Jen in the hot tub, but it's not clear that she did anything wrong (she's just trying to keep Jen calm).",FALSE,FALSE
-1,10,10,31:57:00,"Whitney tries again, and Jen accepts it.",TRUE,FALSE
-1,10,10,40:57:00,"Jen and Shareef talk it out, and apologize to each other.",TRUE,FALSE
-1,11,11,36:30:00,"Whitney apologizes to Meredith and Lisa for the scene at Shareef's birthday party, and they take it well.",TRUE,FALSE
-1,12,12,36:14:00,Meredith confronts Jen about saying negative things about her marriage.,FALSE,FALSE
-1,13,13,34:25:00,Jen apologizes to Shareef for how she's been acting.,TRUE,FALSE
-1,13,13,49:13:00,"Jen apologizes to Whitney about yelling at her, and Whitney accepts.",TRUE,FALSE
-1,13,13,52:59:00,Jen apologizes to Meredith for talking negatively about her marriage.,TRUE,FALSE
-1,13,13,57:00:00,"Heather confronts Jen about pushing her. After denying it, Jen apologizes.",TRUE,FALSE
-1,14,14,23:38:00,A listener question asks if Heather has gotten an apology from Jen about the night of Shareef's party.,FALSE,FALSE
-1,14,14,27:41:00,Jen apologizes for cyberbullying Brooks after he said he saw her vagina.,FALSE,FALSE
-1,14,14,34:54:00,"Mary, Whitney, and Heather say Lisa is mean, and Lisa denies it.",FALSE,FALSE
-1,15,15,4:18:00,"Mary re-apologizes for ""smells like hospital.""",FALSE,FALSE
-1,15,15,6:27:00,Mary addresses her comments about fearing black guys in front of convenience stores.,FALSE,FALSE
-1,15,15,10:30:00,"Jen apologizes for the ""grandpa MF-er"" incident.",TRUE,FALSE
-1,15,15,25:50:00,Mary apologizes (again) for everything with Jen.,TRUE,FALSE
-1,15,15,26:00:00,Jen apologizes too.,TRUE,FALSE
-1,15,15,39:20:00,"Whitney and Heather confront Lisa for being mean, Lisa is frustrated because she thinks they'll always have a negative perception of her.",FALSE,FALSE
-1,16,16,14:08:00,Shareef apologizes on Jen's behalf for Jen's comments about Robert Sr.'s marriage.,TRUE,FALSE
-1,16,16,22:23:00,Jen apologizes to Meredith for talking about her marriage.,TRUE,FALSE
-1,16,16,41:00:00,Heather confronts Jen for saying mean things about her on social media.,FALSE,FALSE
-2,2,18,4:52:00,Jen apologizes to her nephew for not being present over the last year.,TRUE,FALSE
-2,2,18,35:20:00,Heather confronts Jen about saying mean things about her on social media. Jen brings up her hurt around being painted as mean/aggressive (which is true?) Eventually she delivers a solid apology.,TRUE,FALSE
-2,3,19,36:50:00,Meredith confronts Jen about liking homophobic tweets about Brooks and demands an apology.,FALSE,FALSE
-2,4,20,8:09:00,Jen apologizes to Meredith about Brooks.,FALSE,FALSE
-2,4,20,34:44:00,Angie confronts Lisa about the bar drama.,FALSE,FALSE
-2,5,21,14:30:00,Jen apologizes to Brooks about the comments she made and for the vagina moment.,TRUE,FALSE
-2,5,21,18:10:00,Jen apologizes to Meredith about all the stuff with Brooks.,TRUE,FALSE
-2,5,21,40:18:00,Whitney confronts Lisa about her rude comments lately.,FALSE,FALSE
-2,6,22,24:18:00,"Whitney confronts Lisa about the Angie bar sitation, which Lisa denies.",FALSE,FALSE
-2,7,23,6:35:00,Dewy apologizes to Jenny for suggesting they get a sister wife.,TRUE,FALSE
-2,7,23,26:43:00,"Mary says something about carbonation being bad for your ovaries, and Lisa says ""I need to Google that, is that real?"" Mary is offended and feels belittled.",FALSE,FALSE
-2,7,23,35:54:00,Angie confronts Lisa (again) about the bar drama.,FALSE,FALSE
-2,9,25,35:01:00,Whitney apologizes for not making it to Lisa's party for her son's brand.,TRUE,FALSE
-2,9,25,39:10:00,Jen is upset she wasn't invited to Lisa's party and demands an apology.,TRUE,FALSE
-2,9,25,49:50:00,Mary apologizes to Meredith for not being receptive to her while she was going off at Whitney.,FALSE,FALSE
-2,12,28,9:23:00,Jenny apologizes to Mary for yelling at her when they went tubing.,FALSE,FALSE
-2,12,28,19:30,Heather apologizes to her sister for their fractured relationship over the last few years.,TRUE,FALSE
-2,12,28,24:45:00,Meredith apologizes to Mary for bringing up drama about her church.,TRUE,TRUE
-2,12,28,39:34:00,Mary tells Heather she is hurt by her bringing accusations against her church.,FALSE,FALSE
-2,12,28,14:35:00,Jen is upset with Lisa that she hasn't reached out to her while she's been going through a lot with the arrest.,TRUE,FALSE
-2,14,30,19:49:00,"Heather's brother is leaving the church, and tells Heather he was hurt when she didn't reach out.",TRUE,FALSE
-2,14,30,1:02:26,The group apologizes to Jen for taking attention away from her pain when they get into a a big fight at the Pho lunch.,TRUE,FALSE
-2,15,31,30:37:00,"Jenny confronts Mary about saying she had ""slanted eyes.""",FALSE,FALSE
-2,15,31,32:27:00,Jenny confronts Mary about re-gifting her a gift.,FALSE,FALSE
-2,15,31,34:26:00,"Whitney confronts Mary about the racially insensitive comments she's made lately (slanted eyes, Mexican thug).",FALSE,FALSE
-2,16,32,41:38:00,"Lisa and Jen are in a heated fight about how Lisa has talked about her not being innocent, and not been a good friend lately. Lisa says ""I'm sorry"" at one point, but then a minute later they're physically fighting.",FALSE,FALSE
-2,17,33,5:00:00,Lisa apologizes to Jen after their fight.,TRUE,FALSE
-2,17,33,28:44:00,Whitney is upset because Mereditih and Mary didn't come to her spiritual activity.,FALSE,FALSE
-2,17,33,35:00:00,Jenny confronts Meredith about how she didn't tell Mary it was wrong to make the comment about slanted eyes.,FALSE,FALSE
-2,18,34,33:17:00,"Lisa apologizes to Heather, Jenny, Whitney for telling Meredith that people were speculating about her faking her dad's funeral, which caused her to yell.",TRUE,FALSE
-2,18,34,34:37:00,Mary apologizes to Jenny for being so cold to her and not wanting to be her friend.,TRUE,FALSE
-2,19,35,16:08:00,Jenny apologizes to Meredith for sharing with Jen that Meredith hired a private investigator.,TRUE,FALSE
-2,19,35,30:26:00,"Jenny asks Mary for an apology for being rude to her, and Mary says a) she doesn't like her, b) she doesn't want to apologize to her.",FALSE,FALSE
-2,19,35,41:00:00,Meredith apologizes to everyone for screaming yesterday.,TRUE,FALSE
-2,20,36,9:12:00,Whitney tries to apologize to Meredith about how she asked her about whether her father's funeral was real.,FALSE,FALSE
-2,20,36,39:00:00,Meredith apologizes to Whitney for yelling at her about the funeral thing.,TRUE,FALSE
-2,21,37,32:31:00,Whitney apologizes to Mary for talking about her church.,FALSE,FALSE
-2,21,37,36:03:00,"Jenny apologizes to Lisa for throwing a glass at her party (Lisa says ""Why are you apologizing? I don't care!""",TRUE,FALSE
-2,21,37,13:33:00,"Meredith apologizes for talking abou Jen's family (""for anything that i said"")",TRUE,FALSE
-2,22,38,20:44:00,Whitney apologizes to Lisa for calling her a minion.,TRUE,FALSE
-2,22,38,25:07:00,Heather apologizes to Jenny for saying she looked like an anime character.,TRUE,FALSE
-2,23,39,1:40:00,"Lisa apologizes to Jen for saying ""I love Jen Shah, as controversial as that is.""",FALSE,FALSE
-2,23,39,27:55:00,"Meredith says she didn't feel like Lisa was there for her after her dad passed, which Lisa denies.",FALSE,FALSE
-2,23,39,32:12:00,"Lisa attempts to apologize to Meredith for her rant about Meredith being a ""garbage whore.""",FALSE,FALSE
-2,23,39,37:49:00,Second attempt at Lisa's apology.,FALSE,FALSE
-2,24,40,19:12:00,"Jen confronts Whitney about speculating about fraud, Whitney apologizes.",TRUE,FALSE
-2,24,40,40:15:00,Jen re-iterates that she's sorry to Heather for the mean social media posts.,TRUE,FALSE
-2,24,40,40:40:00,Heather apologizes for bringing it up so much.,TRUE,FALSE
-3,1,41,38:22:00,"Lisa attempts to apologize to Meredith for her rant about Meredith being a ""garbage whore."" (again)",FALSE,FALSE
-3,2,42,47:42:00,Meredith apologizes to the group for being late to the shaman.,TRUE,FALSE
-3,2,42,48:15:00,"Meredith says she doesn't feel safe with the group, and Lisa says ""I used to feel like I was a safe spae for you, I'm sorry"", which does not go over well.",FALSE,FALSE
-3,3,43,4:00:00,Lisa apologizes (again) for the garbage whore comments.,FALSE,FALSE
-3,3,43,7:52:00,"Lisa says ""I'm not gonna slit my wrists for anybody"", which makes Meredith upset because she has a family member who tried to commit suicide.",FALSE,FALSE
-3,3,43,39:40:00,Meredith apologizes to Lisa for spreading rumors about her sleeping with someone else.,TRUE,FALSE
-3,5,45,38:05:00,Heather apologizes to Lisa for inviting Angie H. skiing with them.,TRUE,FALSE
-3,5,45,41:21:00,Heather apologizes to Whitney for claiming she made the whole trip about her and her healing journey.,FALSE,FALSE
-3,7,47,12:09:00,"Jen confronts Angie H. about the ""Shah exposed"" Instagram account.",FALSE,FALSE
-3,7,47,37:04:00,Whitney confronts Heather about their conflict and how she feels like Heather hasn't been supporting her.,FALSE,FALSE
-3,8,48,33:04:00,"Angie apologizes to Jen for the ""Shah exposed"" account.",TRUE,FALSE
-3,9,49,22:29:00,"Jen pours a drink on Angie's head, and Angie is upset.",FALSE,FALSE
-3,9,49,33:37:00,"Jen tries to apologize about pouring the drink on Angie's head, again.",FALSE,FALSE
-3,10,50,36:56:00,"When Lisa confronts her about it later on, Jen apologizes to Angie about the drink pouring.",TRUE,FALSE
-3,11,51,5:54:00,Jen apologizes to Angie again for the drink pouring.,FALSE,FALSE
-3,11,51,18:34:00,Jen apologizes for being mean to Lisa on the boat.,FALSE,FALSE
-3,11,51,38:28:00,Whitney apologizes to Meredith for betraying her trust by sharing the rumours that Meredith told her about Lisa.,FALSE,FALSE
-3,11,51,41:50:00,Heather is passive-aggressive to Whitney.,FALSE,TRUE
-3,11,51,45:45:00,A continuation of Heather's apology to Whitney.,FALSE,FALSE
-3,13,53,40:13:00,Whitney apologizes to Heather as they talk about their friendship drama.,FALSE,FALSE
-3,14,54,11:30:00,Angie's husband (but mostly Angie) apologizes for starting the Instagram about Jen.,TRUE,FALSE
-3,15,55,9:00:00,Meredith apologizes about spreading rumors about Lisa.,TRUE,FALSE
-3,15,55,35:51:00,Heather apologizes for stressing out production with the black eye incident.,TRUE,FALSE
-3,16,56,23:25:00,"John says he was hurt when Seth and Meredith made negative comments about Lisa, and Meredith apologizes.",FALSE,FALSE
-4,1,57,37:25:00,Meredith confronts Whitney about making a comment about her bathtub.,FALSE,FALSE
-4,2,58,5:20:00,Lisa apologizes again about the hot mic moment.,TRUE,FALSE
-4,2,58,5:28:00,Meredith apologizes about spreading rumors about Lisa.,TRUE,FALSE
-4,4,60,6:37:00,Heather apologizes for vomitting on Whitney's leg.,TRUE,FALSE
-4,4,60,30:24:00,Monica confronts Lisa about constantly talking about the $60k ring she lost.,FALSE,FALSE
-4,5,61,32:49:00,"Lisa and Monica are yelling at each other, Lisa says to bring it down.",FALSE,FALSE
-4,6,62,6:32:00,Meredith fake apologies to Angie.,FALSE,FALSE
-4,6,62,6:36:00,Angie fake apologizes to Meredith.,FALSE,FALSE
-4,6,62,22:40:00,Angie apologizes to Heather for saying some mean things about her.,TRUE,FALSE
-4,6,62,22:55:00,Heather apologizes to Angie for not having her back on the trip.,TRUE,FALSE
-4,7,63,5:20:00,"Whitney tells Justin she feels sad about her their relationship is going (he's gone back to work, he doesn't wear his wedding ring?)",TRUE,FALSE
-4,7,63,37:00:00,Monica's mom apologizes to Angie & Shawn at their party for making a scene with Monica.,TRUE,FALSE
-4,7,63,38:58:00,Monica tells her mom it hurt her when she apologized about her.,FALSE,FALSE
-4,8,64,26:10:00,Whitney tries to apologize to Mary about saying bad things about her church.,TRUE,FALSE
-4,8,64,26:10:00,Whitney asks Mary to take accountability for sending her mean texts.,FALSE,FALSE
-4,8,64,35:18:00,Monica tells her mom (again) it hurt her when she apologized about her.,FALSE,FALSE
-4,8,64,39:37:00,"Monica brings up that her mom wasn't very present in her childhood, including an incident where her mom made out with her boyfriend with Monica in the trunk of the car.",FALSE,FALSE
-4,9,65,6:50:00,"Monica and Angie work it out, and Monica shares what was going on for her when she freaked out at the party.",TRUE,FALSE
-4,10,66,5:13:00,Lisa apologizes for making a scene at her sound bath party.,TRUE,FALSE
-4,10,66,12:30:00,"Heather confronts Mary for saying harsh words about her last season (calling her ""inbred"").",FALSE,FALSE
-4,10,66,17:34:00,"While recording their podcast, Seth apologizes to Meredith for not being there for her.",TRUE,FALSE
-4,10,66,26:11:00,"Monica's mom wants to smooth things over and wants to start therapy, but Monica is skeptical.",FALSE,FALSE
-4,10,66,34:14:00,"Angie K. confronts Meredith about saying she could ""ruin her family.""",FALSE,FALSE
-4,10,66,42:05:00,"Lisa and Angie try to work things out, Angie apologizes for not sharing with her (and Lisa says ""same."")",TRUE,FALSE
-4,11,67,21:32:00,Whitney publicly (and sort of jokingly) apologizes on Meredith's podcast about the bathtub comments.,TRUE,FALSE
-4,11,67,38:27:00,"Lisa said Monica's mom seemed nice, which made Monica feel invalidated, so she tries to apologize.",FALSE,FALSE
-4,11,67,38:50:00,Monica apologizes for calling Lisa ugly.,TRUE,FALSE
-4,12,68,24:48:00,Monica apologizes to Heather for making a scene at the dinner.,TRUE,FALSE
-4,12,68,32:13:00,Monica apologizes to Lisa.,TRUE,TRUE
-4,12,68,36:24:00,Monica gives Bermuda-themed gifts to everyone and apologizes for the recent drama.,TRUE,FALSE
-4,12,68,37:38:00,"Whitney lost her best friend, and tells Lisa she felt ignored by her when she got to the party.",FALSE,FALSE
-4,13,69,29:11:00,Meredith tells the group she felt hurt by them ignoring her and not giving her a room with a bathtub when they got to Bermuda.,FALSE,FALSE
-4,13,69,29:34:00,Whitney re-confronts Lisa about not being there for her when she was going through the loss of her friend.,FALSE,FALSE
-4,13,69,30:54:00,Lisa confronts Whitney about hearing that Whitney thinks she's making Lisa a better person by being her friend.,FALSE,FALSE
-4,14,70,4:38:00,Whitney apologizes for coming at Heather.,TRUE,FALSE
-4,15,71,2:54:00,Heather apologizes for losing her temper at Monica over who's more single.,TRUE,FALSE
-4,15,71,3:32:00,Heather says it hurt her when Monica talked about whether Heather talked to her daughters about sex.,TRUE,FALSE
-4,16,72,4:53:00,"Whitney confronted Heather the night before about including stuff about her in the book, and the next morning she apologizes for exploding about it.",TRUE,FALSE
-4,16,72,6:15:00,Whitney tells Heather she felt exploited by the way Heather included her in the book.,TRUE,FALSE
-4,16,72,29:52:00,"RECEIPTS, PROOF, TIMELINE, SCREENSHOTS, FUCKING EVERYTHING",FALSE,FALSE
-4,17,73,39:25:00,"Angie apologizes for saying that Meredith ""spreads her legs for anyone.""",FALSE,FALSE
-4,18,74,35:10:00,"Whitney apologizes to Mary for the ""predator"" comment.",TRUE,FALSE
-4,19,75,18:15:00,Monica sort of apologizes for posting negative things about the women through the IG account (she says it's because she was trying to hurt Jen).,FALSE,FALSE
-4,19,75,36:12:00,"Heather apologizes for the whole black eye incident (to the cast, to the production, to the audience, etc).",TRUE,FALSE
-5,1,76,24:02:00,Angie won't apologize until she's apologized to.,FALSE,TRUE
-5,1,76,32:45:00,Lisa confronts Whitney about saying mean things about her on a podcast.,FALSE,FALSE
-5,1,76,22:53:00,Heather apologizes for not standing up to Whitney in the group.,TRUE,FALSE
-5,2,77,51:12:00,Whitney apologizes to Lisa about her comments from the podcast.,FALSE,FALSE
-5,3,78,37:31:00,Lisa apologizes to Bronwyn for not standing up for her.,FALSE,FALSE
-5,6,81,5:45:00,Whitney apologizes for accusing Meredith about posting negative things about her business.,TRUE,FALSE
-5,6,81,39:27:00,Whitney accuses Lisa of posting negative things about her business. Lisa freaks out.,FALSE,FALSE
-5,7,82,32:58:00,John apologizes for pushing Justin when things got heated at the Mob Wives party.,TRUE,FALSE
-5,7,82,37:01:00,"Bronwyn apologizes to Heather for how their dynamic has been, but then clearly wants an apology from Heather.",FALSE,FALSE
-5,9,84,6:50:00,"Shawn confronts Lisa about how she treats Angie, and Lisa apologizes.",FALSE,FALSE
-5,9,84,24:45:00,Justin apologizes to Lisa for yelling at her.,TRUE,FALSE
-5,9,84,25:00:00,Lisa apologizes for putting Justin in that position.,TRUE,FALSE
-5,9,84,25:39:00,"Meredith apologizes to Shawn for the rumors, but then asks for her own apology from Shawn.",FALSE,FALSE
-5,9,84,27:10:00,Meredith confronts Shawn about saying that she was leveraging Brooks to help absolve her from the comments she made about Shawn's sexuality.,FALSE,FALSE
-5,10,85,34:58:00,"Heather shares that she was hurt that she wasn't invited on the trip, and asks for a clean slate with Bronwyn.",TRUE,FALSE
-5,10,85,36:26:00,Britani apologizes to Bronwyn for saying mean things about her husband.,FALSE,FALSE
-5,11,86,14:14:00,Angie apologizes to Lisa for not standing up for her.,TRUE,FALSE
-5,12,87,24:39:00,Mary and Meredith apologize to each other after the incident where Meredith stormed out of Mary's house.,TRUE,FALSE
-5,12,87,24:43:00,Mary and Meredith apologize to each other after the incident where Meredith stormed out of Mary's house.,TRUE,FALSE
-5,12,87,26:37:00,Bronwyn wants an apology from Angie for telling her to shut up.,FALSE,FALSE
-5,12,87,37:06:00,"Angie said that Briatni had ""high body count hair"", and Britani's feelings are hurt.",FALSE,FALSE
-5,13,88,31:04:00,Bronwyn is hurt that Lisa didn't put her in the same house as her.,FALSE,FALSE
-5,13,88,41:02:00,Meredith apologizes for kicking Angie out of her batmitzvah.,TRUE,FALSE
-5,14,89,40:07:00,Bronwyn tells Lisa she feels like she didn't stand up for her and is taking Todd's side in the cheating.,FALSE,FALSE
-5,15,90,11:35:00,Everyone confronts Britani about recording them in the van.,FALSE,FALSE
-5,15,90,26:50:00,Britani apologizes again about the recording.,FALSE,FALSE
-5,16,91,2:53:00,Meredith apologizes for yelling at Heather.,TRUE,FALSE
-5,16,91,15:41:00,Angie apologizes to Mary for losing her trust.,TRUE,FALSE
-5,16,91,30:34:00,Bronwyn apologizes for her mean text about Britani.,TRUE,FALSE
-5,16,91,32:00:00,Angie apologizes for her mean text about Bronwyn.,TRUE,FALSE
-5,16,91,33:13:00,Heather apologizes for her mean text about Whitney.,TRUE,FALSE
-5,16,91,36:03:00,Whitney apologizes for her mean text about Lisa.,FALSE,FALSE
-5,16,91,39:56:00,Heather apologizes to everyone for the mean text exercise.,TRUE,FALSE
-5,17,92,32:42:00,Bronwyn wants an apology from Lisa for things she said about her daughter.,FALSE,FALSE
-5,18,93,10:53:00,John apologizes for getting into conflict with Justin.,TRUE,FALSE
-5,18,93,12:13:00,Whintey apologizes to John for talking about him and Lisa's marriage.,TRUE,FALSE
-5,18,93,14:39:00,Seth apologizes for calling Whitney a bitch.,FALSE,FALSE
-5,19,94,26:05:00,Britani apologizes to Mary for her not liking her.,FALSE,FALSE
-5,19,94,30:32:00,"Whitney ries to apologize again to Lisa for talking about her marriage, and Lisa won't accept it.",FALSE,FALSE
+season,episode,totalEpisode,timestamp,summary,solid_apology,chart_highlight,,,
+1,1,1,50:00:00,Jen makes a dramatic exit.,FALSE,TRUE,,187,total
+1,2,2,5:00:00,Mary tries a second time to apologize about saying Jen smelled like hospital.,FALSE,FALSE,,91,good
+1,2,2,38:15:00,Heather confronts Lisa about saying she didn't know her in college.,FALSE,FALSE,,,
+1,3,3,20:40:00,Meredith apologizes to Brooks.,TRUE,FALSE,,49%,
+1,4,4,41:50:00,"Jen shares with the group about her trauma and why she acts the way she does. She apologizes for yelling at Meredith, and Meredith feels the apology is genuine.",TRUE,FALSE,,,
+1,6,6,18:49:00,Jen confronts Mary about dismissing her story and then kicking her out of the luncheon.,FALSE,FALSE,,,
+1,6,6,18:49:00,"Mary confronts Jen about calling her a ""grandfather MFer.""",FALSE,FALSE,,,
+1,7,7,8:10:00,Brooks confronts his dad about not being present at his fashion show.,FALSE,FALSE,,,
+1,8,8,6:35:00,Seth apologizes to Brooks.,TRUE,FALSE,,,
+1,10,10,23:26:00,Whitney apologizes over the phone to Jen about making her angry at Shareef's birthday party.,TRUE,FALSE,,,
+1,10,10,27:28:00,Whitney brings Jen to a hot tub to apologize to her.,FALSE,FALSE,,,
+1,10,10,28:18:00,"Heather apologizes to Jen in the hot tub, but it's not clear that she did anything wrong (she's just trying to keep Jen calm).",FALSE,FALSE,,,
+1,10,10,31:57:00,"Whitney tries again, and Jen accepts it.",TRUE,FALSE,,,
+1,10,10,40:57:00,"Jen and Shareef talk it out, and apologize to each other.",TRUE,FALSE,,,
+1,11,11,36:30:00,"Whitney apologizes to Meredith and Lisa for the scene at Shareef's birthday party, and they take it well.",TRUE,FALSE,,,
+1,12,12,36:14:00,Meredith confronts Jen about saying negative things about her marriage.,FALSE,FALSE,,,
+1,13,13,34:25:00,Jen apologizes to Shareef for how she's been acting.,TRUE,FALSE,,,
+1,13,13,49:13:00,"Jen apologizes to Whitney about yelling at her, and Whitney accepts.",TRUE,FALSE,,,
+1,13,13,52:59:00,Jen apologizes to Meredith for talking negatively about her marriage.,TRUE,FALSE,,,
+1,13,13,57:00:00,"Heather confronts Jen about pushing her. After denying it, Jen apologizes.",TRUE,FALSE,,,
+1,14,14,23:38:00,A listener question asks if Heather has gotten an apology from Jen about the night of Shareef's party.,FALSE,FALSE,,,
+1,14,14,27:41:00,Jen apologizes for cyberbullying Brooks after he said he saw her vagina.,FALSE,FALSE,,,
+1,14,14,34:54:00,"Mary, Whitney, and Heather say Lisa is mean, and Lisa denies it.",FALSE,FALSE,,,
+1,15,15,4:18:00,"Mary re-apologizes for ""smells like hospital.""",FALSE,FALSE,,,
+1,15,15,6:27:00,Mary addresses her comments about fearing black guys in front of convenience stores.,FALSE,FALSE,,,
+1,15,15,10:30:00,"Jen apologizes for the ""grandpa MF-er"" incident.",TRUE,FALSE,,,
+1,15,15,25:50:00,Mary apologizes (again) for everything with Jen.,TRUE,FALSE,,,
+1,15,15,26:00:00,Jen apologizes too.,TRUE,FALSE,,,
+1,15,15,39:20:00,"Whitney and Heather confront Lisa for being mean, Lisa is frustrated because she thinks they'll always have a negative perception of her.",FALSE,FALSE,,,
+1,16,16,14:08:00,Shareef apologizes on Jen's behalf for Jen's comments about Robert Sr.'s marriage.,TRUE,FALSE,,,
+1,16,16,22:23:00,Jen apologizes to Meredith for talking about her marriage.,TRUE,FALSE,,,
+1,16,16,41:00:00,Heather confronts Jen for saying mean things about her on social media.,FALSE,FALSE,,,
+2,2,18,4:52:00,Jen apologizes to her nephew for not being present over the last year.,TRUE,FALSE,,,
+2,2,18,35:20:00,Heather confronts Jen about saying mean things about her on social media. Jen brings up her hurt around being painted as mean/aggressive (which is true?) Eventually she delivers a solid apology.,TRUE,FALSE,,,
+2,3,19,36:50:00,Meredith confronts Jen about liking homophobic tweets about Brooks and demands an apology.,FALSE,FALSE,,,
+2,4,20,8:09:00,Jen apologizes to Meredith about Brooks.,FALSE,FALSE,,,
+2,4,20,34:44:00,Angie confronts Lisa about the bar drama.,FALSE,FALSE,,,
+2,5,21,14:30:00,Jen apologizes to Brooks about the comments she made and for the vagina moment.,TRUE,FALSE,,,
+2,5,21,18:10:00,Jen apologizes to Meredith about all the stuff with Brooks.,TRUE,FALSE,,,
+2,5,21,40:18:00,Whitney confronts Lisa about her rude comments lately.,FALSE,FALSE,,,
+2,6,22,24:18:00,"Whitney confronts Lisa about the Angie bar sitation, which Lisa denies.",FALSE,FALSE,,,
+2,7,23,6:35:00,Dewy apologizes to Jenny for suggesting they get a sister wife.,TRUE,FALSE,,,
+2,7,23,26:43:00,"Mary says something about carbonation being bad for your ovaries, and Lisa says ""I need to Google that, is that real?"" Mary is offended and feels belittled.",FALSE,FALSE,,,
+2,7,23,35:54:00,Angie confronts Lisa (again) about the bar drama.,FALSE,FALSE,,,
+2,9,25,35:01:00,Whitney apologizes for not making it to Lisa's party for her son's brand.,TRUE,FALSE,,,
+2,9,25,39:10:00,Jen is upset she wasn't invited to Lisa's party and demands an apology.,TRUE,FALSE,,,
+2,9,25,49:50:00,Mary apologizes to Meredith for not being receptive to her while she was going off at Whitney.,FALSE,FALSE,,,
+2,12,28,9:23:00,Jenny apologizes to Mary for yelling at her when they went tubing.,FALSE,FALSE,,,
+2,12,28,19:30,Heather apologizes to her sister for their fractured relationship over the last few years.,TRUE,FALSE,,,
+2,12,28,24:45:00,Meredith apologizes to Mary for bringing up drama about her church.,TRUE,TRUE,,,
+2,12,28,39:34:00,Mary tells Heather she is hurt by her bringing accusations against her church.,FALSE,FALSE,,,
+2,12,28,14:35:00,Jen is upset with Lisa that she hasn't reached out to her while she's been going through a lot with the arrest.,TRUE,FALSE,,,
+2,14,30,19:49:00,"Heather's brother is leaving the church, and tells Heather he was hurt when she didn't reach out.",TRUE,FALSE,,,
+2,14,30,1:02:26,The group apologizes to Jen for taking attention away from her pain when they get into a a big fight at the Pho lunch.,TRUE,FALSE,,,
+2,15,31,30:37:00,"Jenny confronts Mary about saying she had ""slanted eyes.""",FALSE,FALSE,,,
+2,15,31,32:27:00,Jenny confronts Mary about re-gifting her a gift.,FALSE,FALSE,,,
+2,15,31,34:26:00,"Whitney confronts Mary about the racially insensitive comments she's made lately (slanted eyes, Mexican thug).",FALSE,FALSE,,,
+2,16,32,41:38:00,"Lisa and Jen are in a heated fight about how Lisa has talked about her not being innocent, and not been a good friend lately. Lisa says ""I'm sorry"" at one point, but then a minute later they're physically fighting.",FALSE,FALSE,,,
+2,17,33,5:00:00,Lisa apologizes to Jen after their fight.,TRUE,FALSE,,,
+2,17,33,28:44:00,Whitney is upset because Mereditih and Mary didn't come to her spiritual activity.,FALSE,FALSE,,,
+2,17,33,35:00:00,Jenny confronts Meredith about how she didn't tell Mary it was wrong to make the comment about slanted eyes.,FALSE,FALSE,,,
+2,18,34,33:17:00,"Lisa apologizes to Heather, Jenny, Whitney for telling Meredith that people were speculating about her faking her dad's funeral, which caused her to yell.",TRUE,FALSE,,,
+2,18,34,34:37:00,Mary apologizes to Jenny for being so cold to her and not wanting to be her friend.,TRUE,FALSE,,,
+2,19,35,16:08:00,Jenny apologizes to Meredith for sharing with Jen that Meredith hired a private investigator.,TRUE,FALSE,,,
+2,19,35,30:26:00,"Jenny asks Mary for an apology for being rude to her, and Mary says a) she doesn't like her, b) she doesn't want to apologize to her.",FALSE,FALSE,,,
+2,19,35,41:00:00,Meredith apologizes to everyone for screaming yesterday.,TRUE,FALSE,,,
+2,20,36,9:12:00,Whitney tries to apologize to Meredith about how she asked her about whether her father's funeral was real.,FALSE,FALSE,,,
+2,20,36,39:00:00,Meredith apologizes to Whitney for yelling at her about the funeral thing.,TRUE,FALSE,,,
+2,21,37,32:31:00,Whitney apologizes to Mary for talking about her church.,FALSE,FALSE,,,
+2,21,37,36:03:00,"Jenny apologizes to Lisa for throwing a glass at her party (Lisa says ""Why are you apologizing? I don't care!""",TRUE,FALSE,,,
+2,21,37,13:33:00,"Meredith apologizes for talking abou Jen's family (""for anything that i said"")",TRUE,FALSE,,,
+2,22,38,20:44:00,Whitney apologizes to Lisa for calling her a minion.,TRUE,FALSE,,,
+2,22,38,25:07:00,Heather apologizes to Jenny for saying she looked like an anime character.,TRUE,FALSE,,,
+2,23,39,1:40:00,"Lisa apologizes to Jen for saying ""I love Jen Shah, as controversial as that is.""",FALSE,FALSE,,,
+2,23,39,27:55:00,"Meredith says she didn't feel like Lisa was there for her after her dad passed, which Lisa denies.",FALSE,FALSE,,,
+2,23,39,32:12:00,"Lisa attempts to apologize to Meredith for her rant about Meredith being a ""garbage whore.""",FALSE,FALSE,,,
+2,23,39,37:49:00,Second attempt at Lisa's apology.,FALSE,FALSE,,,
+2,24,40,19:12:00,"Jen confronts Whitney about speculating about fraud, Whitney apologizes.",TRUE,FALSE,,,
+2,24,40,40:15:00,Jen re-iterates that she's sorry to Heather for the mean social media posts.,TRUE,FALSE,,,
+2,24,40,40:40:00,Heather apologizes for bringing it up so much.,TRUE,FALSE,,,
+3,1,41,38:22:00,"Lisa attempts to apologize to Meredith for her rant about Meredith being a ""garbage whore."" (again)",FALSE,FALSE,,,
+3,2,42,47:42:00,Meredith apologizes to the group for being late to the shaman.,TRUE,FALSE,,,
+3,2,42,48:15:00,"Meredith says she doesn't feel safe with the group, and Lisa says ""I used to feel like I was a safe spae for you, I'm sorry"", which does not go over well.",FALSE,FALSE,,,
+3,3,43,4:00:00,Lisa apologizes (again) for the garbage whore comments.,FALSE,FALSE,,,
+3,3,43,7:52:00,"Lisa says ""I'm not gonna slit my wrists for anybody"", which makes Meredith upset because she has a family member who tried to commit suicide.",FALSE,FALSE,,,
+3,3,43,39:40:00,Meredith apologizes to Lisa for spreading rumors about her sleeping with someone else.,TRUE,FALSE,,,
+3,5,45,38:05:00,Heather apologizes to Lisa for inviting Angie H. skiing with them.,TRUE,FALSE,,,
+3,5,45,41:21:00,Heather apologizes to Whitney for claiming she made the whole trip about her and her healing journey.,FALSE,FALSE,,,
+3,7,47,12:09:00,"Jen confronts Angie H. about the ""Shah exposed"" Instagram account.",FALSE,FALSE,,,
+3,7,47,37:04:00,Whitney confronts Heather about their conflict and how she feels like Heather hasn't been supporting her.,FALSE,FALSE,,,
+3,8,48,33:04:00,"Angie apologizes to Jen for the ""Shah exposed"" account.",TRUE,FALSE,,,
+3,9,49,22:29:00,"Jen pours a drink on Angie's head, and Angie is upset.",FALSE,FALSE,,,
+3,9,49,33:37:00,"Jen tries to apologize about pouring the drink on Angie's head, again.",FALSE,FALSE,,,
+3,10,50,36:56:00,"When Lisa confronts her about it later on, Jen apologizes to Angie about the drink pouring.",TRUE,FALSE,,,
+3,11,51,5:54:00,Jen apologizes to Angie again for the drink pouring.,FALSE,FALSE,,,
+3,11,51,18:34:00,Jen apologizes for being mean to Lisa on the boat.,FALSE,FALSE,,,
+3,11,51,38:28:00,Whitney apologizes to Meredith for betraying her trust by sharing the rumours that Meredith told her about Lisa.,FALSE,FALSE,,,
+3,11,51,41:50:00,Heather is passive-aggressive to Whitney.,FALSE,TRUE,,,
+3,11,51,45:45:00,A continuation of Heather's apology to Whitney.,FALSE,FALSE,,,
+3,13,53,40:13:00,Whitney apologizes to Heather as they talk about their friendship drama.,FALSE,FALSE,,,
+3,14,54,11:30:00,Angie's husband (but mostly Angie) apologizes for starting the Instagram about Jen.,TRUE,FALSE,,,
+3,15,55,9:00:00,Meredith apologizes about spreading rumors about Lisa.,TRUE,FALSE,,,
+3,15,55,35:51:00,Heather apologizes for stressing out production with the black eye incident.,TRUE,FALSE,,,
+3,16,56,23:25:00,"John says he was hurt when Seth and Meredith made negative comments about Lisa, and Meredith apologizes.",FALSE,FALSE,,,
+4,1,57,37:25:00,Meredith confronts Whitney about making a comment about her bathtub.,FALSE,FALSE,,,
+4,2,58,5:20:00,Lisa apologizes again about the hot mic moment.,TRUE,FALSE,,,
+4,2,58,5:28:00,Meredith apologizes about spreading rumors about Lisa.,TRUE,FALSE,,,
+4,4,60,6:37:00,Heather apologizes for vomitting on Whitney's leg.,TRUE,FALSE,,,
+4,4,60,30:24:00,Monica confronts Lisa about constantly talking about the $60k ring she lost.,FALSE,FALSE,,,
+4,5,61,32:49:00,"Lisa and Monica are yelling at each other, Lisa says to bring it down.",FALSE,FALSE,,,
+4,6,62,6:32:00,Meredith fake apologies to Angie.,FALSE,FALSE,,,
+4,6,62,6:36:00,Angie fake apologizes to Meredith.,FALSE,FALSE,,,
+4,6,62,22:40:00,Angie apologizes to Heather for saying some mean things about her.,TRUE,FALSE,,,
+4,6,62,22:55:00,Heather apologizes to Angie for not having her back on the trip.,TRUE,FALSE,,,
+4,7,63,5:20:00,"Whitney tells Justin she feels sad about her their relationship is going (he's gone back to work, he doesn't wear his wedding ring?)",TRUE,FALSE,,,
+4,7,63,37:00:00,Monica's mom apologizes to Angie & Shawn at their party for making a scene with Monica.,TRUE,FALSE,,,
+4,7,63,38:58:00,Monica tells her mom it hurt her when she apologized about her.,FALSE,FALSE,,,
+4,8,64,26:10:00,Whitney tries to apologize to Mary about saying bad things about her church.,TRUE,FALSE,,,
+4,8,64,26:10:00,Whitney asks Mary to take accountability for sending her mean texts.,FALSE,FALSE,,,
+4,8,64,35:18:00,Monica tells her mom (again) it hurt her when she apologized about her.,FALSE,FALSE,,,
+4,8,64,39:37:00,"Monica brings up that her mom wasn't very present in her childhood, including an incident where her mom made out with her boyfriend with Monica in the trunk of the car.",FALSE,FALSE,,,
+4,9,65,6:50:00,"Monica and Angie work it out, and Monica shares what was going on for her when she freaked out at the party.",TRUE,FALSE,,,
+4,10,66,5:13:00,Lisa apologizes for making a scene at her sound bath party.,TRUE,FALSE,,,
+4,10,66,12:30:00,"Heather confronts Mary for saying harsh words about her last season (calling her ""inbred"").",FALSE,FALSE,,,
+4,10,66,17:34:00,"While recording their podcast, Seth apologizes to Meredith for not being there for her.",TRUE,FALSE,,,
+4,10,66,26:11:00,"Monica's mom wants to smooth things over and wants to start therapy, but Monica is skeptical.",FALSE,FALSE,,,
+4,10,66,34:14:00,"Angie K. confronts Meredith about saying she could ""ruin her family.""",FALSE,FALSE,,,
+4,10,66,42:05:00,"Lisa and Angie try to work things out, Angie apologizes for not sharing with her (and Lisa says ""same."")",TRUE,FALSE,,,
+4,11,67,21:32:00,Whitney publicly (and sort of jokingly) apologizes on Meredith's podcast about the bathtub comments.,TRUE,FALSE,,,
+4,11,67,38:27:00,"Lisa said Monica's mom seemed nice, which made Monica feel invalidated, so she tries to apologize.",FALSE,FALSE,,,
+4,11,67,38:50:00,Monica apologizes for calling Lisa ugly.,TRUE,FALSE,,,
+4,12,68,24:48:00,Monica apologizes to Heather for making a scene at the dinner.,TRUE,FALSE,,,
+4,12,68,32:13:00,Monica apologizes to Lisa.,TRUE,TRUE,,,
+4,12,68,36:24:00,Monica gives Bermuda-themed gifts to everyone and apologizes for the recent drama.,TRUE,FALSE,,,
+4,12,68,37:38:00,"Whitney lost her best friend, and tells Lisa she felt ignored by her when she got to the party.",FALSE,FALSE,,,
+4,13,69,29:11:00,Meredith tells the group she felt hurt by them ignoring her and not giving her a room with a bathtub when they got to Bermuda.,FALSE,FALSE,,,
+4,13,69,29:34:00,Whitney re-confronts Lisa about not being there for her when she was going through the loss of her friend.,FALSE,FALSE,,,
+4,13,69,30:54:00,Lisa confronts Whitney about hearing that Whitney thinks she's making Lisa a better person by being her friend.,FALSE,FALSE,,,
+4,14,70,4:38:00,Whitney apologizes for coming at Heather.,TRUE,FALSE,,,
+4,15,71,2:54:00,Heather apologizes for losing her temper at Monica over who's more single.,TRUE,FALSE,,,
+4,15,71,3:32:00,Heather says it hurt her when Monica talked about whether Heather talked to her daughters about sex.,TRUE,FALSE,,,
+4,16,72,4:53:00,"Whitney confronted Heather the night before about including stuff about her in the book, and the next morning she apologizes for exploding about it.",TRUE,FALSE,,,
+4,16,72,6:15:00,Whitney tells Heather she felt exploited by the way Heather included her in the book.,TRUE,FALSE,,,
+4,16,72,29:52:00,"RECEIPTS, PROOF, TIMELINE, SCREENSHOTS, FUCKING EVERYTHING",FALSE,FALSE,,,
+4,17,73,39:25:00,"Angie apologizes for saying that Meredith ""spreads her legs for anyone.""",FALSE,FALSE,,,
+4,18,74,35:10:00,"Whitney apologizes to Mary for the ""predator"" comment.",TRUE,FALSE,,,
+4,19,75,18:15:00,Monica sort of apologizes for posting negative things about the women through the IG account (she says it's because she was trying to hurt Jen).,FALSE,FALSE,,,
+4,19,75,36:12:00,"Heather apologizes for the whole black eye incident (to the cast, to the production, to the audience, etc).",TRUE,FALSE,,,
+5,1,76,24:02:00,Angie won't apologize until she's apologized to.,FALSE,TRUE,,,
+5,1,76,32:45:00,Lisa confronts Whitney about saying mean things about her on a podcast.,FALSE,FALSE,,,
+5,1,76,22:53:00,Heather apologizes for not standing up to Whitney in the group.,TRUE,FALSE,,,
+5,2,77,51:12:00,Whitney apologizes to Lisa about her comments from the podcast.,FALSE,FALSE,,,
+5,3,78,37:31:00,Lisa apologizes to Bronwyn for not standing up for her.,FALSE,FALSE,,,
+5,6,81,5:45:00,Whitney apologizes for accusing Meredith about posting negative things about her business.,TRUE,FALSE,,,
+5,6,81,39:27:00,Whitney accuses Lisa of posting negative things about her business. Lisa freaks out.,FALSE,FALSE,,,
+5,7,82,32:58:00,John apologizes for pushing Justin when things got heated at the Mob Wives party.,TRUE,FALSE,,,
+5,7,82,37:01:00,"Bronwyn apologizes to Heather for how their dynamic has been, but then clearly wants an apology from Heather.",FALSE,FALSE,,,
+5,9,84,6:50:00,"Shawn confronts Lisa about how she treats Angie, and Lisa apologizes.",FALSE,FALSE,,,
+5,9,84,24:45:00,Justin apologizes to Lisa for yelling at her.,TRUE,FALSE,,,
+5,9,84,25:00:00,Lisa apologizes for putting Justin in that position.,TRUE,FALSE,,,
+5,9,84,25:39:00,"Meredith apologizes to Shawn for the rumors, but then asks for her own apology from Shawn.",FALSE,FALSE,,,
+5,9,84,27:10:00,Meredith confronts Shawn about saying that she was leveraging Brooks to help absolve her from the comments she made about Shawn's sexuality.,FALSE,FALSE,,,
+5,10,85,34:58:00,"Heather shares that she was hurt that she wasn't invited on the trip, and asks for a clean slate with Bronwyn.",TRUE,FALSE,,,
+5,10,85,36:26:00,Britani apologizes to Bronwyn for saying mean things about her husband.,FALSE,FALSE,,,
+5,11,86,14:14:00,Angie apologizes to Lisa for not standing up for her.,TRUE,FALSE,,,
+5,12,87,24:39:00,Mary and Meredith apologize to each other after the incident where Meredith stormed out of Mary's house.,TRUE,FALSE,,,
+5,12,87,24:43:00,Mary and Meredith apologize to each other after the incident where Meredith stormed out of Mary's house.,TRUE,FALSE,,,
+5,12,87,26:37:00,Bronwyn wants an apology from Angie for telling her to shut up.,FALSE,FALSE,,,
+5,12,87,37:06:00,"Angie said that Briatni had ""high body count hair"", and Britani's feelings are hurt.",FALSE,FALSE,,,
+5,13,88,31:04:00,Bronwyn is hurt that Lisa didn't put her in the same house as her.,FALSE,FALSE,,,
+5,13,88,41:02:00,Meredith apologizes for kicking Angie out of her batmitzvah.,TRUE,FALSE,,,
+5,14,89,40:07:00,Bronwyn tells Lisa she feels like she didn't stand up for her and is taking Todd's side in the cheating.,FALSE,FALSE,,,
+5,15,90,11:35:00,Everyone confronts Britani about recording them in the van.,FALSE,FALSE,,,
+5,15,90,26:50:00,Britani apologizes again about the recording.,FALSE,FALSE,,,
+5,16,91,2:53:00,Meredith apologizes for yelling at Heather.,TRUE,FALSE,,,
+5,16,91,15:41:00,Angie apologizes to Mary for losing her trust.,TRUE,FALSE,,,
+5,16,91,30:34:00,Bronwyn apologizes for her mean text about Britani.,TRUE,FALSE,,,
+5,16,91,32:00:00,Angie apologizes for her mean text about Bronwyn.,TRUE,FALSE,,,
+5,16,91,33:13:00,Heather apologizes for her mean text about Whitney.,TRUE,FALSE,,,
+5,16,91,36:03:00,Whitney apologizes for her mean text about Lisa.,FALSE,FALSE,,,
+5,16,91,39:56:00,Heather apologizes to everyone for the mean text exercise.,TRUE,FALSE,,,
+5,17,92,32:42:00,Bronwyn wants an apology from Lisa for things she said about her daughter.,FALSE,FALSE,,,
+5,18,93,10:53:00,John apologizes for getting into conflict with Justin.,TRUE,FALSE,,,
+5,18,93,12:13:00,Whintey apologizes to John for talking about him and Lisa's marriage.,TRUE,FALSE,,,
+5,18,93,14:39:00,Seth apologizes for calling Whitney a bitch.,FALSE,FALSE,,,
+5,19,94,26:05:00,Britani apologizes to Mary for her not liking her.,FALSE,FALSE,,,
+5,19,94,30:32:00,"Whitney ries to apologize again to Lisa for talking about her marriage, and Lisa won't accept it.",FALSE,FALSE,,,
