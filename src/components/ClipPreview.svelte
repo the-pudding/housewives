@@ -1,8 +1,8 @@
 <script>
-	const { id } = $props();
+	const { id, alt } = $props();
 </script>
 
-<img src={`assets/img/clip_stills/${id}.png`} />
+<img src={`assets/img/clip_stills/${id}.png`} {alt} />
 
 <style>
 	img {

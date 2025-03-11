@@ -10,6 +10,7 @@
 	class="mute"
 	class:static={positionStatic}
 	onclick={() => (videoSettings.soundOn = !videoSettings.soundOn)}
+	aria-label="Toggle sound"
 >
 	{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
 </button>

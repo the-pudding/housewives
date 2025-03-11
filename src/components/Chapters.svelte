@@ -29,6 +29,7 @@
 									<button
 										class="bar-wrapper"
 										onclick={() => goTo(sectionI, barI, subI)}
+										aria-label={`Section ${sectionI}, Slide ${barI + 1}, Part ${subI + 1}`}
 									>
 										<div
 											class="bar"
@@ -42,6 +43,7 @@
 								<button
 									class="bar-wrapper"
 									onclick={() => goTo(sectionI, barI)}
+									aria-label={`Section ${sectionI}, Slide ${barI + 1}`}
 								>
 									<div
 										class="bar"
@@ -58,8 +60,12 @@
 						{/if}{@html section}
 					</div>
 				{:else}
-					<button class="long-bar-wrapper" onclick={() => goTo(sectionI, 0)}>
-						<div class="long-bar" />
+					<button
+						class="long-bar-wrapper"
+						onclick={() => goTo(sectionI, 0)}
+						aria-label={`Section ${sectionI} - ${section}`}
+					>
+						<div class="long-bar"></div>
 					</button>
 				{/if}
 			</div>

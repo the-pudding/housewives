@@ -145,18 +145,27 @@
 	</video>
 
 	{#if controls}
-		<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
+		<button
+			class="cc"
+			class:on={videoSettings.ccOn}
+			onclick={toggleCC}
+			aria-label="Toggle CCs"
+		>
 			{@html ccSvg}
 		</button>
 
-		<button class="restart" class:visible={done} onclick={restartPlay}
-			>{@html restartSvg}</button
+		<button
+			class="restart"
+			class:visible={done}
+			onclick={restartPlay}
+			aria-label="Restart">{@html restartSvg}</button
 		>
 
 		<button
 			class="play"
 			class:visible={inline && paused && !done && loaded}
-			onclick={restartPlay}>{@html playSvg}</button
+			onclick={restartPlay}
+			aria-label="Play">{@html playSvg}</button
 		>
 	{/if}
 
@@ -173,10 +182,6 @@
 				{/if}
 				{#if context}
 					<span class="context-text">{@html context}</span>
-					<!-- <details>
-						<summary>Click for more context</summary>
-						{context}
-					</details> -->
 				{/if}
 			</div>
 		{/if}
@@ -221,10 +226,6 @@
 	.context-text {
 		font-size: var(--14px);
 		margin-left: 1rem;
-	}
-
-	.context details:hover {
-		cursor: pointer;
 	}
 
 	figure {
@@ -363,10 +364,6 @@
 		figure.inline {
 			min-height: 233px;
 			margin-top: 0;
-		}
-
-		.context details {
-			margin: 0.75rem;
 		}
 
 		video.shift-left {
