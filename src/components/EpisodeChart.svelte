@@ -161,7 +161,7 @@
 		top: 8.5rem;
 		left: 1rem;
 		width: calc(100% - 2rem);
-		height: calc(100vh - 14.5rem);
+		height: calc(100dvh - 14.5rem);
 		display: flex;
 		gap: 0.5rem;
 		padding-bottom: 3rem;

@@ -117,7 +117,7 @@
 <style>
 	article {
 		width: 100%;
-		height: 100vh;
+		height: 100dvh;
 		z-index: 2;
 		pointer-events: none;
 		position: relative;
@@ -171,7 +171,7 @@
 	}
 
 	.content.full {
-		height: 100vh;
+		height: 100dvh;
 		width: 100%;
 		max-width: none;
 		margin: 0;
@@ -253,7 +253,8 @@
 		}
 
 		:global(h2) {
-			margin: 0;
+			margin-top: 0;
+			margin-bottom: 0.5rem;
 		}
 	}
 </style>

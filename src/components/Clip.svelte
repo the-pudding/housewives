@@ -11,10 +11,10 @@
 		autoplay = true,
 		inline = false,
 		controls = true,
-		shiftLeft,
 		slideI,
 		finish,
-		progressColor = "var(--color-purple-300)"
+		progressColor = "var(--color-purple-300)",
+		mobilePosition
 	} = $props();
 
 	let videoEl;
@@ -24,6 +24,12 @@
 	let done = $state(false);
 	let loaded = $state(false);
 	let startedLoad = $state(false);
+	let currentObjectPosition = $derived.by(() => {
+		if (!mobilePosition) return null;
+		const i = mobilePosition.findIndex((d) => d.t > currentTime);
+		if (i === -1) return mobilePosition[mobilePosition.length - 1].position;
+		return mobilePosition[i - 1].position;
+	});
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
@@ -113,7 +119,13 @@
 		// Turn on/off sound
 		videoEl.muted = !videoSettings.soundOn;
 	});
+
+	const onKeyDown = (e) => {
+		if (e.key === "ArrowDown" && currentTime > 0) console.log(currentTime);
+	};
 </script>
+
+<svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <figure class:inline class:small={!controls}>
 	<figcaption class="sr-only">{context}</figcaption>
@@ -128,13 +140,13 @@
 	<video
 		class:visible={current.slide === slideI && loaded}
 		class:inline
-		class:shift-left={shiftLeft === "true"}
 		playsinline
 		bind:this={videoEl}
 		bind:currentTime
 		bind:duration
 		onended={onEnd}
 		onclick={inline ? restartPlay : null}
+		style={`--mobile-object-position: ${currentObjectPosition}`}
 	>
 		<track
 			kind="captions"
@@ -258,10 +270,6 @@
 		object-fit: cover;
 	}
 
-	.small video {
-		object-position: 0px -10px;
-	}
-
 	video.visible {
 		display: block;
 	}
@@ -366,8 +374,8 @@
 			margin-top: 0;
 		}
 
-		video.shift-left {
-			object-position: 20% 50%;
+		video {
+			object-position: var(--mobile-object-position);
 		}
 	}
 
