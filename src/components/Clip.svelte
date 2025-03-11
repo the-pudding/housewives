@@ -216,6 +216,10 @@
 		height: 1rem;
 	}
 
+	.small video {
+		object-position: 50% -10px;
+	}
+
 	.progress-inner {
 		position: absolute;
 		left: 0;

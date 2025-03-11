@@ -55,7 +55,7 @@
 				apologies.forEach((apology) => {
 					apology.style.background = "var(--color-gray-300)";
 					apology.style.transition =
-						"background-color var(--1s) calc(var(--1s)* 2)";
+						"background-color var(--1s) calc(var(--1s)* 4)";
 				});
 			} else if (current.slide + 1 === slideI || current.slide - 1 === slideI) {
 				const apologies = document.querySelectorAll(".apology");
