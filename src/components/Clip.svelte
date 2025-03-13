@@ -272,7 +272,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: -2rem 50%;
+		object-position: 50% -2rem;
 	}
 
 	video.visible {

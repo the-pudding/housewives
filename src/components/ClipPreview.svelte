@@ -11,6 +11,7 @@
 <style>
 	img {
 		object-fit: cover;
+		object-position: 50% -2rem;
 		width: 100%;
 		height: 100dvh;
 		opacity: 0.9;
