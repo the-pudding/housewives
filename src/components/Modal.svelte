@@ -53,6 +53,7 @@
 			id={mediaPlaying.id}
 			{progressColor}
 			{context}
+			modal={true}
 		/>
 	{/if}
 	<button class="close" onclick={close}>{@html closeSvg}</button>

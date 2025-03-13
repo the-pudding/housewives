@@ -14,6 +14,7 @@
 		slideI,
 		finish,
 		progressColor = "var(--color-purple-300)",
+		modal,
 		mobilePosition
 	} = $props();
 
@@ -140,6 +141,7 @@
 	<video
 		class:visible={current.slide === slideI && loaded}
 		class:inline
+		class:modal
 		playsinline
 		bind:this={videoEl}
 		bind:currentTime
@@ -384,6 +386,10 @@
 
 		video {
 			object-position: var(--mobile-object-position);
+		}
+
+		:global(video::cue) {
+			font-size: var(--24px);
 		}
 	}
 

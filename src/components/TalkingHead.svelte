@@ -10,6 +10,7 @@
 	import marySvg from "$svg/faces/mary.svg";
 	import meredithSvg from "$svg/faces/meredith.svg";
 	import whitneySvg from "$svg/faces/whitney.svg";
+	import soundSvg from "$svg/sound-on.svg";
 	import { mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
 	import { current } from "../runes/misc.svelte";
 
@@ -126,7 +127,9 @@
 	class:bounce={bounce && !clickedOne}
 >
 	{#if title}
-		<div class="name">{_.startCase(name)}</div>
+		<div class="name" class:hide={mediaPlaying.id === name}>
+			{_.startCase(name)} <span class="sound">{@html soundSvg}</span>
+		</div>
 	{/if}
 
 	<button
@@ -164,6 +167,9 @@
 <style>
 	.wrapper {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.wrapper.absolute {
@@ -207,6 +213,13 @@
 	.name {
 		text-align: center;
 		pointer-events: none;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.name.hide {
+		opacity: 0;
 	}
 
 	.quote {
@@ -227,6 +240,13 @@
 
 	.quote.visible {
 		visibility: visible;
+	}
+
+	.sound {
+		color: var(--color-purple-500);
+		display: flex;
+		height: 20px;
+		width: 20px;
 	}
 
 	@keyframes bounce {
