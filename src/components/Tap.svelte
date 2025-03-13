@@ -43,9 +43,17 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <div class="tap">
-	<button class="left" class:hidden={firstSlide} onclick={() => advance(-1)}
+	<button
+		class="left"
+		class:hidden={firstSlide}
+		onclick={() => advance(-1)}
+		aria-label="Tap left to go to the previous slide"
 	></button>
-	<button class="right" class:full={firstSlide} onclick={() => advance(1)}
+	<button
+		class="right"
+		class:full={firstSlide}
+		onclick={() => advance(1)}
+		aria-label="Tap right to go to the next slide"
 	></button>
 </div>
 

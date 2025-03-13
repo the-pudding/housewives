@@ -150,7 +150,7 @@
 	>
 		<track
 			kind="captions"
-			src={`assets/video/${id}/${id}.vtt`}
+			src={`assets/video/${id}/${id}-shifted.vtt`}
 			srclang="en"
 			mode="showing"
 		/>
@@ -272,6 +272,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: -2rem 50%;
 	}
 
 	video.visible {
@@ -281,10 +282,6 @@
 	video.inline {
 		position: static;
 		object-position: 0px -21px;
-	}
-
-	video.shift-left {
-		object-position: 20% 50%;
 	}
 
 	.loading {
@@ -369,7 +366,14 @@
 		color: var(--color-white);
 		font-family: var(--sans);
 		font-size: var(--32px);
-		transform: translate(0, -40px);
+	}
+
+	:global(video.inline::cue) {
+		font-size: var(--20px);
+	}
+
+	:global(.small video::cue) {
+		font-size: var(--16px);
 	}
 
 	@media (max-width: 600px) {

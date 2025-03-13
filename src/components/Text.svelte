@@ -38,8 +38,8 @@
 	@media (max-width: 600px) {
 		div {
 			font-size: var(--20px);
-			bottom: 6rem !important;
-			top: auto !important;
+			top: 6rem !important;
+			bottom: auto !important;
 			right: auto !important;
 			left: 50% !important;
 			transform: translate(-50%, 0);

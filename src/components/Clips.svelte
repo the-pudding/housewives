@@ -36,6 +36,7 @@
 				class="clip"
 				class:active={i === activeClipI}
 				onclick={() => playClip(i)}
+				aria-label={`Video clip: ${caption}`}
 			>
 				<Clip
 					bind:this={clipComponents[i]}
