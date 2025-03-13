@@ -54,11 +54,11 @@
 	{/each}
 </div>
 
-<!-- <div class="controls">
+<div class="controls">
 	<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
 		{@html ccSvg}
 	</button>
-</div> -->
+</div>
 
 <style>
 	.clips {
@@ -106,7 +106,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
-		margin-top: 3rem;
+		margin-top: 2rem;
 	}
 
 	.cc {
@@ -137,6 +137,10 @@
 		.clips {
 			margin: 0;
 			gap: 0.5rem;
+		}
+
+		.controls {
+			margin-top: 0.5rem;
 		}
 
 		.caption {

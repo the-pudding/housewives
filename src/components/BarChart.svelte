@@ -120,7 +120,7 @@
 
 	.row {
 		position: relative;
-		height: 40px;
+		height: 36px;
 		display: flex;
 		align-items: center;
 	}
@@ -236,6 +236,16 @@
 	@media (max-width: 400px) {
 		#monica-garcia .num_bad_apologies .number {
 			display: none;
+		}
+	}
+
+	@media (max-height: 820px) {
+		.label .seasons {
+			display: none;
+		}
+
+		.row {
+			height: auto;
 		}
 	}
 </style>
