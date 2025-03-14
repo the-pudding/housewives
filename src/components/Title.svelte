@@ -36,7 +36,10 @@
 		>
 	</div>
 	<div class="text sound" class:visible={current.slide === 1}>
-		Also it contains sound. <Mute positionStatic={true} />
+		Also it contains sound. <Mute
+			positionStatic={true}
+			visible={current.slide === 1}
+		/>
 	</div>
 	<div class="tap" class:visible={current.slide === 1}>
 		Tap the left side to go back, right to go forward

@@ -120,13 +120,7 @@
 		// Turn on/off sound
 		videoEl.muted = !videoSettings.soundOn;
 	});
-
-	const onKeyDown = (e) => {
-		if (e.key === "ArrowDown" && currentTime > 0) console.log(currentTime);
-	};
 </script>
-
-<svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <figure class:inline class:small={!controls}>
 	<figcaption class="sr-only">{context}</figcaption>
@@ -171,6 +165,7 @@
 		<button
 			class="restart"
 			class:visible={done}
+			tabindex={done ? "0" : "-1"}
 			onclick={restartPlay}
 			aria-label="Restart">{@html restartSvg}</button
 		>
@@ -178,6 +173,7 @@
 		<button
 			class="play"
 			class:visible={inline && paused && !done && loaded}
+			tabindex={inline && paused && !done && loaded ? "0" : "-1"}
 			onclick={restartPlay}
 			aria-label="Play">{@html playSvg}</button
 		>

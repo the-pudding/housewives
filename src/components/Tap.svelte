@@ -35,12 +35,45 @@
 	};
 
 	const onKeyDown = (e) => {
-		if (e.keyCode === 39) advance(1);
-		else if (e.keyCode === 37) advance(-1);
+		if (e.keyCode === 39) {
+			advance(1);
+			e.preventDefault();
+		} else if (e.keyCode === 37) {
+			advance(-1);
+			e.preventDefault();
+		} else if (e.key === "Tab" || e.keyCode === 9) {
+			const elements = ["button", "[href]", "input", "select", "textarea"];
+			const focusableElements = [
+				...document.querySelectorAll(
+					elements.map((el) => `#slide-${current.slide} ${el}`).join(", ")
+				),
+				...document.querySelectorAll(
+					elements.map((el) => `header ${el}`).join(", ")
+				),
+				...document.querySelectorAll(
+					elements.map((el) => `#chapters ${el}`).join(", ")
+				)
+			].filter((el) => el.tabIndex !== -1);
+
+			console.log({ focusableElements });
+			const firstElement = focusableElements[0];
+			const lastElement = focusableElements[focusableElements.length - 1];
+			if (e.shiftKey) {
+				if (document.activeElement === firstElement) {
+					e.preventDefault();
+					lastElement.focus();
+				}
+			} else {
+				if (document.activeElement === lastElement) {
+					e.preventDefault();
+					firstElement.focus();
+				}
+			}
+		}
 	};
 </script>
 
-<svelte:window on:keydown|preventDefault={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} />
 
 <div class="tap">
 	<button
@@ -48,12 +81,14 @@
 		class:hidden={firstSlide}
 		onclick={() => advance(-1)}
 		aria-label="Tap left to go to the previous slide"
+		tabindex="-1"
 	></button>
 	<button
 		class="right"
 		class:full={firstSlide}
 		onclick={() => advance(1)}
 		aria-label="Tap right to go to the next slide"
+		tabindex="-1"
 	></button>
 </div>
 

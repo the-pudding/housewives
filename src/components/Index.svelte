@@ -1,4 +1,5 @@
 <script>
+	import Slide from "$components/Slide.svelte";
 	import Tap from "$components/Tap.svelte";
 	import Modal from "$components/Modal.svelte";
 	import Mute from "$components/Mute.svelte";
@@ -15,9 +16,8 @@
 	import BarChart from "$components/BarChart.svelte";
 	import Footer from "$components/Footer.svelte";
 	import StartOver from "$components/StartOver.svelte";
-	import CMS from "$components/helpers/CMS.svelte";
 	import vennDiagram from "$svg/venn-diagram.svg";
-	import { current, modalState } from "$runes/misc.svelte.js";
+	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
@@ -90,21 +90,14 @@
 						content.find((d) => d.type === "Clip").value.inline !== "true")}
 				{@const intro = section === 0}
 
-				<div class="slide" id={`slide-${slideI}`}>
-					<div
-						class="content"
-						class:full
-						class:intro
-						class:fade={modalState.open}
-					>
-						<CMS
-							components={neededComponents}
-							{svgs}
-							content={slideContent}
-							{slideI}
-						/>
-					</div>
-				</div>
+				<Slide
+					{neededComponents}
+					{svgs}
+					{slideContent}
+					{full}
+					{intro}
+					{slideI}
+				/>
 			{/each}
 		</div>
 
@@ -133,64 +126,6 @@
 		width: calc(var(--n) * 100%);
 		height: 100%;
 		display: flex;
-	}
-
-	.slide {
-		position: relative;
-		background: linear-gradient(
-			to bottom,
-			var(--color-purple-100) 0%,
-			var(--color-purple-300) 100%
-		);
-		width: calc(100% / var(--n));
-		flex-shrink: 0;
-	}
-
-	.content {
-		position: relative;
-		font-size: var(--22px);
-		max-width: 45rem;
-		margin: 0 auto;
-		padding: 0 1rem;
-		margin-top: 6rem;
-		margin-bottom: 2rem;
-		transition: opacity calc(var(--1s) * 0.3);
-		display: flex;
-		flex-direction: column;
-		height: calc(100% - 8rem);
-	}
-
-	.slide:last-of-type .content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		max-width: 60rem;
-		height: 100%;
-		margin: 0 auto;
-		gap: 3rem;
-	}
-
-	.content.full {
-		height: 100dvh;
-		width: 100%;
-		max-width: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.content.intro {
-		margin: 0;
-		padding: 0;
-		max-width: none;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
-	}
-
-	.content.fade {
-		opacity: 0.3;
 	}
 
 	small {
@@ -248,10 +183,6 @@
 	}
 
 	@media (max-width: 600px) {
-		.content {
-			font-size: var(--16px);
-		}
-
 		:global(h2) {
 			margin-top: 0;
 			margin-bottom: 0.5rem;

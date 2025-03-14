@@ -30,6 +30,7 @@
 										class="bar-wrapper"
 										onclick={() => goTo(sectionI, barI, subI)}
 										aria-label={`Section ${sectionI}, Slide ${barI + 1}, Part ${subI + 1}`}
+										tabindex={current.section > 0 ? 0 : -1}
 									>
 										<div
 											class="bar"
@@ -44,6 +45,7 @@
 									class="bar-wrapper"
 									onclick={() => goTo(sectionI, barI)}
 									aria-label={`Section ${sectionI}, Slide ${barI + 1}`}
+									tabindex={current.section > 0 ? 0 : -1}
 								>
 									<div
 										class="bar"
@@ -64,6 +66,7 @@
 						class="long-bar-wrapper"
 						onclick={() => goTo(sectionI, 0)}
 						aria-label={`Section ${sectionI} - ${section}`}
+						tabindex={current.section > 0 ? 0 : -1}
 					>
 						<div class="long-bar"></div>
 					</button>
@@ -72,7 +75,7 @@
 		{/if}
 	{/each}
 
-	<Mute />
+	<Mute visible={current.section > 0} />
 </div>
 
 <style>

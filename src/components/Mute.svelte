@@ -3,7 +3,7 @@
 	import soundOnSvg from "$svg/sound-on.svg";
 	import soundOffSvg from "$svg/sound-off.svg";
 
-	const { positionStatic = false } = $props();
+	const { positionStatic = false, visible } = $props();
 </script>
 
 <button
@@ -11,6 +11,7 @@
 	class:static={positionStatic}
 	onclick={() => (videoSettings.soundOn = !videoSettings.soundOn)}
 	aria-label="Toggle sound"
+	tabindex={visible ? "0" : "-1"}
 >
 	{@html videoSettings.soundOn ? soundOnSvg : soundOffSvg}
 </button>

@@ -140,6 +140,7 @@
 		onmouseenter={onMouseEnter}
 		onmouseleave={onMouseLeave}
 		bind:this={wrapperEl}
+		tabindex={title && current.slide === 1 ? 0 : -1}
 	>
 		{@html svg}
 
