@@ -11,7 +11,7 @@ export const mediaPlaying = $state({
 
 export const videoSettings = $state({
 	ccOn: false,
-	soundOn: true
+	soundOn: false
 });
 
 export const modalState = $state({ open: false });

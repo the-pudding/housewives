@@ -45,7 +45,7 @@
 	});
 </script>
 
-<div class="modal" class:visible>
+<div id="modal" class:visible>
 	{#if visible}
 		<Clip
 			autoplay={visible}
@@ -60,7 +60,7 @@
 </div>
 
 <style>
-	.modal {
+	#modal {
 		background: lightblue;
 		width: 90%;
 		max-width: 60rem;
@@ -73,7 +73,7 @@
 		border: 6px solid black;
 	}
 
-	.modal.visible {
+	#modal.visible {
 		display: block;
 	}
 

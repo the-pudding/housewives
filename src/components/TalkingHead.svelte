@@ -21,7 +21,8 @@
 		title = false,
 		queen,
 		bounce,
-		clickedOne = $bindable()
+		clickedOne = $bindable(),
+		slide
 	} = $props();
 
 	const svgs = {
@@ -140,7 +141,7 @@
 		onmouseenter={onMouseEnter}
 		onmouseleave={onMouseLeave}
 		bind:this={wrapperEl}
-		tabindex={title && current.slide === 1 ? 0 : -1}
+		tabindex={title && current.slide === 1 && slide !== 0 ? 0 : -1}
 	>
 		{@html svg}
 

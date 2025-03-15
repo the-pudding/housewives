@@ -1,5 +1,5 @@
 <script>
-	import { current } from "$runes/misc.svelte.js";
+	import { current, modalState } from "$runes/misc.svelte.js";
 
 	let { allSlides } = $props();
 
@@ -41,6 +41,19 @@
 		} else if (e.keyCode === 37) {
 			advance(-1);
 			e.preventDefault();
+		} else if (modalState.open && (e.key === "Tab" || e.keyCode === 9)) {
+			e.preventDefault();
+			const elements = ["button.close", "button.cc"];
+			const focusableElements = [
+				...document.querySelectorAll(
+					elements.map((el) => `#modal ${el}`).join(", ")
+				)
+			];
+			if (document.activeElement === focusableElements[0]) {
+				focusableElements[1].focus();
+			} else {
+				focusableElements[0].focus();
+			}
 		} else if (e.key === "Tab" || e.keyCode === 9) {
 			const elements = ["button", "[href]", "input", "select", "textarea"];
 			const focusableElements = [
@@ -55,19 +68,24 @@
 				)
 			].filter((el) => el.tabIndex !== -1);
 
-			console.log({ focusableElements });
+			const activeElement = document.activeElement;
+			const activeIndex = focusableElements.findIndex(
+				(d) => d === activeElement
+			);
 			const firstElement = focusableElements[0];
 			const lastElement = focusableElements[focusableElements.length - 1];
-			if (e.shiftKey) {
-				if (document.activeElement === firstElement) {
-					e.preventDefault();
-					lastElement.focus();
-				}
+
+			e.preventDefault();
+			if (activeIndex === -1) {
+				focusableElements[0].focus();
+			} else if (document.activeElement === firstElement && e.shiftKey) {
+				lastElement.focus();
+			} else if (document.activeElement === lastElement && !e.shiftKey) {
+				firstElement.focus();
 			} else {
-				if (document.activeElement === lastElement) {
-					e.preventDefault();
-					firstElement.focus();
-				}
+				focusableElements[
+					e.shiftKey ? activeIndex - 1 : activeIndex + 1
+				].focus();
 			}
 		}
 	};

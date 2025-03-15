@@ -3,6 +3,8 @@
 	import { current } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 
+	let { slide } = $props();
+
 	let swiperEl;
 	let entered = $state(false);
 	let clickedOne = $state(false);
@@ -40,6 +42,7 @@
 						{name}
 						{quote}
 						title={true}
+						{slide}
 						bounce={i === centeredOn && !clickedOne}
 						bind:clickedOne
 					/>

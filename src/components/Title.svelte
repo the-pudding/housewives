@@ -3,6 +3,8 @@
 	import Mute from "$components/Mute.svelte";
 	import { current } from "$runes/misc.svelte.js";
 	import pointerSvg from "$svg/pointer.svg";
+
+	let { slide } = $props();
 </script>
 
 <div class="title">
@@ -13,7 +15,7 @@
 		>
 	</div>
 
-	<Faces />
+	<Faces {slide} />
 
 	<div class="text visible" class:fade={current.slide === 1}>
 		<strong

@@ -121,18 +121,31 @@
 							(solid_apology === "FALSE" && view === "bad")
 								? 1
 								: 0.3}
-						<div
-							id={chart_highlight === "TRUE" ? id : undefined}
-							class="apology"
-							class:good={solid_apology === "TRUE"}
-							class:bad={solid_apology === "FALSE"}
-							class:highlight
-							class:pulse={highlight && !mediaPlaying.id}
-							style:left
-							style:background
-							style:opacity
-							onclick={() => onClick(id)}
-						></div>
+						{#if chart_highlight === "TRUE"}
+							<button
+								id={chart_highlight === "TRUE" ? id : undefined}
+								class="apology"
+								class:good={solid_apology === "TRUE"}
+								class:bad={solid_apology === "FALSE"}
+								class:highlight
+								class:pulse={highlight && !mediaPlaying.id}
+								style:left
+								style:background
+								style:opacity
+								onclick={() => onClick(id)}
+								tabindex={highlight ? "0" : "-1"}
+								aria-label="Video clip"
+							></button>
+						{:else}
+							<div
+								class="apology"
+								class:good={solid_apology === "TRUE"}
+								class:bad={solid_apology === "FALSE"}
+								style:left
+								style:background
+								style:opacity
+							></div>
+						{/if}
 
 						{#if chart_highlight === "TRUE" || (view === "all" && id === "s1_e1_slam")}
 							<Preview
