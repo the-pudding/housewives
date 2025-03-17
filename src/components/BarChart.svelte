@@ -239,7 +239,7 @@
 		}
 	}
 
-	@media (max-height: 820px) {
+	@media (max-height: 750px) {
 		.label .seasons {
 			display: none;
 		}

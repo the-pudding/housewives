@@ -252,6 +252,7 @@
 		border: 6px solid black;
 		max-height: 400px;
 		margin-top: 1rem;
+		overflow: hidden;
 	}
 
 	.inline video {
@@ -299,6 +300,11 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: 50% -2rem;
+	}
+
+	.inline img.still {
+		object-position: 0px -21px;
 	}
 
 	.animation {

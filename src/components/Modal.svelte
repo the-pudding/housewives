@@ -37,7 +37,7 @@
 
 	const close = () => {
 		mediaPlaying.id = undefined;
-		modalState.open = false;
+		// modalState.open = false;
 	};
 
 	$effect(() => {
@@ -64,7 +64,8 @@
 		background: lightblue;
 		width: 90%;
 		max-width: 60rem;
-		height: 500px;
+		height: 65vh;
+		max-height: 500px;
 		position: fixed;
 		top: 50%;
 		left: 50%;

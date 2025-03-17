@@ -11,6 +11,10 @@
 		<p>{@html value}</p>
 	{:else if type === "svg"}
 		{@html svgs[value.src]}
+	{:else if type === "img"}
+		<div class="img-wrapper">
+			<img src={value.src} alt={value.alt || ""} />
+		</div>
 	{:else if isString}
 		<svelte:element this={type}>
 			{@html value}
@@ -19,3 +23,14 @@
 		<svelte:element this={type} {...value}></svelte:element>
 	{/if}
 {/each}
+
+<style>
+	.img-wrapper {
+		overflow: hidden;
+	}
+
+	img {
+		height: 100%;
+		object-fit: cover;
+	}
+</style>

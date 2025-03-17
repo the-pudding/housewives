@@ -67,6 +67,15 @@
 					apology.style.transition = "background-color var(--1s)";
 				});
 			}
+		} else {
+			const apologies = document.querySelectorAll(".apology");
+			// Reset to original colors
+			apologies.forEach((apology) => {
+				apology.style.background = apology.classList.contains("good")
+					? "var(--color-good)"
+					: "var(--color-bad)";
+				apology.style.transition = "background-color var(--1s)";
+			});
 		}
 	});
 </script>
@@ -172,8 +181,8 @@
 	figure {
 		position: absolute;
 		top: 8.5rem;
-		left: 1rem;
-		width: calc(100% - 2rem);
+		left: 3.5rem;
+		width: calc(100% - 6rem);
 		height: calc(100dvh - 14.5rem);
 		display: flex;
 		gap: 0.5rem;
@@ -271,12 +280,6 @@
 	}
 
 	@media (max-width: 600px) {
-		figure {
-			left: 3.5rem;
-			width: calc(100% - 6rem);
-			gap: 0.5rem;
-		}
-
 		.apology {
 			width: 8px;
 		}

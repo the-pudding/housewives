@@ -67,7 +67,7 @@
 		grid-template-rows: 1fr 1fr;
 		height: 480px;
 		margin-top: 2rem;
-		gap: 2rem;
+		gap: 1rem;
 	}
 
 	.clip-wrapper {

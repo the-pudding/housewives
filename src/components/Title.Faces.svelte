@@ -55,6 +55,7 @@
 <style>
 	#intro-faces {
 		width: 100%;
+		flex: 1;
 	}
 
 	.faces {
@@ -67,6 +68,7 @@
 
 	swiper-container {
 		width: 100%;
+		height: 100%;
 		visibility: hidden;
 		transform: translate(100%, 0);
 		transition: transform calc(var(--1s) * 0.8);
@@ -81,17 +83,25 @@
 		width: auto;
 		max-width: 200px;
 		display: flex;
-		align-items: start;
+		align-items: center;
 		flex-shrink: 0;
-		padding-top: 8rem;
-		padding-bottom: 4rem;
+		padding-top: 2rem;
+		padding-bottom: 3rem;
+	}
+
+	@media (max-height: 800px) {
+		swiper-slide {
+			max-width: 120px;
+			padding-bottom: 3rem;
+			font-size: var(--16px);
+		}
 	}
 
 	@media (max-width: 600px) {
 		swiper-slide {
 			max-width: 120px;
 			padding-top: 2rem;
-			padding-bottom: 5rem;
+			padding-bottom: 3rem;
 		}
 	}
 </style>

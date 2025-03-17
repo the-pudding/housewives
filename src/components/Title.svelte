@@ -15,7 +15,7 @@
 		>
 	</div>
 
-	<Faces {slide} />
+	<Faces slide={+slide} />
 
 	<div class="text visible" class:fade={current.slide === 1}>
 		<strong
@@ -53,6 +53,8 @@
 			)</span
 		>
 	</div>
+
+	<div class="spacer" />
 </div>
 
 <style>
@@ -165,6 +167,11 @@
 		top: 100%;
 		left: 100%;
 		transform: translate(-50%, -50%);
+	}
+
+	.spacer {
+		width: 100%;
+		height: 200px;
 	}
 
 	@media (max-width: 600px) {

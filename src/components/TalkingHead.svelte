@@ -150,9 +150,9 @@
 		{/if}
 	</button>
 
-	<div class="quote" class:visible={mediaPlaying.id === name}>
+	<!-- <div class="quote" class:visible={mediaPlaying.id === name}>
 		{Array.isArray(quote) ? quote[taglineI] : quote}
-	</div>
+	</div> -->
 
 	{#if audio}
 		<audio bind:this={audioEls[0]} src={`assets/audio/${audio}.mp3`}></audio>
