@@ -16,13 +16,14 @@
 	button {
 		background: var(--color-purple-400);
 		color: white;
-		width: 205px;
+		/* width: 205px; */
 		padding: 0.75rem;
 		text-transform: uppercase;
 		font-size: var(--20px);
 		margin-top: 6rem;
 		display: flex;
 		align-items: center;
+		white-space: nowrap;
 	}
 
 	button:hover {

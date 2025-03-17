@@ -6,11 +6,7 @@
 	let { clips, slideI } = $props();
 
 	let clipComponents = [];
-	let activeClipI = $state(0);
-
-	const finish = (id) => {
-		if (activeClipI < clips.length - 1) activeClipI += 1;
-	};
+	let activeClipI = $state();
 
 	const toggleCC = () => {
 		videoSettings.ccOn = !videoSettings.ccOn;
@@ -18,13 +14,12 @@
 
 	const playClip = (i) => {
 		activeClipI = i;
+		clipComponents[activeClipI].restartPlay();
 	};
 
 	$effect(() => {
-		if (slideI === current.slide) {
-			clipComponents[activeClipI].restartPlay();
-		} else if (slideI !== current.slide && activeClipI !== 0) {
-			activeClipI = 0;
+		if (current.slide !== slideI && activeClipI !== undefined) {
+			activeClipI = undefined;
 		}
 	});
 </script>
@@ -43,7 +38,6 @@
 					{id}
 					{slideI}
 					autoplay={false}
-					{finish}
 					controls={false}
 				/>
 			</button>
@@ -80,7 +74,7 @@
 		width: 100%;
 		background: none;
 		padding: 0;
-		opacity: 0.2;
+		opacity: 0.4;
 		transition:
 			transform calc(var(--1s) * 0.3),
 			opacity calc(var(--1s) * 0.3);

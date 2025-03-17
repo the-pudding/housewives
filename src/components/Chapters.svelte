@@ -87,7 +87,7 @@
 		display: flex;
 		gap: 4px;
 		opacity: 0;
-		transition: opacity 0.3s;
+		transition: opacity calc(var(--1s) * 0.3);
 		z-index: 1;
 	}
 

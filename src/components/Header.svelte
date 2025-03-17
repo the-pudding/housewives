@@ -61,7 +61,7 @@
 
 	.small .wordmark {
 		padding: 0;
-		transition: transform 0.1s;
+		transition: transform calc(var(--1s) * 0.1);
 	}
 
 	.small .wordmark:hover {

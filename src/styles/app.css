@@ -110,7 +110,13 @@ img {
 	margin: 0 auto;
 }
 
+a:not(footer a) {
+	color: var(--color-link);
+	border-bottom: 2px solid var(--color-link);
+	text-decoration: none;
+}
+
 a:hover {
 	color: var(--color-link-hover);
-	text-decoration: 2px underline var(--color-link-hover);
+	border-bottom: 2px solid var(--color-link-hover);
 }

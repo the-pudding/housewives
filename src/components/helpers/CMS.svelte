@@ -27,6 +27,7 @@
 <style>
 	.img-wrapper {
 		overflow: hidden;
+		max-height: 400px;
 	}
 
 	img {

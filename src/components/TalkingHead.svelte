@@ -209,7 +209,7 @@
 		background: none;
 		padding: 0;
 		width: 100%;
-		transition: transform 0.2s ease-out;
+		transition: transform calc(var(--1s) * 0.2) ease-out;
 	}
 
 	.name {
@@ -264,7 +264,7 @@
 	}
 
 	:global(button.face svg path) {
-		transition: fill 0.2s;
+		transition: fill calc(var(--1s) * 0.2);
 	}
 
 	@media (max-width: 600px) {
