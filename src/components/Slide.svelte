@@ -73,6 +73,7 @@
 	@media (max-width: 600px) {
 		.content {
 			font-size: var(--16px);
+			/* margin-bottom: 1rem; */
 		}
 	}
 </style>

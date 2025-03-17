@@ -165,6 +165,10 @@
 	}
 
 	@media (max-width: 600px) {
+		#chapters {
+			padding: 0 4rem;
+		}
+
 		.title {
 			max-width: 150px;
 		}

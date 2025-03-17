@@ -37,7 +37,7 @@
 
 	const close = () => {
 		mediaPlaying.id = undefined;
-		// modalState.open = false;
+		modalState.open = false;
 	};
 
 	$effect(() => {

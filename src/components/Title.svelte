@@ -46,7 +46,7 @@
 	<div class="tap" class:visible={current.slide === 1}>
 		Tap the left side to go back, right to go forward
 		<br />
-		<span
+		<span class="use-keyboard"
 			>(or use the keyboard
 			<span class="key">{"<"}</span>
 			<span class="key">{">"}</span>
@@ -172,6 +172,16 @@
 	.spacer {
 		width: 100%;
 		height: 200px;
+	}
+
+	.use-keyboard {
+		display: none;
+	}
+
+	@media ((hover: hover) and (pointer: fine)) {
+		.use-keyboard {
+			display: block;
+		}
 	}
 
 	@media (max-width: 600px) {
