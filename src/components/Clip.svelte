@@ -8,14 +8,14 @@
 	const {
 		id,
 		context,
-		autoplay = true,
-		inline = false,
-		controls = true,
 		slideI,
 		finish,
-		progressColor = "var(--color-purple-300)",
 		modal,
-		mobilePosition
+		mobilePosition,
+		autoplay = true,
+		inline,
+		small,
+		progressColor = "var(--color-purple-300)"
 	} = $props();
 
 	let videoEl;
@@ -34,6 +34,10 @@
 	let percentComplete = $derived((currentTime / duration) * 100);
 	const season = +id.split("_")[0]?.replace("s", "");
 	const episode = +id.split("_")[1]?.replace("e", "");
+	let ccButton = !small;
+	let playButton = inline || small;
+	let restartButton = !modal;
+	let seasonEpisodeLabel = !small;
 
 	export const restartPlay = () => {
 		mediaPlaying.id = id;
@@ -122,7 +126,7 @@
 	});
 </script>
 
-<figure class:inline class:small={!controls}>
+<figure class:inline class:small>
 	<figcaption class="sr-only">{context}</figcaption>
 
 	<div class="loading" class:visible={current.slide === slideI && !loaded}>
@@ -152,7 +156,7 @@
 		/>
 	</video>
 
-	{#if controls}
+	{#if ccButton}
 		<button
 			class="cc"
 			class:on={videoSettings.ccOn}
@@ -161,7 +165,9 @@
 		>
 			{@html ccSvg}
 		</button>
+	{/if}
 
+	{#if restartButton}
 		<button
 			class="restart"
 			class:visible={done}
@@ -169,11 +175,13 @@
 			onclick={restartPlay}
 			aria-label="Restart">{@html restartSvg}</button
 		>
+	{/if}
 
+	{#if playButton}
 		<button
 			class="play"
-			class:visible={inline && paused && !done && loaded}
-			tabindex={inline && paused && !done && loaded ? "0" : "-1"}
+			class:visible={paused && !done && loaded}
+			tabindex={paused && !done && loaded ? "0" : "-1"}
 			onclick={restartPlay}
 			aria-label="Play">{@html playSvg}</button
 		>
@@ -185,7 +193,8 @@
 			style:width={`${percentComplete}%`}
 			style:background={progressColor}
 		></div>
-		{#if controls}
+
+		{#if seasonEpisodeLabel}
 			<div class="context">
 				{#if season && episode}
 					<span class="season-episode">S{season}E{episode}</span>

@@ -1,7 +1,7 @@
 <script>
 	import Clip from "$components/Clip.svelte";
 	import ccSvg from "$svg/closed-captioning.svg";
-	import { current, videoSettings } from "$runes/misc.svelte.js";
+	import { current, videoSettings, mediaPlaying } from "$runes/misc.svelte.js";
 
 	let { clips, slideI } = $props();
 
@@ -10,11 +10,6 @@
 
 	const toggleCC = () => {
 		videoSettings.ccOn = !videoSettings.ccOn;
-	};
-
-	const playClip = (i) => {
-		activeClipI = i;
-		clipComponents[activeClipI].restartPlay();
 	};
 
 	$effect(() => {
@@ -27,20 +22,15 @@
 <div class="clips">
 	{#each clips as { id, caption }, i}
 		<div class="clip-wrapper">
-			<button
-				class="clip"
-				class:active={i === activeClipI}
-				onclick={() => playClip(i)}
-				aria-label={`Video clip: ${caption}`}
-			>
+			<div class="clip" class:active={mediaPlaying.id === id}>
 				<Clip
 					bind:this={clipComponents[i]}
 					{id}
 					{slideI}
 					autoplay={false}
-					controls={false}
+					small={true}
 				/>
-			</button>
+			</div>
 			<div class="caption">
 				{@html caption}
 			</div>
@@ -75,7 +65,7 @@
 		width: 100%;
 		background: none;
 		padding: 0;
-		opacity: 0.4;
+		opacity: 0.6;
 		transition:
 			transform calc(var(--1s) * 0.3),
 			opacity calc(var(--1s) * 0.3);
@@ -84,11 +74,6 @@
 
 	.clip.active {
 		opacity: 1;
-	}
-
-	.clip:hover {
-		transform: translate(0, -4px);
-		opacity: 0.8;
 	}
 
 	.caption {
