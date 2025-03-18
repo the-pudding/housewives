@@ -112,6 +112,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
+		flex: 1;
+		max-height: 500px;
 	}
 
 	h3 {
@@ -123,6 +125,7 @@
 		height: 36px;
 		display: flex;
 		align-items: center;
+		flex: 1;
 	}
 
 	.row.fade {
@@ -133,7 +136,7 @@
 		position: absolute;
 		width: 190px;
 		left: 0;
-		transform: translate(-200px, 0);
+		transform: translate(-205px, 0);
 		font-family: var(--sans);
 		display: flex;
 		flex-direction: column;
@@ -196,7 +199,7 @@
 
 		.label {
 			width: 165px;
-			transform: translate(-175px, 0);
+			transform: translate(-180px, 0);
 		}
 
 		h3 {
@@ -242,10 +245,6 @@
 	@media (max-height: 750px) {
 		.label .seasons {
 			display: none;
-		}
-
-		.row {
-			height: auto;
 		}
 	}
 </style>
