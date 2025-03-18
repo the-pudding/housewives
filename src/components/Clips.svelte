@@ -39,7 +39,12 @@
 </div>
 
 <div class="controls">
-	<button class="cc" class:on={videoSettings.ccOn} onclick={toggleCC}>
+	<button
+		class="cc"
+		class:on={videoSettings.ccOn}
+		onclick={toggleCC}
+		aria-label="Toggle CCs"
+	>
 		{@html ccSvg}
 	</button>
 </div>

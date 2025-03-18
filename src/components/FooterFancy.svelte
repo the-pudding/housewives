@@ -55,6 +55,8 @@
 				: [];
 		}
 	});
+
+	$inspect({ storiesRecent, storiesTopics });
 </script>
 
 <footer>
