@@ -28,6 +28,7 @@
 	.img-wrapper {
 		overflow: hidden;
 		max-height: 400px;
+		min-height: 200px;
 	}
 
 	img {

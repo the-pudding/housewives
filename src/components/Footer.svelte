@@ -4,6 +4,9 @@
 	import wordmark from "$svg/wordmark-sticker.svg";
 	import linkOutArrow from "$svg/arrow-up-right.svg";
 	import Story from "$components/Footer.Story.svelte";
+	import Viewport from "$runes/Viewport.svelte.js";
+
+	const viewport = new Viewport();
 
 	// custom to starter
 	const base = "https://pudding.cool";
@@ -62,7 +65,7 @@
 	<div class="c">
 		<div class="top">
 			{#if recirc && stories.length}
-				{#if recircImages}
+				{#if recircImages && viewport.width > 600}
 					<section class="images">
 						<ul>
 							{#each stories as story}
@@ -166,8 +169,8 @@
 
 	.c {
 		max-width: calc(var(--width-column-wide, 1280px) - var(--margin, 16px) * 2);
-		padding: 16px;
-		margin: 0 auto 100px auto;
+		/* padding: 16px; */
+		margin: 0 auto 0 auto;
 		font-family: var(--sans);
 	}
 

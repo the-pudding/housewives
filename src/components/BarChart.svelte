@@ -114,6 +114,7 @@
 		gap: 4px;
 		flex: 1;
 		max-height: 500px;
+		min-height: 300px;
 	}
 
 	h3 {
@@ -238,12 +239,6 @@
 
 	@media (max-width: 400px) {
 		#monica-garcia .num_bad_apologies .number {
-			display: none;
-		}
-	}
-
-	@media (max-height: 750px) {
-		.label .seasons {
 			display: none;
 		}
 	}

@@ -1,13 +1,33 @@
 <script>
 	import CMS from "$components/helpers/CMS.svelte";
-	import { modalState } from "$runes/misc.svelte.js";
+	import { modalState, current } from "$runes/misc.svelte.js";
 
-	let { neededComponents, svgs, slideContent, full, intro, slideI } = $props();
+	let { neededComponents, svgs, slideContent, full, intro, slideI, advance } =
+		$props();
+
+	const firstSlide = $derived(current.slide === 0);
 </script>
 
 <div class="slide" id={`slide-${slideI}`}>
 	<div class="content" class:full class:intro class:fade={modalState.open}>
 		<CMS components={neededComponents} {svgs} content={slideContent} {slideI} />
+	</div>
+
+	<div class="tap">
+		<button
+			class="left"
+			class:hidden={firstSlide}
+			onclick={() => advance(-1)}
+			aria-label="Tap left to go to the previous slide"
+			tabindex="-1"
+		></button>
+		<button
+			class="right"
+			class:full={firstSlide}
+			onclick={() => advance(1)}
+			aria-label="Tap right to go to the next slide"
+			tabindex="-1"
+		></button>
 	</div>
 </div>
 
@@ -21,6 +41,8 @@
 		);
 		width: calc(100% / var(--n));
 		flex-shrink: 0;
+		overflow: scroll;
+		pointer-events: auto;
 	}
 
 	.content {
@@ -35,6 +57,8 @@
 		display: flex;
 		flex-direction: column;
 		height: calc(100% - 8rem);
+		pointer-events: none;
+		z-index: 2;
 	}
 
 	.slide:last-of-type .content {
@@ -70,10 +94,37 @@
 		opacity: 0.3;
 	}
 
+	.tap {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		z-index: 1;
+	}
+
+	.tap button {
+		height: 100%;
+		width: 50%;
+		opacity: 0;
+	}
+
+	button.hidden {
+		width: 0;
+		padding: 0;
+	}
+
+	button.full {
+		width: 100%;
+	}
+
+	button:hover {
+		cursor: pointer;
+	}
+
 	@media (max-width: 600px) {
 		.content {
 			font-size: var(--16px);
-			/* margin-bottom: 1rem; */
 		}
 	}
 </style>

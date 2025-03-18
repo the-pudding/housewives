@@ -1,6 +1,5 @@
 <script>
 	import Slide from "$components/Slide.svelte";
-	import Tap from "$components/Tap.svelte";
 	import Modal from "$components/Modal.svelte";
 	import Mute from "$components/Mute.svelte";
 	import Title from "$components/Title.svelte";
@@ -17,7 +16,7 @@
 	import Footer from "$components/Footer.svelte";
 	import StartOver from "$components/StartOver.svelte";
 	import vennDiagram from "$svg/venn-diagram.svg";
-	import { current } from "$runes/misc.svelte.js";
+	import { current, modalState } from "$runes/misc.svelte.js";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 
@@ -57,7 +56,93 @@
 			return acc.concat(slides);
 		}, [])
 		.map((d, i) => ({ slide: i, ...d }));
+
+	const advance = (i) => {
+		const currentSlideIndex = allSlides.findIndex(
+			(d) =>
+				d.section === current.section &&
+				d.slideInSection === current.slideInSection &&
+				d.slide === current.slide
+		);
+		const isMulti = allSlides[currentSlideIndex].multi;
+		const numSubslides = isMulti
+			? allSlides[currentSlideIndex].content.length
+			: 1;
+		if (
+			isMulti &&
+			current.subslide + i < numSubslides &&
+			current.subslide + i >= 0
+		) {
+			current.subslide += i;
+		} else if (
+			currentSlideIndex + i >= 0 &&
+			currentSlideIndex + i < allSlides.length
+		) {
+			const next = allSlides[currentSlideIndex + i];
+			current.section = next.section;
+			current.slideInSection = next.slideInSection;
+			current.slide = next.slide;
+		}
+	};
+
+	const onKeyDown = (e) => {
+		if (e.keyCode === 39) {
+			advance(1);
+			e.preventDefault();
+		} else if (e.keyCode === 37) {
+			advance(-1);
+			e.preventDefault();
+		} else if (modalState.open && (e.key === "Tab" || e.keyCode === 9)) {
+			e.preventDefault();
+			const elements = ["button.close", "button.cc"];
+			const focusableElements = [
+				...document.querySelectorAll(
+					elements.map((el) => `#modal ${el}`).join(", ")
+				)
+			];
+			if (document.activeElement === focusableElements[0]) {
+				focusableElements[1].focus();
+			} else {
+				focusableElements[0].focus();
+			}
+		} else if (e.key === "Tab" || e.keyCode === 9) {
+			const elements = ["button", "[href]", "input", "select", "textarea"];
+			const focusableElements = [
+				...document.querySelectorAll(
+					elements.map((el) => `#slide-${current.slide} ${el}`).join(", ")
+				),
+				...document.querySelectorAll(
+					elements.map((el) => `header ${el}`).join(", ")
+				),
+				...document.querySelectorAll(
+					elements.map((el) => `#chapters ${el}`).join(", ")
+				)
+			].filter((el) => el.tabIndex !== -1);
+
+			const activeElement = document.activeElement;
+			const activeIndex = focusableElements.findIndex(
+				(d) => d === activeElement
+			);
+			const firstElement = focusableElements[0];
+			const lastElement = focusableElements[focusableElements.length - 1];
+
+			e.preventDefault();
+			if (activeIndex === -1) {
+				focusableElements[0].focus();
+			} else if (document.activeElement === firstElement && e.shiftKey) {
+				lastElement.focus();
+			} else if (document.activeElement === lastElement && !e.shiftKey) {
+				firstElement.focus();
+			} else {
+				focusableElements[
+					e.shiftKey ? activeIndex - 1 : activeIndex + 1
+				].focus();
+			}
+		}
+	};
 </script>
+
+<svelte:window on:keydown={onKeyDown} />
 
 <article bind:clientWidth={w} style={`--n: ${allSlides.length}`}>
 	<Chapters {allSlides} />
@@ -97,6 +182,7 @@
 					{full}
 					{intro}
 					{slideI}
+					{advance}
 				/>
 			{/each}
 		</div>
@@ -105,7 +191,7 @@
 	</div>
 </article>
 
-<Tap {allSlides} />
+<!-- <Tap {allSlides} /> -->
 
 <style>
 	article {
@@ -188,11 +274,4 @@
 			margin-bottom: 0.5rem;
 		}
 	}
-
-	/* 
-	@media (max-height: 800px) {
-		.slide {
-			overflow: scroll;
-		}
-	} */
 </style>

@@ -137,7 +137,7 @@
 	}
 
 	.byline {
-		position: absolute;
+		position: fixed;
 		bottom: 1.5rem;
 		left: 1.5rem;
 		font-size: var(--14px);

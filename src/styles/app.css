@@ -115,3 +115,9 @@ a:not(footer a) {
 	border-bottom: 2px solid var(--color-link);
 	text-decoration: none;
 }
+
+a:not(footer a):hover {
+	color: var(--color-link-hover);
+	border-bottom: 2px solid var(--color-link-hover);
+	cursor: pointer;
+}

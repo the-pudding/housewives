@@ -58,6 +58,7 @@
 		gap: 1rem;
 		flex: 1;
 		overflow: hidden;
+		min-height: 400px;
 	}
 
 	.clip-wrapper {

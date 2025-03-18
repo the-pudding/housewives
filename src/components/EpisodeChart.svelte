@@ -184,6 +184,7 @@
 		left: 3.5rem;
 		width: calc(100% - 6rem);
 		height: calc(100dvh - 14.5rem);
+		min-height: 400px;
 		display: flex;
 		gap: 0.5rem;
 		padding-bottom: 3rem;

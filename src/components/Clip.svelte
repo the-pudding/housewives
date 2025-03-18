@@ -258,6 +258,7 @@
 
 	figure.inline {
 		border: 6px solid black;
+		min-height: 300px;
 		max-height: 400px;
 		margin-top: 1rem;
 		overflow: hidden;
