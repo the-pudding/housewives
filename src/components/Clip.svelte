@@ -126,7 +126,7 @@
 	});
 </script>
 
-<figure class:inline class:small>
+<figure class:inline class:small class:modal>
 	<figcaption class="sr-only">{context}</figcaption>
 
 	<div class="loading" class:visible={current.slide === slideI && !loaded}>
@@ -139,7 +139,6 @@
 	<video
 		class:visible={current.slide === slideI && loaded}
 		class:inline
-		class:modal
 		playsinline
 		bind:this={videoEl}
 		bind:currentTime
@@ -364,6 +363,11 @@
 		visibility: hidden;
 	}
 
+	.small .restart,
+	.small .play {
+		top: calc(50% - 0.5rem);
+	}
+
 	.restart.visible,
 	.play.visible {
 		visibility: visible;
@@ -401,6 +405,23 @@
 
 		:global(video::cue) {
 			font-size: var(--24px);
+		}
+
+		.cc {
+			bottom: 7rem;
+			opacity: 0.7;
+		}
+
+		.inline .cc {
+			bottom: auto;
+			top: 1rem;
+		}
+
+		.modal .cc {
+			right: 1rem;
+			left: auto;
+			top: 1rem;
+			bottom: auto;
 		}
 	}
 
