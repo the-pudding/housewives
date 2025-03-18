@@ -188,6 +188,7 @@
 			margin-bottom: 0.5rem;
 		}
 	}
+
 	/* 
 	@media (max-height: 800px) {
 		.slide {

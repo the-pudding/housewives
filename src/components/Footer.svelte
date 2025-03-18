@@ -10,7 +10,7 @@
 	let stories = $state([]);
 	let storyCount = $state(0);
 
-	let { recirc = false, recent = true, recircImages = false } = $props();
+	let { recirc = true, recent = true, recircImages = true } = $props();
 
 	const v = Date.now();
 	const url = `https://pudding.cool/assets/data/stories.json?v=${v}`;
@@ -132,9 +132,9 @@
 			</div>
 
 			<section class="links">
-				<div class="img-wrapper">
+				<a class="img-wrapper" href="https://pudding.cool">
 					<span class="wordmark">{@html wordmark}</span>
-				</div>
+				</a>
 				<div class="inner">
 					<div class="about">
 						<p class="title">About Us</p>
@@ -167,17 +167,17 @@
 	.c {
 		max-width: calc(var(--width-column-wide, 1280px) - var(--margin, 16px) * 2);
 		padding: 16px;
-		/* margin: 32px auto 100px auto; */
+		margin: 0 auto 100px auto;
 		font-family: var(--sans);
 	}
 
-	/* .top {
+	.top {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		margin: 0 0 64px 0;
-	} */
+		/* margin: 0 0 64px 0; */
+	}
 
 	.text {
 		font-size: var(--20px, 20px);
@@ -266,6 +266,7 @@
 
 	a:hover {
 		color: var(--color-link-hover);
+		border-bottom: none;
 		text-decoration: 2px underline var(--color-link-hover);
 	}
 
@@ -340,14 +341,12 @@
 	}
 
 	.wordmark {
-		pointer-events: all;
 		transform: rotate(var(--left-tilt, -2deg));
 		max-width: 360px;
 		transition: transform calc(var(--1s) * 0.25);
 	}
 
 	.wordmark:hover {
-		cursor: pointer;
 		transform: rotate(0) scale(1.05);
 	}
 
