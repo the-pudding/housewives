@@ -68,12 +68,16 @@
 				});
 			}
 		} else {
-			const apologies = document.querySelectorAll(".apology");
 			// Reset to original colors
+			const apologies = document.querySelectorAll(".apology");
+
 			apologies.forEach((apology) => {
-				apology.style.background = apology.classList.contains("good")
-					? "var(--color-good)"
-					: "var(--color-bad)";
+				apology.style.background =
+					view === "all"
+						? "var(--color-purple-400)"
+						: apology.classList.contains("good")
+							? "var(--color-good)"
+							: "var(--color-bad)";
 				apology.style.transition = "background-color var(--1s)";
 			});
 		}

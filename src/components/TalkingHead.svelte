@@ -55,7 +55,7 @@
 		}
 
 		const outline = wrapperEl.querySelector("svg path");
-		outline.style.fill = "var(--color-blue)";
+		outline.style.fill = "var(--color-light-blue)";
 		wrapperEl.style.transform = `rotate(${Math.random() * 5}deg) scale(1.5)`;
 
 		const allAudioEls = document.querySelectorAll("audio");

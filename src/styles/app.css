@@ -38,7 +38,7 @@
 	--color-input-fg: var(--color-gray-900);
 	--color-placeholder: var(--color-gray-500);
 
-	--color-good: var(--color-green);
+	--color-good: var(--color-light-blue);
 	--color-bad: var(--color-orange);
 	--video-example-height: 20rem;
 

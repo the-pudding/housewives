@@ -257,8 +257,7 @@
 	}
 
 	:global(span.blue) {
-		background: var(--color-blue);
-		color: var(--color-white);
+		background: var(--color-light-blue);
 		font-weight: bold;
 		padding: 0 4px;
 		line-height: 1.4;

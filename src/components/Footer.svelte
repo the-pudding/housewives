@@ -135,7 +135,11 @@
 			</div>
 
 			<section class="links">
-				<a class="img-wrapper" href="https://pudding.cool">
+				<a
+					class="img-wrapper"
+					href="https://pudding.cool"
+					aria-label="The Pudding website"
+				>
 					<span class="wordmark">{@html wordmark}</span>
 				</a>
 				<div class="inner">
