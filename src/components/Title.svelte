@@ -1,8 +1,10 @@
 <script>
 	import Faces from "$components/Title.Faces.svelte";
 	import Mute from "$components/Mute.svelte";
-	import { current } from "$runes/misc.svelte.js";
+	import Loading from "$components/Loading.svelte";
+	import { current, loadState } from "$runes/misc.svelte.js";
 	import pointerSvg from "$svg/pointer.svg";
+	import { fade } from "svelte/transition";
 
 	let { slide } = $props();
 </script>
@@ -25,11 +27,17 @@
 		>
 	</div>
 
-	<div class="tap" class:visible={current.slide === 0}>
-		Tap anywhere
+	{#if loadState.ready}
+		<div class="tap" class:visible={current.slide === 0} transition:fade>
+			Tap anywhere
 
-		<span class="pointer">{@html pointerSvg}</span>
-	</div>
+			<span class="pointer">{@html pointerSvg}</span>
+		</div>
+	{:else}
+		<div class="loading">
+			<Loading />
+		</div>
+	{/if}
 
 	<div class="text" class:visible={current.slide === 1}>
 		<strong
@@ -83,7 +91,7 @@
 		background: var(--color-purple-200);
 	}
 
-	div {
+	div:not(.loading):not(.tap) {
 		transition: opacity calc(var(--1s) * 0.5);
 		padding: 0 1rem;
 	}
@@ -134,6 +142,10 @@
 	.tap span {
 		text-transform: none;
 		font-size: var(--14px);
+	}
+
+	.loading {
+		color: var(--color-purple-400);
 	}
 
 	.byline {

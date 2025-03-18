@@ -1,6 +1,11 @@
 <script>
 	import Loading from "$components/Loading.svelte";
-	import { current, mediaPlaying, videoSettings } from "$runes/misc.svelte.js";
+	import {
+		current,
+		mediaPlaying,
+		videoSettings,
+		loadState
+	} from "$runes/misc.svelte.js";
 	import restartSvg from "$svg/restart.svg";
 	import ccSvg from "$svg/closed-captioning.svg";
 	import playSvg from "$svg/play.svg";
@@ -72,6 +77,7 @@
 
 			videoEl.addEventListener("canplaythrough", () => {
 				loaded = true;
+				if (id === "s1_e1_opening" && !loadState.ready) loadState.ready = true;
 			});
 		}
 
@@ -100,7 +106,6 @@
 
 		// We've moved on, either wihin the slide or to the next one
 		if ((mediaPlaying.id === undefined || mediaPlaying.id !== id) && !paused) {
-			// BUG HERE that is pausing Mary's first video when we return to it from another slide
 			paused = true;
 			videoEl.pause();
 			currentTime = 0;

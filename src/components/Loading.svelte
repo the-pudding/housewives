@@ -38,7 +38,6 @@
 		left: 36.8px;
 		width: 6.4px;
 		height: 17.6px;
-		border-radius: 20%;
 		background: currentColor;
 	}
 	.lds-spinner div:nth-child(1) {

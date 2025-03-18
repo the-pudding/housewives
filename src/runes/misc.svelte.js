@@ -15,3 +15,6 @@ export const videoSettings = $state({
 });
 
 export const modalState = $state({ open: false });
+
+// Ready to enter story, first video loaded
+export const loadState = $state({ ready: false });
