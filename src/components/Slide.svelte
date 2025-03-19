@@ -41,8 +41,9 @@
 		);
 		width: calc(100% / var(--n));
 		flex-shrink: 0;
-		overflow: scroll;
 		pointer-events: auto;
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 
 	.content {

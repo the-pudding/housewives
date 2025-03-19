@@ -30,6 +30,11 @@
 		left: 2rem;
 	}
 
+	.bottom-left-shifted {
+		bottom: 12rem;
+		left: 2rem;
+	}
+
 	.bottom-right {
 		bottom: 4rem;
 		right: 2rem;
